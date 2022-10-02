@@ -16,6 +16,39 @@ public abstract class Entity {
 
     protected Image img;
 
+    //player speed
+    private static int VelX;
+    private static int VelY;
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public static int getVelX() {
+        return VelX;
+    }
+    public static void setVelX(int velX) {
+        VelX = velX;
+    }
+    public static int getVelY() {
+        return VelY;
+    }
+    public static void setVelY(int velY) {
+        VelY = velY;
+    }
+
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity( int xUnit, int yUnit, Image img) {
         this.x = xUnit * Sprite.SCALED_SIZE;

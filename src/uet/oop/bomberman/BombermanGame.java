@@ -7,25 +7,32 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyCode;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.Grass;
 import uet.oop.bomberman.entities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BombermanGame extends Application {
-    
+
     public static final int WIDTH = 20;
     public static final int HEIGHT = 15;
-    
+
+    private Scene mainScene;
+    private Entity bomberman;
     private GraphicsContext gc;
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
     private List<Entity> stillObjects = new ArrayList<>();
-
+    private ArrayList<String> inputList = new ArrayList<>();
+    public Scene getMainScene() {
+        return mainScene;
+    }
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -41,12 +48,19 @@ public class BombermanGame extends Application {
         Group root = new Group();
         root.getChildren().add(canvas);
 
-        // Tao scene
-        Scene scene = new Scene(root);
+        // Tao mainScene
+        mainScene = new Scene(root);
 
-        // Them scene vao stage
-        stage.setScene(scene);
+        // Add mainScene vao stage
+        stage.setScene(mainScene);
         stage.show();
+
+        // Tao map
+        createMap();
+
+        // Tao bomber
+        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        entities.add(bomberman);
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -56,11 +70,6 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
-
-        createMap();
-
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        entities.add(bomberman);
     }
 
     public void createMap() {
@@ -78,7 +87,22 @@ public class BombermanGame extends Application {
         }
     }
 
+    // moves the player.
+    public void position() {
+        bomberman.setX(bomberman.getX() + Entity.getVelX());
+        bomberman.setY(bomberman.getY() + Entity.getVelY());
+    }
+
+    private void updatePlayerInput(){
+        // KeyPressed
+        getMainScene().setOnKeyPressed(Bomber::move);
+
+        getMainScene().setOnKeyReleased(Bomber::stop);
+
+        position();
+    }
     public void update() {
+        updatePlayerInput();
         entities.forEach(Entity::update);
     }
 
