@@ -15,7 +15,8 @@
             "name": "Launch BombermanGame",
             "request": "launch",
             "mainClass": "uet.oop.bomberman.BombermanGame",
-            "projectName": "bomberman"
+            "projectName": "bomberman",
+            "vmArgs": "--module-path=C:\\Users\\sadte\\Downloads\\javafx-sdk-19\\lib --add-modules=javafx.controls"
         }
     ]
 }
