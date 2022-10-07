@@ -33,7 +33,7 @@ public class BombermanGame extends Application {
     public Scene getMainScene() {
         return mainScene;
     }
-
+//void ne
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }
