@@ -24,6 +24,8 @@ public class Bomber extends Entity {
         } else if (key == KeyCode.S ||key == KeyCode.DOWN) {
             setVelY(5);
         }
+
+        // chekc ne hieu oi
     }
 
     public static void stop(javafx.scene.input.KeyEvent e) {
