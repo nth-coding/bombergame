@@ -6,21 +6,21 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
+import uet.oop.bomberman.components.Component;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.Grass;
 import uet.oop.bomberman.entities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BombermanGame extends Application {
 
-    public static final int WIDTH = 20;
+    public static final int WIDTH = 25;
     public static final int HEIGHT = 15;
 
     private Scene mainScene;
@@ -29,11 +29,12 @@ public class BombermanGame extends Application {
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
     private List<Entity> stillObjects = new ArrayList<>();
-    private ArrayList<String> inputList = new ArrayList<>();
+
     public Scene getMainScene() {
         return mainScene;
     }
-//void ne
+
+    // void ne
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }
@@ -51,8 +52,23 @@ public class BombermanGame extends Application {
         // Tao mainScene
         mainScene = new Scene(root);
 
+        mainScene.setOnKeyPressed(event -> {
+            KeyCode key = event.getCode();
+
+            if (key == KeyCode.A || key == KeyCode.LEFT) {
+                Component.left(bomberman);
+            } else if (key == KeyCode.D || key == KeyCode.RIGHT) {
+                Component.right(bomberman);
+            } else if (key == KeyCode.W || key == KeyCode.UP) {
+                Component.up(bomberman);
+            } else if (key == KeyCode.S || key == KeyCode.DOWN) {
+                Component.down(bomberman);
+            }
+        });
+
         // Add mainScene vao stage
         stage.setScene(mainScene);
+        stage.setTitle("Bomberman");
         stage.show();
 
         // Tao map
@@ -78,8 +94,7 @@ public class BombermanGame extends Application {
                 Entity object;
                 if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
                     object = new Wall(i, j, Sprite.wall.getFxImage());
-                }
-                else {
+                } else {
                     object = new Grass(i, j, Sprite.grass.getFxImage());
                 }
                 stillObjects.add(object);
@@ -87,22 +102,30 @@ public class BombermanGame extends Application {
         }
     }
 
-    // moves the player.
+    // moves the bomberman.
     public void position() {
         bomberman.setX(bomberman.getX() + Entity.getVelX());
         bomberman.setY(bomberman.getY() + Entity.getVelY());
     }
 
-    private void updatePlayerInput(){
+    private void updatePlayerInput() {
         // KeyPressed
-        getMainScene().setOnKeyPressed(Bomber::move);
+        // getMainScene().setOnKeyPressed(Bomber::move);
 
-        getMainScene().setOnKeyReleased(Bomber::stop);
+        // getMainScene().setOnKeyReleased(Bomber::stop);
 
         position();
     }
+
     public void update() {
         updatePlayerInput();
+
+        bomberman.setCountToRun(bomberman.getCountToRun() + 1);
+        if (bomberman.getCountToRun() == 4) {
+            Component.checkRun(bomberman);
+            bomberman.setCountToRun(0);
+        }
+
         entities.forEach(Entity::update);
     }
 
