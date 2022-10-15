@@ -11,8 +11,8 @@ public abstract class Entity {
     protected Image img;
 
     // player speed
-    private static int VelX; // velocity Ox
-    private static int VelY; // velocity Oy
+    private int VelX; // velocity Ox
+    private int VelY; // velocity Oy
 
     protected int isMove; // jump with pixel
     protected int swap; // swap image
@@ -68,19 +68,19 @@ public abstract class Entity {
         this.img = img;
     }
 
-    public static int getVelX() {
+    public int getVelX() {
         return VelX;
     }
 
-    public static void setVelX(int velX) {
+    public void setVelX(int velX) {
         VelX = velX;
     }
 
-    public static int getVelY() {
+    public int getVelY() {
         return VelY;
     }
 
-    public static void setVelY(int velY) {
+    public void setVelY(int velY) {
         VelY = velY;
     }
 

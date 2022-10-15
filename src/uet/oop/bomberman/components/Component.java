@@ -8,35 +8,44 @@ import uet.oop.bomberman.BombermanGame.*;
 import java.util.List;
 
 public class Component {
-    public static void checkRun(Entity entity) {    //Check if all your mob move or not
+    public static void checkRun(Entity entity) { // Check if all your mob move or not
         if (entity instanceof Bomber && entity.getCount() > 0) {
             setDirection(entity.getDirection(), entity);
             entity.setCount(entity.getCount() - 1);
         }
     }
 
-    private static void setDirection(String direction, Entity entity) {     //Show the direction of all mob
+    private static void position(Entity entity) {
+        entity.setX(entity.getX() + entity.getVelX());
+        entity.setY(entity.getY() + entity.getVelY());
+    }
+
+    private static void setDirection(String direction, Entity entity) { // Show the direction of all mob
         switch (direction) {
             case "down":
                 down_step(entity);
                 entity.setY(entity.getY() + 8);
+                // entity.setY(entity.getY() + entity.getVelY());
                 break;
             case "up":
                 up_step(entity);
                 entity.setY(entity.getY() - 8);
+                // entity.setY(entity.getY() + entity.getVelY());
                 break;
             case "left":
                 left_step(entity);
                 entity.setX(entity.getX() - 8);
+                // entity.setX(entity.getX() + entity.getVelX());
                 break;
             case "right":
                 right_step(entity);
                 entity.setX(entity.getX() + 8);
+                // entity.setX(entity.getX() + entity.getVelX());
                 break;
         }
     }
 
-    public static void down(Entity entity) {        //Control all mob to go down
+    public static void down(Entity entity) { // Control all mob to go down
         if (entity.getY() % 32 == 0 && entity.getX() % 32 == 0) {
             if (entity instanceof Bomber) {
                 entity.setDirection("down");
@@ -46,7 +55,7 @@ public class Component {
         }
     }
 
-    public static void up(Entity entity) {      //Control all mob to go up
+    public static void up(Entity entity) { // Control all mob to go up
         if (entity.getY() % 32 == 0 && entity.getX() % 32 == 0) {
             if (entity instanceof Bomber) {
                 entity.setDirection("up");
@@ -56,7 +65,7 @@ public class Component {
         }
     }
 
-    public static void left(Entity entity) {        //Control all mob to go left
+    public static void left(Entity entity) { // Control all mob to go left
         if (entity.getX() % 32 == 0 && entity.getY() % 32 == 0) {
             if (entity instanceof Bomber) {
                 entity.setDirection("left");
@@ -66,7 +75,7 @@ public class Component {
         }
     }
 
-    public static void right(Entity entity) {       //Control all mob to go right
+    public static void right(Entity entity) { // Control all mob to go right
         if (entity.getX() % 32 == 0 && entity.getY() % 32 == 0) {
             if (entity instanceof Bomber) {
                 entity.setDirection("right");
@@ -76,7 +85,7 @@ public class Component {
         }
     }
 
-    private static void down_step(Entity entity) {      //Show the animation of all mob that go down
+    private static void down_step(Entity entity) { // Show the animation of all mob that go down
         if (entity instanceof Bomber && entity.getY() % 8 == 0) {
             if (entity.getSwap() == 1) {
                 entity.setImg(Sprite.player_down.getFxImage());
@@ -94,7 +103,7 @@ public class Component {
         }
     }
 
-    private static void up_step(Entity entity) {        //Show the animation of all mob that go down
+    private static void up_step(Entity entity) { // Show the animation of all mob that go down
         if (entity instanceof Bomber && entity.getY() % 8 == 0) {
             if (entity.getSwap() == 1) {
                 entity.setImg(Sprite.player_up.getFxImage());
@@ -112,7 +121,7 @@ public class Component {
         }
     }
 
-    private static void left_step(Entity entity) {      //Show the animation of all mob that go left
+    private static void left_step(Entity entity) { // Show the animation of all mob that go left
         if (entity instanceof Bomber && entity.getX() % 8 == 0) {
             if (entity.getSwap() == 1) {
                 entity.setImg(Sprite.player_left.getFxImage());
@@ -130,7 +139,7 @@ public class Component {
         }
     }
 
-    public static void right_step(Entity entity) {      //Show the animation of all mob that go right
+    public static void right_step(Entity entity) { // Show the animation of all mob that go right
         if (entity instanceof Bomber && entity.getX() % 8 == 0) {
             if (entity.getSwap() == 1) {
                 entity.setImg(Sprite.player_right.getFxImage());
