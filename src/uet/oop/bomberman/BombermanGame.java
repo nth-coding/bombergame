@@ -56,15 +56,37 @@ public class BombermanGame extends Application {
             KeyCode key = event.getCode();
 
             if (key == KeyCode.A || key == KeyCode.LEFT) {
+                // bomberman.setVelX(-5);
                 Component.left(bomberman);
             } else if (key == KeyCode.D || key == KeyCode.RIGHT) {
+                // bomberman.setVelX(5);
                 Component.right(bomberman);
             } else if (key == KeyCode.W || key == KeyCode.UP) {
+                // bomberman.setVelY(-5);
                 Component.up(bomberman);
             } else if (key == KeyCode.S || key == KeyCode.DOWN) {
+                // bomberman.setVelY(5);
                 Component.down(bomberman);
             }
         });
+
+        // mainScene.setOnKeyReleased(event -> {
+        //     KeyCode key = event.getCode();
+
+        //     if (key == KeyCode.A || key == KeyCode.LEFT) {
+        //         bomberman.setVelX(0);
+        //         Component.left(bomberman);
+        //     } else if (key == KeyCode.D || key == KeyCode.RIGHT) {
+        //         bomberman.setVelX(0);
+        //         Component.right(bomberman);
+        //     } else if (key == KeyCode.W || key == KeyCode.UP) {
+        //         bomberman.setVelY(0);
+        //         Component.up(bomberman);
+        //     } else if (key == KeyCode.S || key == KeyCode.DOWN) {
+        //         bomberman.setVelY(0);
+        //         Component.down(bomberman);
+        //     }
+        // });
 
         // Add mainScene vao stage
         stage.setScene(mainScene);
@@ -104,8 +126,8 @@ public class BombermanGame extends Application {
 
     // moves the bomberman.
     public void position() {
-        bomberman.setX(bomberman.getX() + Entity.getVelX());
-        bomberman.setY(bomberman.getY() + Entity.getVelY());
+        // bomberman.setX(bomberman.getX() + Entity.getVelX());
+        // bomberman.setY(bomberman.getY() + Entity.getVelY());
     }
 
     private void updatePlayerInput() {
