@@ -9,26 +9,44 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import uet.oop.bomberman.components.Component;
-import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Grass;
-import uet.oop.bomberman.entities.Wall;
+import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
+import static uet.oop.bomberman.Levels.NextLevel.waitToLevelUp;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class BombermanGame extends Application {
 
     public static final int WIDTH = 25;
     public static final int HEIGHT = 15;
+    //
+    public static int width = 0;
+    //
+    public static int height = 0;
+    //
+    public static int[][] id_objects;
+    //
+    public static int[][] list_kill;
+    //
+    public static String[][] string_list_kill;
+    //
+    public static String[][] string_id_objects;
+    //
+    public static int level;
 
     private Scene mainScene;
     private Entity bomberman;
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
+
+    public static final List<Entity> entities = new ArrayList<>();
+    public static final List<Entity> stillObjects = new ArrayList<>();
 
     public Scene getMainScene() {
         return mainScene;
@@ -44,6 +62,7 @@ public class BombermanGame extends Application {
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
+
 
         // Tao root container
         Group root = new Group();
@@ -100,6 +119,8 @@ public class BombermanGame extends Application {
                 stillObjects.add(object);
             }
         }
+        //Create map
+        waitToLevelUp();
     }
 
     // moves the bomberman.
@@ -125,7 +146,6 @@ public class BombermanGame extends Application {
             Component.checkRun(bomberman);
             bomberman.setCountToRun(0);
         }
-
         entities.forEach(Entity::update);
     }
 
