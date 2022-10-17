@@ -47,7 +47,7 @@ public class Component {
 
     public static void down(Entity entity) { // Control all mob to go down
         if (entity.getY() % 32 == 0 && entity.getX() % 32 == 0) {
-            if (entity instanceof Bomber) {
+            if (entity instanceof Bomber && Blocked.block_down(entity)) {
                 entity.setDirection("down");
                 entity.setCount(4);
                 checkRun(entity);
@@ -57,7 +57,7 @@ public class Component {
 
     public static void up(Entity entity) { // Control all mob to go up
         if (entity.getY() % 32 == 0 && entity.getX() % 32 == 0) {
-            if (entity instanceof Bomber) {
+            if (entity instanceof Bomber && Blocked.block_up(entity)) {
                 entity.setDirection("up");
                 entity.setCount(4);
                 checkRun(entity);
@@ -67,7 +67,7 @@ public class Component {
 
     public static void left(Entity entity) { // Control all mob to go left
         if (entity.getX() % 32 == 0 && entity.getY() % 32 == 0) {
-            if (entity instanceof Bomber) {
+            if (entity instanceof Bomber && Blocked.block_left(entity)) {
                 entity.setDirection("left");
                 entity.setCount(4);
                 checkRun(entity);
@@ -77,7 +77,7 @@ public class Component {
 
     public static void right(Entity entity) { // Control all mob to go right
         if (entity.getX() % 32 == 0 && entity.getY() % 32 == 0) {
-            if (entity instanceof Bomber) {
+            if (entity instanceof Bomber && Blocked.block_right(entity)) {
                 entity.setDirection("right");
                 entity.setCount(4);
                 checkRun(entity);
