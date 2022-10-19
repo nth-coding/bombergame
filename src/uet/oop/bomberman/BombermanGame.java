@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import uet.oop.bomberman.components.Component;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
+
 import static uet.oop.bomberman.Levels.NextLevel.waitToLevelUp;
 
 import java.io.File;
@@ -41,7 +42,7 @@ public class BombermanGame extends Application {
     public static int level;
 
     private Scene mainScene;
-    private Entity bomberman;
+    public static Entity bomberman;
     private GraphicsContext gc;
     private Canvas canvas;
 
@@ -82,6 +83,10 @@ public class BombermanGame extends Application {
                 Component.up(bomberman);
             } else if (key == KeyCode.S || key == KeyCode.DOWN) {
                 Component.down(bomberman);
+            }
+            //
+            else if (key == KeyCode.SPACE) {
+                Bomb.putBomb();
             }
         });
 
@@ -147,11 +152,14 @@ public class BombermanGame extends Application {
             bomberman.setCountToRun(0);
         }
         entities.forEach(Entity::update);
+        bomberman.update();
+        stillObjects.forEach(Entity::update);
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         stillObjects.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
+        bomberman.render(gc);
     }
 }
