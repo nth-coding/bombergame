@@ -26,26 +26,26 @@ public class MapCreation {
         try (FileReader inputFile = new FileReader(fileName)) {     // Try to create new object from class FileReader.
             Scanner ip = new Scanner(inputFile);                    // Create object ip from class Scanner.
             String line = ip.nextLine();                            // Input variable line in string data type.
-            System.out.println("1");
+            //System.out.println("1");
             //StringTokenizer
             StringTokenizer tokens = new StringTokenizer(line);
             BombermanGame.level = Integer.parseInt(tokens.nextToken());
             // Create object tokens from class StringTokenizer in library imported.
             height = Integer.parseInt(tokens.nextToken());
             width = Integer.parseInt(tokens.nextToken());
-            System.out.println("2");
+            //System.out.println("2");
             while (ip.hasNextLine()) {
-                System.out.println("2.1");
+                //System.out.println("2.1");
                 id_objects = new int[width][height];                 // Create new object id_object from main file.
                 //string_id_objects = new String[width][height];                 // Create new object id_object from main file.
                 list_kill = new int[width][height];                  // Create new object lít_kill from main file.   Main file: RunBomberman.java
                 //string_list_kill = new String[width][height];                  // Create new object lít_kill from main file.   Main file: RunBomberman.java
-                System.out.println("2.2");
+                //System.out.println("2.2");
                 for (int i = 0; i < height; ++i) {
-                    System.out.println("2.3");
+                    //System.out.println("2.3");
                     String lineTile = ip.nextLine();               // Input variable lineTile in string data type.
                     StringTokenizer tokenTile = new StringTokenizer(lineTile);      // Create object tokenTile from class StringTokenizer in library imported.
-                    System.out.println("3");
+                    //System.out.println("3");
                     for (int j = 0; j < width; j++) {
                         int token = Integer.parseInt(tokenTile.nextToken());
                         Entity entity;                              // Create object entity from class Entity.
