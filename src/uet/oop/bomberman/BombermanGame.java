@@ -40,6 +40,8 @@ public class BombermanGame extends Application {
     public static String[][] string_id_objects;
     //
     public static int level;
+    //
+    public static boolean running;
 
     private Scene mainScene;
     public static Entity bomberman;
@@ -110,6 +112,7 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
+        //bomberman.setLife(false);
     }
 
     public void createMap() {

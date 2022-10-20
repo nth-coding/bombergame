@@ -19,7 +19,7 @@ public abstract class Entity {
     protected String direction; // direction of player
     protected int count; // count step of a jump
     protected int countToRun; // run after count frame
-    protected boolean life; // life of enemy
+    protected boolean life = true; // life of enemy
 
     // Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity() {

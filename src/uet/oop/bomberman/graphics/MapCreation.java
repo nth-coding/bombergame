@@ -10,6 +10,8 @@ import uet.oop.bomberman.entities.Grass;
 import static uet.oop.bomberman.BombermanGame.*;
 
 import uet.oop.bomberman.BombermanGame.*;
+import uet.oop.bomberman.entities.items.FlameItem;
+import uet.oop.bomberman.entities.items.SpeedItem;
 
 // Import library
 import java.io.File;
@@ -62,6 +64,12 @@ public class MapCreation {
                                 break;
                             case 3:
                                 entity = new Brick(j, i, Sprite.brick.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
+                                break;
+                            case 6:
+                                entity = new SpeedItem(j, i, Sprite.brick.getFxImage());
+                                break;
+                            case 7:
+                                entity = new FlameItem(j, i, Sprite.brick.getFxImage());
                                 break;
                             default:
                                 entity = new Grass(j, i, Sprite.grass.getFxImage());
