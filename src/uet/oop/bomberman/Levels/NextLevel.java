@@ -9,7 +9,7 @@ import static uet.oop.bomberman.entities.Portal.is_portal;
 public class NextLevel {
     public static boolean wait;
     public static long waiting_time;
-    public static void waitToLevelUp() {
+    public static void  waitToLevelUp() {
         long now = System.currentTimeMillis();
         if (now - waiting_time > 3000) {
             new Level1();
