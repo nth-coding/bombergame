@@ -1,32 +1,28 @@
 package uet.oop.bomberman;
 
-
 import javafx.animation.AnimationTimer;
-import javafx.animation.FadeTransition;
+import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import uet.oop.bomberman.components.Component;
-import uet.oop.bomberman.entities.Bomb;
-import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static uet.oop.bomberman.Levels.NextLevel.waitToLevelUp;
 
-public class BombermanGame  {
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class BombermanGame extends Application {
 
     public static final int WIDTH = 25;
     public static final int HEIGHT = 15;
@@ -47,10 +43,8 @@ public class BombermanGame  {
 
     private Scene mainScene;
     public static Entity bomberman;
-    private Entity balloom;
     private GraphicsContext gc;
     private Canvas canvas;
-    public static List<Entity> enemy = new ArrayList<>();           // Contains enemy entities
 
     public static final List<Entity> entities = new ArrayList<>();
     public static final List<Entity> stillObjects = new ArrayList<>();
@@ -121,32 +115,34 @@ public class BombermanGame  {
     }
 
     public void createMap() {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                Entity object;
+                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
+                    object = new Wall(i, j, Sprite.wall.getFxImage());
+                } else {
+                    object = new Grass(i, j, Sprite.grass.getFxImage());
+                }
+                stillObjects.add(object);
+            }
+        }
         //Create map
         waitToLevelUp();
     }
 
+    // moves the bomberman.
+    public void position() {
+        // bomberman.setX(bomberman.getX() + Entity.getVelX());
+        // bomberman.setY(bomberman.getY() + Entity.getVelY());
+    }
+
     private void updatePlayerInput() {
         // KeyPressed
-        mainScene.setOnKeyPressed(event -> {
-            KeyCode key = event.getCode();
+        // getMainScene().setOnKeyPressed(Bomber::move);
 
-            if (key == KeyCode.A || key == KeyCode.LEFT) {
-                // bomberman.setVelX(-5);
-                Component.left(bomberman);
-            } else if (key == KeyCode.D || key == KeyCode.RIGHT) {
-                // bomberman.setVelX(5);
-                Component.right(bomberman);
-            } else if (key == KeyCode.W || key == KeyCode.UP) {
-                // bomberman.setVelY(-5);
-                Component.up(bomberman);
-            } else if (key == KeyCode.S || key == KeyCode.DOWN) {
-                // bomberman.setVelY(5);
-                Component.down(bomberman);
-            }
-            else if (key == KeyCode.SPACE) {
-                Bomb.putBomb();
-            }
-        });
+        // getMainScene().setOnKeyReleased(Bomber::stop);
+
+        position();
     }
 
     public void update() {
