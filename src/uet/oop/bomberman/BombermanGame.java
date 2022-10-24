@@ -1,28 +1,30 @@
 package uet.oop.bomberman;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import uet.oop.bomberman.components.Component;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.Levels.NextLevel.waitToLevelUp;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class BombermanGame extends Application {
+public class BombermanGame {
 
     public static final int WIDTH = 25;
     public static final int HEIGHT = 15;
@@ -131,18 +133,28 @@ public class BombermanGame extends Application {
     }
 
     // moves the bomberman.
-    public void position() {
-        // bomberman.setX(bomberman.getX() + Entity.getVelX());
-        // bomberman.setY(bomberman.getY() + Entity.getVelY());
-    }
-
     private void updatePlayerInput() {
         // KeyPressed
-        // getMainScene().setOnKeyPressed(Bomber::move);
+        mainScene.setOnKeyPressed(event -> {
+            KeyCode key = event.getCode();
 
-        // getMainScene().setOnKeyReleased(Bomber::stop);
-
-        position();
+            if (key == KeyCode.A || key == KeyCode.LEFT) {
+                // bomberman.setVelX(-5);
+                Component.left(bomberman);
+            } else if (key == KeyCode.D || key == KeyCode.RIGHT) {
+                // bomberman.setVelX(5);
+                Component.right(bomberman);
+            } else if (key == KeyCode.W || key == KeyCode.UP) {
+                // bomberman.setVelY(-5);
+                Component.up(bomberman);
+            } else if (key == KeyCode.S || key == KeyCode.DOWN) {
+                // bomberman.setVelY(5);
+                Component.down(bomberman);
+            }
+            else if (key == KeyCode.SPACE) {
+                Bomb.putBomb();
+            }
+        });
     }
 
     public void update() {
