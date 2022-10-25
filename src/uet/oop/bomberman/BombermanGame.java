@@ -1,29 +1,31 @@
 package uet.oop.bomberman;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import uet.oop.bomberman.Levels.Level1;
+import javafx.util.Duration;
 import uet.oop.bomberman.components.Component;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.Levels.NextLevel.waitToLevelUp;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class BombermanGame extends Application {
+public class BombermanGame {
+
     public static final int WIDTH = 25;
     public static final int HEIGHT = 15;
     //
@@ -43,14 +45,10 @@ public class BombermanGame extends Application {
 
     private Scene mainScene;
     public static Entity bomberman;
-    private Entity balloom;
     private GraphicsContext gc;
     private Canvas canvas;
 
-    // enemy list
     public static final List<Entity> entities = new ArrayList<>();
-
-    // object list
     public static final List<Entity> stillObjects = new ArrayList<>();
 
     public Scene getMainScene() {
@@ -58,12 +56,10 @@ public class BombermanGame extends Application {
     }
 
     // void ne
-    public static void main(String[] args) {
-        Application.launch(BombermanGame.class);
-    }
 
-    @Override
-    public void start(Stage stage) {
+
+
+    public void createGame(Stage stage) {
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
@@ -75,6 +71,28 @@ public class BombermanGame extends Application {
 
         // Tao mainScene
         mainScene = new Scene(root);
+        FadeTransition fade = new FadeTransition();
+        fade.setDuration(Duration.millis(1000));
+        fade.setFromValue(0);
+        fade.setToValue(1);
+        fade.setNode(root);
+        fade.play();
+        FadeTransition fadeTransition = new FadeTransition();
+        try {
+            Image logo = new Image(new FileInputStream("res\\textures\\Level-01.png"));
+            ImageView img = new ImageView();
+            img.setImage(logo);
+            img.setLayoutX(230);
+            img.setLayoutY(100);
+            root.getChildren().add(img);
+
+            fadeTransition.setDuration(Duration.millis(4000));
+            fadeTransition.setFromValue(10);
+
+            fadeTransition.setToValue(0);
+            fadeTransition.setNode(img);
+            fadeTransition.play();
+        }catch (FileNotFoundException e){}
 
         // Add mainScene vao stage
         stage.setScene(mainScene);
@@ -83,10 +101,6 @@ public class BombermanGame extends Application {
 
         // Tao map
         createMap();
-
-        // Tao enemy testing
-        balloom = new Ballom(WIDTH - 2, HEIGHT - 2, Sprite.balloom_left1.getFxImage());
-        entities.add(balloom);
 
         // Tao bomber
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
@@ -103,10 +117,10 @@ public class BombermanGame extends Application {
     }
 
     public void createMap() {
-        //Create map
         waitToLevelUp();
     }
 
+    // moves the bomberman.
     private void updatePlayerInput() {
         // KeyPressed
         mainScene.setOnKeyPressed(event -> {
@@ -142,12 +156,6 @@ public class BombermanGame extends Application {
         if (bomberman.getCountToRun() == 4) {
             Component.checkRun(bomberman);
             bomberman.setCountToRun(0);
-        }
-
-        balloom.setCountToRun(balloom.getCountToRun() + 1);
-        if (balloom.getCountToRun() == 12) {
-            Component.checkRun(balloom);
-            balloom.setCountToRun(0);
         }
 
         for (Entity a : entities) {
