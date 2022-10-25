@@ -3,6 +3,8 @@ package uet.oop.bomberman.entities;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.util.List;
+
 import static uet.oop.bomberman.BombermanGame.*;
 
 public class Brick extends Entity {

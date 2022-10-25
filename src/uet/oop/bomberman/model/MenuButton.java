@@ -12,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class MenuButton extends Button {
-    private final String FONT_PATH= "src/uet/resources/ChunkFive-Regular.otf";
+    private final String FONT_PATH= "res/font/ChunkFive-Regular.otf";
     private final String BUTTON_PRESSED_STYLE = "-fx-background-color: linear-gradient(to bottom right, derive(lightskyblue, 50%), derive(lightcyan, -40%));";
     private final String BUTTON_FREE_STYLE = "-fx-background-color: linear-gradient(to bottom right, derive(lightskyblue, 30%), derive(lightcyan, -40%));";
     private Text text= new Text();

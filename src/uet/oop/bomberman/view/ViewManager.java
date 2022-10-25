@@ -16,6 +16,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.PvPGame;
 import uet.oop.bomberman.model.Instruction;
 import uet.oop.bomberman.model.MenuButton;
 
@@ -91,7 +92,7 @@ public class ViewManager {
         }
         createScreen();
     }
-    public void tryFade()   {
+    public void tryFadePvE()   {
         FadeTransition fade = new FadeTransition();
         fade.setDuration(Duration.millis(1000));
         fade.setFromValue(1);
@@ -105,6 +106,24 @@ public class ViewManager {
 
                 BombermanGame bombermanGame = new BombermanGame();
                 bombermanGame.createGame(mainStage);
+            }
+        });
+        fade.play();
+    }
+
+    public void tryFadePvP()   {
+        FadeTransition fade = new FadeTransition();
+        fade.setDuration(Duration.millis(1000));
+        fade.setFromValue(1);
+        fade.setToValue(0);
+
+        fade.setNode(mainPane);
+        fade.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent)   {
+
+                PvPGame pvpGame = new PvPGame();
+                pvpGame.createGame(mainStage);
             }
         });
         fade.play();
@@ -138,7 +157,8 @@ public class ViewManager {
 
     protected void createbuttons() {
         createdStartButton();
-        createdScoresButton();
+//        createdScoresButton();
+        createdPvPButton();
         createdInsButton();
 //        createdSoundButton();
         createdExitButton();
@@ -153,24 +173,36 @@ public class ViewManager {
     }
 
     protected void createdStartButton() {
-        MenuButton startButton = new MenuButton("PLAY");
+        MenuButton startButton = new MenuButton("PVE MODE");
         addMenuButton(startButton);
 
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                tryFade();
+                tryFadePvE();
             }
         });
     }
 
-    protected void createdScoresButton() {
-        MenuButton scoreButton = new MenuButton("HIGH SCORES");
-        addMenuButton(scoreButton);
-        scoreButton.setOnAction(new EventHandler<ActionEvent>() {
+//    protected void createdScoresButton() {
+//        MenuButton scoreButton = new MenuButton("HIGH SCORES");
+//        addMenuButton(scoreButton);
+//        scoreButton.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent actionEvent) {
+//                showScene(highscreen);
+//            }
+//        });
+//
+//    }
+
+    protected void createdPvPButton() {
+        MenuButton pvpButton = new MenuButton("PVP MODE");
+        addMenuButton(pvpButton);
+        pvpButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                showScene(highscreen);
+                tryFadePvP();
             }
         });
 

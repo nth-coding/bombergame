@@ -26,11 +26,8 @@ public class Level1 {
         entities.clear();
 
         swap_kill = 1;
-        power_bomb = 0;
         new MapCreation("res/levels/Level1.txt");
-        bomb_number = 20;
         is_bomb = 0;
-        speed = 1;
 
         Entity enemy1 = new Ballom(4, 4, Sprite.balloom_left1.getFxImage());
         Entity enemy2 = new Ballom(9, 9, Sprite.balloom_left1.getFxImage());
