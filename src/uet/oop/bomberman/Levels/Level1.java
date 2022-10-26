@@ -3,8 +3,10 @@ package uet.oop.bomberman.Levels;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.Bomb.*;
 
-import uet.oop.bomberman.entities.enemy.Ballom;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.enemy.Ballom;
+import uet.oop.bomberman.entities.enemy.Doll;
+import uet.oop.bomberman.entities.enemy.Kondoria;
 import uet.oop.bomberman.entities.enemy.Oneal;
 
 import static uet.oop.bomberman.entities.Bomber.*;
@@ -20,7 +22,10 @@ public class Level1 {
         entities.clear();
 
         swap_kill = 1;
-        new MapCreation("res/levels/Level1.txt");
+        new MapCreation("res/levels/TestMap.txt");
+
+        bomberman.setX(32);
+        bomberman.setY(32);
         bomberman.setLife(true);
         is_bomb = 0;
 

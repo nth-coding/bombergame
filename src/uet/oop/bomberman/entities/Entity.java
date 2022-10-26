@@ -14,7 +14,7 @@ public abstract class Entity {
     private int VelX; // velocity Ox
     private int VelY; // velocity Oy
 
-    protected int isMove; // jump with pixel
+    protected int speed; // jump with pixel
     protected int swap; // swap image
     protected String direction; // direction of player
     protected int count; // count step of a jump
@@ -25,7 +25,6 @@ public abstract class Entity {
     public Entity() {
 
     }
-
     public Entity(boolean life) {
         this.life = life;
     }
@@ -36,8 +35,8 @@ public abstract class Entity {
         this.img = img;
     }
 
-    public Entity(int isMove, int swap, String direction, int count, int countToRun) {
-        this.isMove = isMove;
+    public Entity(int speed, int swap, String direction, int count, int countToRun) {
+        this.speed = speed;
         this.swap = swap;
         this.direction = direction;
         this.count = count;
@@ -92,12 +91,12 @@ public abstract class Entity {
         this.life = life;
     }
 
-    public int getIsMove() {
-        return isMove;
+    public int getSpeed() {
+        return speed;
     }
 
-    public void setIsMove(int isMove) {
-        this.isMove = isMove;
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public int getSwap() {

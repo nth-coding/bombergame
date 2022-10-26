@@ -1,7 +1,7 @@
 package uet.oop.bomberman.entities.enemy;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.components.Component;
+import uet.oop.bomberman.components.ComponentMovement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -27,6 +27,13 @@ public class Oneal extends Entity {
     public Oneal() {
         
     }
+    private void kill() {
+        for (Entity entity : entities) {
+            if (list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
+                entity.setLife(false);
+            }
+        }
+    }
 
     private void killOneal(Entity entity) {
         if (count_kill % 16 == 0) {
@@ -48,25 +55,29 @@ public class Oneal extends Entity {
 
     @Override
     public void update() {
+        kill();
         count_kill++;
-        for (Entity entity : entities) {
+        for (int i = 0; i < entities.size(); ++i) {
+            Entity entity = entities.get(i);
             if (entity instanceof Oneal && !entity.life)
                 killOneal(entity);
         }
 
-        if (this.y % 32 == 0 && this.x % 32 == 0) {
+        if (this.y % 16 == 0 && this.x % 16 == 0 && this.life) {
             if (bomberman.getX() < this.x) {
-                Component.left(this);
+                ComponentMovement.left(this);
             }
             if (bomberman.getX() > this.x) {
-                Component.right(this);
+                ComponentMovement.right(this);
             }
             if (bomberman.getY() > this.y) {
-                Component.down(this);
+                ComponentMovement.down(this);
             }
             if (bomberman.getY() < this.y) {
-                Component.up(this);
+                ComponentMovement.up(this);
             }
         }
+
+//        System.out.println("Oneal: " + this.getX() + " " + this.getY());
     }
 }

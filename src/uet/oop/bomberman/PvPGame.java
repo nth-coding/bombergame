@@ -7,7 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import uet.oop.bomberman.components.PvPComponent;
+import uet.oop.bomberman.components.PvPComponentMovement;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.PvP.Player1Bomb;
 import uet.oop.bomberman.entities.PvP.Player2Bomb;
@@ -117,31 +117,31 @@ public class PvPGame {
             // player1
             if (key == KeyCode.A) {
                 // player1.setVelX(-5);
-                PvPComponent.left(player1);
+                PvPComponentMovement.left(player1);
             } else if (key == KeyCode.D) {
                 // player1.setVelX(5);
-                PvPComponent.right(player1);
+                PvPComponentMovement.right(player1);
             } else if (key == KeyCode.W) {
                 // player1.setVelY(-5);
-                PvPComponent.up(player1);
+                PvPComponentMovement.up(player1);
             } else if (key == KeyCode.S) {
                 // player1.setVelY(5);
-                PvPComponent.down(player1);
+                PvPComponentMovement.down(player1);
             } else if (key == KeyCode.SPACE) {
                 Player1Bomb.putBomb();
 
             // player2
             } else if (key == KeyCode.LEFT) {
-                PvPComponent.left(player2);
+                PvPComponentMovement.left(player2);
             } else if (key == KeyCode.RIGHT) {
                 // player1.setVelX(5);
-                PvPComponent.right(player2);
+                PvPComponentMovement.right(player2);
             } else if (key == KeyCode.UP) {
                 // player1.setVelY(-5);
-                PvPComponent.up(player2);
+                PvPComponentMovement.up(player2);
             } else if (key == KeyCode.DOWN) {
                 // player1.setVelY(5);
-                PvPComponent.down(player2);
+                PvPComponentMovement.down(player2);
             } else if (key == KeyCode.ENTER) {
                 Player2Bomb.putBomb();
             }
@@ -156,7 +156,7 @@ public class PvPGame {
         player1.update();
         player1.setCountToRun(player1.getCountToRun() + 1);
         if (player1.getCountToRun() == 4) {
-            PvPComponent.checkRun(player1);
+            PvPComponentMovement.checkRun(player1);
             player1.setCountToRun(0);
         }
 
@@ -164,7 +164,7 @@ public class PvPGame {
         player2.update();
         player2.setCountToRun(player2.getCountToRun() + 1);
         if (player2.getCountToRun() == 4) {
-            PvPComponent.checkRun(player2);
+            PvPComponentMovement.checkRun(player2);
             player2.setCountToRun(0);
         }
 
