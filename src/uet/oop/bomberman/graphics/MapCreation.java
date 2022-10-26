@@ -65,8 +65,10 @@ public class MapCreation {
                                 entity = new Player2Bomb.PvPBrick.Grass(j, i, Sprite.grass.getFxImage());
                         }
                         id_objects[j][i] = token;        //
+//                        System.out.print(id_objects[j][i] + " ");
                         stillObjects.add(entity);              //
                     }
+//                    System.out.println();
                 }
             }
         } catch (IOException e) {                       // Catch exception

@@ -1,28 +1,56 @@
 package uet.oop.bomberman.entities.enemy;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.components.Component;
+import uet.oop.bomberman.components.Blocked;
+import uet.oop.bomberman.components.ComponentMovement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
-import static uet.oop.bomberman.BombermanGame.entities;
-import static uet.oop.bomberman.BombermanGame.list_kill;
-
 import java.util.Random;
 
+import static uet.oop.bomberman.BombermanGame.*;
 public class Ballom extends Entity {
-    private static int swap_kill = 1;
-    private static int count_kill = 0; // Count the number of Balloms destroyed
 
-    public Ballom(int is_move, int swap, String direction, int count, int count_to_run) {
+    private static int swap_kill = 1;
+    private static int count_kill = 0;
+    private int direction = 0;
+    private int direction_status = 0;
+
+    public Ballom(int x, int y, Image img) {
+        super(x, y, img);
+    }
+
+    public Ballom(int is_move, int swap, String directionection, int count, int count_to_run) {
         super(4, 1, "up", 0, 0);
     }
 
-    public Ballom() {
-
+    public Ballom(boolean life) {
+        super(life);
     }
 
-    private void killBallom(Entity entity) { // Bomber destroys Balloon
+    public Ballom() {
+    }
+
+    private boolean checkDirection() {
+        // true: need to switch direction
+        // false: no need
+
+        if (!Blocked.block_down(this) && this.direction_status == 0) {
+            return true;
+        }
+        if (!Blocked.block_up(this) && this.direction_status == 1) {
+            return true;
+        }
+        if (!Blocked.block_left(this) && this.direction_status == 2) {
+            return true;
+        }
+        if (!Blocked.block_right(this) && this.direction_status == 3) {
+            return true;
+        }
+        return false;
+    }
+
+    private void killBallom(Entity entity) {
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
                 entity.setImg(Sprite.mob_dead1.getFxImage());
@@ -49,35 +77,49 @@ public class Ballom extends Entity {
         }
     }
 
-    public Ballom(int x, int y, Image img) {
-        super(x, y, img);
-    }
-
     @Override
     public void update() {
         kill();
         count_kill++;
-        for (Entity entity : entities) {
+        for (int i = 0; i < entities.size(); ++i) {
+            Entity entity = entities.get(i);
             if (entity instanceof Ballom && !entity.life)
                 killBallom(entity);
         }
 
-        if (this.y % 32 == 0 && this.x % 32 == 0) {
-            Random random = new Random();
-            int direction = random.nextInt(4);
+//        if (this.y % 16 == 0 && this.x % 16 == 0 && this.life) {
+//            if (this.x / 32 <= 1 || this.x / 32 >= width - 2)
+//                direction = !direction;
+//
+//            if (direction)
+//                ComponentMovement.left(this);
+//            else
+//                ComponentMovement.right(this);
+//        }
+        if (this.life) {
             switch (direction) {
                 case 0:
-                    Component.down(this);
+                    ComponentMovement.down(this);
+                    direction_status = 0;
                     break;
                 case 1:
-                    Component.up(this);
+                    ComponentMovement.up(this);
+                    direction_status = 1;
                     break;
                 case 2:
-                    Component.left(this);
+                    ComponentMovement.left(this);
+                    direction_status = 2;
                     break;
                 case 3:
-                    Component.right(this);
+                    ComponentMovement.right(this);
+                    direction_status = 3;
                     break;
+            }
+
+            if (checkDirection()) {
+                Random random = new Random();
+                direction = random.nextInt(4);
+                System.out.println("Ok");
             }
         }
     }
