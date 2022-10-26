@@ -1,11 +1,12 @@
-package uet.oop.bomberman.entities;
+package uet.oop.bomberman.entities.PvP;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
-import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.PvPGame.*;
 
-public class Bomber extends Entity {
+public class PvPBomber extends Entity {
 
     public static int swap_kill = 1;
     private static int count_kill = 0;
@@ -13,15 +14,15 @@ public class Bomber extends Entity {
     public static int power_bomb = 0;
     public static int speed = 1;
 
-    public Bomber() {
+    public PvPBomber() {
 
     }
 
-    public Bomber(int x, int y, Image img) {
+    public PvPBomber(int x, int y, Image img) {
         super(x, y, img);
     }
 
-    public Bomber(int is_move, int swap, String direction, int count, int count_to_run) {
+    public PvPBomber(int is_move, int swap, String direction, int count, int count_to_run) {
         super(8, 1, "down", 0, 0);
     }
 
@@ -48,31 +49,24 @@ public class Bomber extends Entity {
     }
 
     private void checkBombs() {
-        if (list_kill[this.getX() / 32][this.getY() / 32] == 4)
-            this.setLife(false);
-    }
-
-    private void checkEnemy3() {
-        int ax = this.getX();
-        int ay = this.getY();
-        for (Entity entity : entities) {
-            int bx = entity.getX();
-            int by = entity.getY();
-            if (ax == bx && by - 32 <= ay && by + 32 >= ay || ay == by && bx - 32 <= ax && bx + 32 >= ax)
-            {
-                this.life = false;
-                break;
-            }
-        }
+        if (list_kill[player1.getX() / 32][player1.getY() / 32] == 4)
+            player1.setLife(false);
+        if (list_kill[player2.getX() / 32][player2.getY() / 32] == 4)
+            player2.setLife(false);
     }
 
     @Override
     public void update() {
         // testing commit
         checkBombs();
-        checkEnemy3();
         count_kill++;
-        if (!this.life)
-            killBomber(this);
+        if (!player1.life) {
+            killBomber(player1);
+            System.out.println("player2 win!");
+        }
+        if (!player2.life) {
+            killBomber(player2);
+            System.out.println("player1 win!");
+        }
     }
 }
