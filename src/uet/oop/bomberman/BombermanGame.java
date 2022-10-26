@@ -40,6 +40,7 @@ public class BombermanGame {
     public static String[][] string_list_kill;
     //
     public static String[][] string_id_objects;
+    public static boolean running;
     //
     public static int level;
 
@@ -99,18 +100,20 @@ public class BombermanGame {
         stage.setTitle("Bomberman");
         stage.show();
 
-        // Tao map
-        createMap();
-
         // Tao bomber
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        entities.add(bomberman);
+        bomberman.setLife(false);
+
+        // Tao map
+        createMap();
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                render();
-                update();
+                if (running) {
+                    render();
+                    update();
+                }
             }
         };
         timer.start();
@@ -149,7 +152,11 @@ public class BombermanGame {
         updatePlayerInput();
 
         entities.forEach(Entity::update);
-        stillObjects.forEach(Entity::update);
+
+        for (int i = 0; i < stillObjects.size(); ++i) {
+            stillObjects.get(i).update();
+        }
+
         bomberman.update();
 
         bomberman.setCountToRun(bomberman.getCountToRun() + 1);
@@ -165,8 +172,6 @@ public class BombermanGame {
                 a.setCountToRun(0);
             }
         }
-
-//        waitToLevelUp();
     }
 
     public void render() {

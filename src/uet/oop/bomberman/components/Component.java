@@ -1,13 +1,10 @@
 package uet.oop.bomberman.components;
 
-import uet.oop.bomberman.entities.Ballom;
+import uet.oop.bomberman.entities.enemy.Ballom;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Oneal;
+import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.BombermanGame.*;
-
-import java.util.List;
 
 public class Component {
     public static void checkRun(Entity entity) { // Check if all your mob move or not

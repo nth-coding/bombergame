@@ -1,22 +1,16 @@
 package uet.oop.bomberman.Levels;
 
-import javafx.scene.image.Image;
-import uet.oop.bomberman.BombermanGame.*;
-
-import static uet.oop.bomberman.entities.items.SpeedItem.*;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.Bomb.*;
-import uet.oop.bomberman.components.*;
-import uet.oop.bomberman.components.Component;
-import uet.oop.bomberman.entities.Ballom;
+
+import uet.oop.bomberman.entities.enemy.Ballom;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Oneal;
+import uet.oop.bomberman.entities.enemy.Oneal;
 
 import static uet.oop.bomberman.entities.Bomber.*;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
 
-import static javafx.application.Application.getUserAgentStylesheet;
 import static uet.oop.bomberman.BombermanGame.entities;
 
 
@@ -27,6 +21,7 @@ public class Level1 {
 
         swap_kill = 1;
         new MapCreation("res/levels/Level1.txt");
+        bomberman.setLife(true);
         is_bomb = 0;
 
         Entity enemy1 = new Ballom(4, 4, Sprite.balloom_left1.getFxImage());

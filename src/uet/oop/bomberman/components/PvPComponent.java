@@ -1,14 +1,14 @@
 package uet.oop.bomberman.components;
 
-import uet.oop.bomberman.entities.Ballom;
-import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Oneal;
+import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.PvP.PvPBomber;
+import uet.oop.bomberman.entities.enemy.Ballom;
+import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class PvPComponent {
     public static void checkRun(Entity entity) { // Check if all your mob move or not
-        if (entity instanceof Bomber && entity.getCount() > 0) {
+        if (entity instanceof PvPBomber && entity.getCount() > 0) {
             setDirection(entity.getDirection(), entity, 8);
             entity.setCount(entity.getCount() - 1);
         }
@@ -47,7 +47,7 @@ public class PvPComponent {
 
     public static void down(Entity entity) { // Control all mob to go down
         if (entity.getY() % 32 == 0 && entity.getX() % 32 == 0) {
-            if (entity instanceof Bomber && PvPBlocked.block_down(entity)) {
+            if (entity instanceof PvPBomber && PvPBlocked.block_down(entity)) {
                 entity.setDirection("down");
                 entity.setCount(4);
                 checkRun(entity);
@@ -63,7 +63,7 @@ public class PvPComponent {
 
     public static void up(Entity entity) { // Control all mob to go up
         if (entity.getY() % 32 == 0 && entity.getX() % 32 == 0) {
-            if (entity instanceof Bomber && PvPBlocked.block_up(entity)) {
+            if (entity instanceof PvPBomber && PvPBlocked.block_up(entity)) {
                 entity.setDirection("up");
                 entity.setCount(4);
                 checkRun(entity);
@@ -79,7 +79,7 @@ public class PvPComponent {
 
     public static void left(Entity entity) { // Control all mob to go left
         if (entity.getX() % 32 == 0 && entity.getY() % 32 == 0) {
-            if (entity instanceof Bomber && PvPBlocked.block_left(entity)) {
+            if (entity instanceof PvPBomber && PvPBlocked.block_left(entity)) {
                 entity.setDirection("left");
                 entity.setCount(4);
                 checkRun(entity);
@@ -95,7 +95,7 @@ public class PvPComponent {
 
     public static void right(Entity entity) { // Control all mob to go right
         if (entity.getX() % 32 == 0 && entity.getY() % 32 == 0) {
-            if (entity instanceof Bomber && PvPBlocked.block_right(entity)) {
+            if (entity instanceof PvPBomber && PvPBlocked.block_right(entity)) {
                 entity.setDirection("right");
                 entity.setCount(4);
                 checkRun(entity);
@@ -110,7 +110,7 @@ public class PvPComponent {
     }
 
     private static void down_step(Entity entity) { // Show the animation of all mob that go down
-        if (entity instanceof Bomber && entity.getY() % 8 == 0) {
+        if (entity instanceof PvPBomber && entity.getY() % 8 == 0) {
             if (entity.getSwap() == 1) {
                 entity.setImg(Sprite.player_down.getFxImage());
                 entity.setSwap(2);
@@ -158,7 +158,7 @@ public class PvPComponent {
     }
 
     private static void up_step(Entity entity) { // Show the animation of all mob that go down
-        if (entity instanceof Bomber && entity.getY() % 8 == 0) {
+        if (entity instanceof PvPBomber && entity.getY() % 8 == 0) {
             if (entity.getSwap() == 1) {
                 entity.setImg(Sprite.player_up.getFxImage());
                 entity.setSwap(2);
@@ -206,7 +206,7 @@ public class PvPComponent {
     }
 
     private static void left_step(Entity entity) { // Show the animation of all mob that go left
-        if (entity instanceof Bomber && entity.getX() % 8 == 0) {
+        if (entity instanceof PvPBomber && entity.getX() % 8 == 0) {
             if (entity.getSwap() == 1) {
                 entity.setImg(Sprite.player_left.getFxImage());
                 entity.setSwap(2);
@@ -254,7 +254,7 @@ public class PvPComponent {
     }
 
     public static void right_step(Entity entity) { // Show the animation of all mob that go right
-        if (entity instanceof Bomber && entity.getX() % 8 == 0) {
+        if (entity instanceof PvPBomber && entity.getX() % 8 == 0) {
             if (entity.getSwap() == 1) {
                 entity.setImg(Sprite.player_right.getFxImage());
                 entity.setSwap(2);

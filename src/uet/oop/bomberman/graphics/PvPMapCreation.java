@@ -2,6 +2,9 @@ package uet.oop.bomberman.graphics;
 
 import uet.oop.bomberman.PvPGame;
 import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.PvP.Player2Bomb;
+import uet.oop.bomberman.entities.object.Portal;
+import uet.oop.bomberman.entities.object.Wall;
 
 import java.io.File;
 import java.io.FileReader;
@@ -54,10 +57,10 @@ public class PvPMapCreation {
                                 entity = new Wall(j, i, Sprite.wall.getFxImage());          // In case 2, set entity object equal to object wall with scaled size.
                                 break;
                             case 3:
-                                entity = new PvPBrick(j, i, Sprite.brick.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
+                                entity = new Player2Bomb.PvPBrick(j, i, Sprite.brick.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
                                 break;
                             default:
-                                entity = new Grass(j, i, Sprite.grass.getFxImage());
+                                entity = new Player2Bomb.PvPBrick.Grass(j, i, Sprite.grass.getFxImage());
                         }
                         id_objects[j][i] = token;        //
                         stillObjectsPvP.add(entity);              //

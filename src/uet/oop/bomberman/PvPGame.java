@@ -1,31 +1,26 @@
 package uet.oop.bomberman;
 
 import javafx.animation.AnimationTimer;
-import javafx.animation.FadeTransition;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import uet.oop.bomberman.components.PvPComponent;
 import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.graphics.MapCreation;
+import uet.oop.bomberman.entities.PvP.Player1Bomb;
+import uet.oop.bomberman.entities.PvP.Player2Bomb;
+import uet.oop.bomberman.entities.PvP.PvPBomber;
 import uet.oop.bomberman.graphics.PvPMapCreation;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static uet.oop.bomberman.entities.Player1Bomb.*;
-import static uet.oop.bomberman.entities.Player2Bomb.*;
+import static uet.oop.bomberman.entities.PvP.Player1Bomb.*;
+import static uet.oop.bomberman.entities.PvP.Player2Bomb.*;
 import static uet.oop.bomberman.entities.Bomber.swap_kill;
-import static uet.oop.bomberman.entities.items.SpeedItem.speed;
 
 public class PvPGame {
     public static final int WIDTH = 25;
@@ -44,10 +39,11 @@ public class PvPGame {
     public static String[][] string_id_objects;
     //
     public static int level;
+    public static boolean running;
 
     private Scene playScene;
-    public static Bomber player1;
-    public static Bomber player2;
+    public static PvPBomber player1;
+    public static PvPBomber player2;
     private GraphicsContext gc;
     private Canvas pvpCanvas;
     public static final List<Entity> stillObjectsPvP = new ArrayList<>();
@@ -73,12 +69,16 @@ public class PvPGame {
         stage.setTitle("Bomberman");
         stage.show();
 
+        // Tao bomber
+        player1 = new PvPBomber(1, 1, Sprite.player_right.getFxImage());
+        player2 = new PvPBomber(WIDTH - 2, HEIGHT - 2, Sprite.player_left.getFxImage());
+
+        // setLife
+        player1.setLife(false);
+        player2.setLife(false);
+
         // Tao map
         createMap();
-
-        // Tao bomber
-        player1 = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        player2 = new Bomber(WIDTH - 2, HEIGHT - 2, Sprite.player_left.getFxImage());
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -94,13 +94,18 @@ public class PvPGame {
         stillObjectsPvP.clear();
 
         swap_kill = 1;
-        player1.power_bomb = 0;
-        player2.power_bomb = 0;
+
         new PvPMapCreation("res/levels/PvPMap.txt");
         is_bomb_player1 = 0;
         is_bomb_player2 = 0;
+
 //        player1.speed = 1;
 //        player2.speed = 2;
+//        player1.power_bomb = 0;
+//        player2.power_bomb = 0;
+
+        player1.setLife(true);
+        player2.setLife(true);
     }
 
     // moves the player1.
@@ -147,9 +152,6 @@ public class PvPGame {
         // keybindings update
         updatePlayerInput();
 
-        // objects update
-        stillObjectsPvP.forEach(Entity::update);
-
         // player1 update
         player1.update();
         player1.setCountToRun(player1.getCountToRun() + 1);
@@ -164,6 +166,11 @@ public class PvPGame {
         if (player2.getCountToRun() == 4) {
             PvPComponent.checkRun(player2);
             player2.setCountToRun(0);
+        }
+
+        // objects update
+        for (int i = 0; i < stillObjectsPvP.size(); ++i) {
+            stillObjectsPvP.get(i).update();
         }
     }
 
