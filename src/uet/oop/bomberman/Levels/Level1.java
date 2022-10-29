@@ -22,12 +22,14 @@ public class Level1 {
         entities.clear();
 
         swap_kill = 1;
-        new MapCreation("res/levels/TestMap.txt");
-
+        try {
+            new MapCreation("Level1.txt");
+        }catch (Exception e){}
         bomberman.setX(32);
         bomberman.setY(32);
         bomberman.setLife(true);
         is_bomb = 0;
+        speed =1;
 
         Entity enemy1 = new Ballom(4, 4, Sprite.balloom_left1.getFxImage());
         Entity enemy2 = new Ballom(9, 9, Sprite.balloom_left1.getFxImage());
