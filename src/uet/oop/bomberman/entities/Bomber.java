@@ -39,6 +39,14 @@ public class Bomber extends Entity {
                 entity.setImg(Sprite.player_dead3.getFxImage());
                 swap_kill = 4;
             }
+            else if (swap_kill == 4) {
+                entity.setImg(Sprite.player_dead4.getFxImage());
+                swap_kill = 5;
+            }
+            else if (swap_kill == 5) {
+                entity.setImg(Sprite.player_dead5.getFxImage());
+                swap_kill = 6;
+            }
             else {
                 entity.setImg(Sprite.transparent.getFxImage());
                 running = false;
@@ -48,17 +56,18 @@ public class Bomber extends Entity {
     }
 
     private void checkBombs() {
-        if (list_kill[this.getX() / 32][this.getY() / 32] == 4)
+        if (list_kill[this.getX() / 32][this.getY() / 32 + 1] == 4)
             this.setLife(false);
     }
 
-    private void checkEnemy3() {
+    private void checkEnemy() {
         int ax = this.getX();
-        int ay = this.getY();
+        int ay = this.getY() + 16;
         for (Entity entity : entities) {
             int bx = entity.getX();
             int by = entity.getY();
-            if (ax == bx && by - 32 <= ay && by + 32 >= ay || ay == by && bx - 32 <= ax && bx + 32 >= ax)
+            if (ax == bx && by - 32 <= ay && by + 32 >= ay
+                    || ay == by && bx - 32 <= ax && bx + 32 >= ax)
             {
                 this.life = false;
                 break;
@@ -70,7 +79,7 @@ public class Bomber extends Entity {
     public void update() {
         // testing commit
         checkBombs();
-        checkEnemy3();
+        checkEnemy();
         count_kill++;
         if (!this.life)
             killBomber(this);

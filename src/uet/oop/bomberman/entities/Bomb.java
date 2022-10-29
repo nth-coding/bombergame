@@ -50,9 +50,9 @@ public class Bomb extends Entity {
             int y = bomberman.getY() / 32;
             x = Math.round((float) x);
             y = Math.round((float) y);
-            bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
+            bomb = new Bomb(x, y + 1, Sprite.bomb.getFxImage());
             stillObjects.add(bomb);
-            id_objects[bomberman.getX() / 32][bomberman.getY() / 32] = 4;
+            id_objects[bomberman.getX() / 32][bomberman.getY() / 32 + 1] = 4;
         }
     }
 
