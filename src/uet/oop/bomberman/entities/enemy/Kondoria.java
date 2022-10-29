@@ -29,8 +29,12 @@ public class Kondoria extends Entity {
                 swap_kill = 2;
             }
             else if (swap_kill == 2) {
-                entity.setImg(Sprite.player_dead3.getFxImage());
+                entity.setImg(Sprite.oneal_dead.getFxImage());
                 swap_kill = 3;
+            }
+            else if (swap_kill == 3) {
+                entity.setImg(Sprite.oneal_dead1.getFxImage());
+                swap_kill = 4;
             }
             else {
                 entity.setLife(false);

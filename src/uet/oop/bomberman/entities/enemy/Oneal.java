@@ -42,7 +42,7 @@ public class Oneal extends Entity {
                 swap_kill = 2;
             } 
             else if (swap_kill == 2) {
-                entity.setImg(Sprite.player_dead3.getFxImage());
+                entity.setImg(Sprite.oneal_dead1.getFxImage());
                 swap_kill = 3;
             } 
             else {
@@ -70,10 +70,10 @@ public class Oneal extends Entity {
             if (bomberman.getX() > this.x) {
                 ComponentMovement.right(this);
             }
-            if (bomberman.getY() > this.y) {
+            if (bomberman.getY() + 1 > this.y) {
                 ComponentMovement.down(this);
             }
-            if (bomberman.getY() < this.y) {
+            if (bomberman.getY() + 1< this.y) {
                 ComponentMovement.up(this);
             }
         }

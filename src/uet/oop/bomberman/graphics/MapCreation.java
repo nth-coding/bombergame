@@ -2,7 +2,7 @@ package uet.oop.bomberman.graphics;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.PvP.Player2Bomb;
+import uet.oop.bomberman.entities.object.Grass;
 import uet.oop.bomberman.entities.object.Brick;
 import uet.oop.bomberman.entities.object.Portal;
 import uet.oop.bomberman.entities.object.Wall;
@@ -20,7 +20,7 @@ public class MapCreation {
     // Constructor MapCreation with parameter "level" in string data type.
     public MapCreation(String level) {
         System.out.println(System.getProperty("user.dir"));
-        File fileName = new File("res/levels/Level1.txt");                      // Create object fileName from class File in File library imported.
+        File fileName = new File("res/levels/TestMap.txt");                      // Create object fileName from class File in File library imported.
         try (FileReader inputFile = new FileReader(fileName)) {     // Try to create new object from class FileReader.
             Scanner ip = new Scanner(inputFile);                    // Create object ip from class Scanner.
             String line = ip.nextLine();                            // Input variable line in string data type.
@@ -62,7 +62,7 @@ public class MapCreation {
                                 entity = new Brick(j, i, Sprite.brick.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
                                 break;
                             default:
-                                entity = new Player2Bomb.PvPBrick.Grass(j, i, Sprite.grass.getFxImage());
+                                entity = new Grass(j, i, Sprite.grass.getFxImage());
                         }
                         id_objects[j][i] = token;        //
 //                        System.out.print(id_objects[j][i] + " ");

@@ -36,8 +36,8 @@ public class Level1 {
         entities.add(enemy2);
         entities.add(enemy3);
 
-        Entity enemy4 = new Oneal(7, 6, Sprite.oneal_right1.getFxImage());
-        Entity enemy5 = new Oneal(13, 8, Sprite.oneal_right1.getFxImage());
+        Entity enemy4 = new Doll(7, 6, Sprite.doll_left1.getFxImage());
+        Entity enemy5 = new Kondoria(13, 8, Sprite.kondoria_left1.getFxImage());
         entities.add(enemy4);
         entities.add(enemy5);
 

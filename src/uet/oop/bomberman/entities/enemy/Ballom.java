@@ -53,13 +53,13 @@ public class Ballom extends Entity {
     private void killBallom(Entity entity) {
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
-                entity.setImg(Sprite.mob_dead1.getFxImage());
+                entity.setImg(Sprite.balloom_dead.getFxImage());
                 swap_kill = 2;
             } else if (swap_kill == 2) {
-                entity.setImg(Sprite.mob_dead2.getFxImage());
+                entity.setImg(Sprite.player_dead4.getFxImage());
                 swap_kill = 3;
             } else if (swap_kill == 3) {
-                entity.setImg(Sprite.mob_dead3.getFxImage());
+                entity.setImg(Sprite.player_dead5.getFxImage());
                 swap_kill = 4;
             } else {
                 entity.setLife(false);
@@ -87,15 +87,6 @@ public class Ballom extends Entity {
                 killBallom(entity);
         }
 
-//        if (this.y % 16 == 0 && this.x % 16 == 0 && this.life) {
-//            if (this.x / 32 <= 1 || this.x / 32 >= width - 2)
-//                direction = !direction;
-//
-//            if (direction)
-//                ComponentMovement.left(this);
-//            else
-//                ComponentMovement.right(this);
-//        }
         if (this.life) {
             switch (direction) {
                 case 0:
@@ -119,7 +110,7 @@ public class Ballom extends Entity {
             if (checkDirection()) {
                 Random random = new Random();
                 direction = random.nextInt(4);
-                System.out.println("Ok");
+//                System.out.println("Ok");
             }
         }
     }

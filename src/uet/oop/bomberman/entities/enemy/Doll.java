@@ -37,8 +37,11 @@ public class Doll extends Entity{
                 entity.setImg(Sprite.doll_dead.getFxImage());
                 swap_kill = 2;
             } else if (swap_kill == 2) {
-                entity.setImg(Sprite.player_dead3.getFxImage());
+                entity.setImg(Sprite.oneal_dead.getFxImage());
                 swap_kill = 3;
+            } else if (swap_kill == 3) {
+                entity.setImg(Sprite.oneal_dead1.getFxImage());
+                swap_kill = 4;
             } else {
                 entity.setLife(false);
                 entities.remove(entity);
@@ -50,7 +53,7 @@ public class Doll extends Entity{
     private void moveDoll() {
         if (this.x % 32 == 0 && this.y % 32 == 0 && this.life) {
             Node initial_node = new Node(this.y / 32, this.x / 32);
-            Node final_node = new Node(bomberman.getY() / 32, bomberman.getX() / 32);
+            Node final_node = new Node(bomberman.getY() / 32 + 1, bomberman.getX() / 32);
 
             int rows = height;
             int cols = width;
@@ -71,7 +74,7 @@ public class Doll extends Entity{
             }
             a_star.setBlocks(blocks_in_array, count_block);
             List<Node> path = a_star.findPath();
-            if (path.size() != 0) {
+            if (path.size() > 1) {
                 int nextX = path.get(1).getCol();
                 int nextY = path.get(1).getRow();
 
@@ -90,11 +93,11 @@ public class Doll extends Entity{
     @Override
     public void update() {
         count_kill++;
+        moveDoll();
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
             if (entity instanceof Doll && !entity.life)
                 killDoll(entity);
         }
-        moveDoll();
     }
 }
