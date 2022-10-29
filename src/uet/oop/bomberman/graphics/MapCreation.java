@@ -20,7 +20,7 @@ public class MapCreation {
     // Constructor MapCreation with parameter "level" in string data type.
     public MapCreation(String level) {
         System.out.println(System.getProperty("user.dir"));
-        File fileName = new File("res/levels/Level1.txt");                      // Create object fileName from class File in File library imported.
+        File fileName = new File("res/levels/"+ level);                      // Create object fileName from class File in File library imported.
         try (FileReader inputFile = new FileReader(fileName)) {     // Try to create new object from class FileReader.
             Scanner ip = new Scanner(inputFile);                    // Create object ip from class Scanner.
             String line = ip.nextLine();                            // Input variable line in string data type.
