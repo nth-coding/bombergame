@@ -13,6 +13,7 @@ import static uet.oop.bomberman.BombermanGame.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException; // IOException is the base class for exceptions thrown while accessing information using streams, files and directories.
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.StringTokenizer; // The java.util.StringTokenizer class allows you to split a string into its token elements.
 
@@ -52,17 +53,32 @@ public class MapCreation {
                         // Through the program, in the for-loop statement, we can get the map according to each loop it passed.
                         switch (token) {
                             case 1:
-                                entity = new Portal(j, i, Sprite.grass.getFxImage());       // In case 1, set entity object equal to object portal with scaled size.
+                                entity = new Portal(j, i, Sprite.portal.getFxImage());       // In case 1, set entity object equal to object portal with scaled size.
                                 token = 0;
                                 break;
                             case 2:
-                                entity = new Wall(j, i, Sprite.wall.getFxImage());          // In case 2, set entity object equal to object wall with scaled size.
+//                                if (Objects.equals(level, "Level1.txt")) {
+//                                    entity = new Wall(j, i, Sprite.wall1.getFxImage());          // In case 2, set entity object equal to object wall with scaled size.
+//                                } else if (Objects.equals(level, "Level2.txt")) {
+//                                    entity = new Wall(j, i, Sprite.wall2.getFxImage());
+//                                }
+                                entity = new Wall(j, i, Sprite.wall2.getFxImage());
                                 break;
                             case 3:
-                                entity = new Brick(j, i, Sprite.brick.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
+//                                if (Objects.equals(level, "Level1.txt")) {
+//                                    entity = new Brick(j, i, Sprite.brick1.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
+//                                } else if (Objects.equals(level, "Level2.txt")) {
+//                                    entity = new Brick(j, i, Sprite.brick2.getFxImage());
+//                                }
+                                entity = new Brick(j, i, Sprite.brick2.getFxImage());
                                 break;
                             default:
-                                entity = new Grass(j, i, Sprite.grass.getFxImage());
+//                                if (Objects.equals(level, "Level1.txt")) {
+//                                    entity = new Grass(j, i, Sprite.grass1.getFxImage());
+//                                } else if (Objects.equals(level, "Level2.txt")) {
+//                                    entity = new Grass(j, i, Sprite.grass2.getFxImage());
+//                                }
+                                entity = new Grass(j, i, Sprite.grass2.getFxImage());
                         }
                         id_objects[j][i] = token;        //
 //                        System.out.print(id_objects[j][i] + " ");

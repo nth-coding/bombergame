@@ -1,12 +1,10 @@
 package uet.oop.bomberman.Levels;
 
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.enemy.Ballom;
-import uet.oop.bomberman.entities.enemy.Doll;
+import uet.oop.bomberman.entities.enemy.BigPoyo;
+import uet.oop.bomberman.entities.enemy.BakudaBlack;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
-
-import java.io.FileNotFoundException;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.Bomb.is_bomb;
@@ -27,12 +25,12 @@ public class Level3 {
         is_bomb = 0;
 
 
-        Entity enemy1 = new Ballom(5, 5, Sprite.balloom_left1.getFxImage());
-        Entity enemy2 = new Ballom(11, 9, Sprite.balloom_left1.getFxImage());
+        Entity enemy1 = new BigPoyo(5, 5, Sprite.bigPoyo_left1.getFxImage());
+        Entity enemy2 = new BigPoyo(11, 9, Sprite.bigPoyo_left1.getFxImage());
         entities.add(enemy1);
         entities.add(enemy2);
 
-        Entity enemy3 = new Doll(7, 5, Sprite.doll_left1.getFxImage());
+        Entity enemy3 = new BakudaBlack(7, 5, Sprite.bakudaBlack_left1.getFxImage());
         entities.add(enemy3);
 
         for (Entity animal : entities) {

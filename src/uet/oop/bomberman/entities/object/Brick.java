@@ -16,7 +16,7 @@ public class Brick extends Entity {
         for (Entity entity : stillObjects) {
             if (entity instanceof Brick) {
                 if (list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {    // At the element of the 2-dimensional listKill array with the value 4, Brick and Grass will appear
-                    entity.setImg(Sprite.grass.getFxImage());
+                    entity.setImg(Sprite.grass2.getFxImage());
                 }
             }
         }

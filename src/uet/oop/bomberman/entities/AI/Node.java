@@ -86,7 +86,7 @@ public class Node {
         this.parent = parent;
     }
 
-    // Method calculateHeuristic() with parameter final_node in Node class to apply AI in Doll enemy.
+    // Method calculateHeuristic() with parameter final_node in Node class to apply AI in bakudaBlack enemy.
     public void calculateHeuristic(Node final_node) {
         this.h = Math.abs(final_node.getRow() - getRow()) + Math.abs(final_node.getCol() - getCol());
     }

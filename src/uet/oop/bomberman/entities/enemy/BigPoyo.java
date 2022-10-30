@@ -9,26 +9,26 @@ import uet.oop.bomberman.graphics.Sprite;
 import java.util.Random;
 
 import static uet.oop.bomberman.BombermanGame.*;
-public class Ballom extends Entity {
+public class BigPoyo extends Entity {
 
     private static int swap_kill = 1;
     private static int count_kill = 0;
     private int direction = 0;
     private int direction_status = 0;
 
-    public Ballom(int x, int y, Image img) {
+    public BigPoyo(int x, int y, Image img) {
         super(x, y, img);
     }
 
-    public Ballom(int is_move, int swap, String directionection, int count, int count_to_run) {
+    public BigPoyo(int is_move, int swap, String directionection, int count, int count_to_run) {
         super(4, 1, "up", 0, 0);
     }
 
-    public Ballom(boolean life) {
+    public BigPoyo(boolean life) {
         super(life);
     }
 
-    public Ballom() {
+    public BigPoyo() {
     }
 
     private boolean checkDirection() {
@@ -50,10 +50,10 @@ public class Ballom extends Entity {
         return false;
     }
 
-    private void killBallom(Entity entity) {
+    private void killPoyo(Entity entity) {
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
-                entity.setImg(Sprite.balloom_dead.getFxImage());
+                entity.setImg(Sprite.bigPoyo_dead.getFxImage());
                 swap_kill = 2;
             } else if (swap_kill == 2) {
                 entity.setImg(Sprite.player_dead4.getFxImage());
@@ -71,7 +71,7 @@ public class Ballom extends Entity {
 
     private void kill() {
         for (Entity entity : entities) {
-            if (list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
+            if (list_kill[entity.getX() / 32][entity.getY() / 32 + 1] == 4) {
                 entity.setLife(false);
             }
         }
@@ -83,8 +83,8 @@ public class Ballom extends Entity {
         count_kill++;
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
-            if (entity instanceof Ballom && !entity.life)
-                killBallom(entity);
+            if (entity instanceof BigPoyo && !entity.life)
+                killPoyo(entity);
         }
 
         if (this.life) {
@@ -113,5 +113,5 @@ public class Ballom extends Entity {
 //                System.out.println("Ok");
             }
         }
-    }
+    } 
 }

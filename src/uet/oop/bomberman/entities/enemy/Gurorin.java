@@ -1,7 +1,6 @@
 package uet.oop.bomberman.entities.enemy;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.components.Blocked;
 import uet.oop.bomberman.components.ComponentMovement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
@@ -10,30 +9,30 @@ import java.util.Random;
 
 import static uet.oop.bomberman.BombermanGame.*;
 
-public class Kondoria extends Entity {
+public class Gurorin extends Entity {
     private static int swap_kill = 1;
-    private static int count_kill = 0; // Count the number of Kondorias destroyed
+    private static int count_kill = 0; // Count the number of gurorins destroyed
 
-    public Kondoria(int is_move, int swap, String direction, int count, int count_to_run) {
+    public Gurorin(int is_move, int swap, String direction, int count, int count_to_run) {
         super(4, 1, "up", 0, 0);
     }
 
-    public Kondoria() {
+    public Gurorin() {
 
     }
 
-    private void killKondoria(Entity entity) { // Bomber destroys Balloon
+    private void killgurorin(Entity entity) { // Bomber destroys Balloon
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
-                entity.setImg(Sprite.kondoria_dead.getFxImage());
+                entity.setImg(Sprite.gurorin_dead.getFxImage());
                 swap_kill = 2;
             }
             else if (swap_kill == 2) {
-                entity.setImg(Sprite.oneal_dead.getFxImage());
+                entity.setImg(Sprite.smallPoyo_dead.getFxImage());
                 swap_kill = 3;
             }
             else if (swap_kill == 3) {
-                entity.setImg(Sprite.oneal_dead1.getFxImage());
+                entity.setImg(Sprite.smallPoyo_dead1.getFxImage());
                 swap_kill = 4;
             }
             else {
@@ -52,7 +51,7 @@ public class Kondoria extends Entity {
         }
     }
 
-    public Kondoria(int x, int y, Image img) {
+    public Gurorin(int x, int y, Image img) {
         super(x, y, img);
     }
 
@@ -62,8 +61,8 @@ public class Kondoria extends Entity {
         count_kill++;
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
-            if (entity instanceof Kondoria && !entity.life)
-                killKondoria(entity);
+            if (entity instanceof Gurorin && !entity.life)
+                killgurorin(entity);
         }
 
         if (this.y % 32 == 0 && this.x % 32 == 0 && this.life) {

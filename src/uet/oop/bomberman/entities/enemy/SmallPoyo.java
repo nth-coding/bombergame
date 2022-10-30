@@ -7,42 +7,42 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.*;
 
-public class Oneal extends Entity {
+public class SmallPoyo extends Entity {
     private static int swap_kill = 1;
     private static int count_kill = 0;
 
     
-    public Oneal(int x, int y, Image img) {
+    public SmallPoyo(int x, int y, Image img) {
         super(x, y, img);
     }
 
-    public Oneal(int is_move, int swap, String direction, int count, int count_to_run) {
+    public SmallPoyo(int is_move, int swap, String direction, int count, int count_to_run) {
         super(4, 1, "up", 0, 0);
     }
 
-    public Oneal(boolean life) {
+    public SmallPoyo(boolean life) {
         super(life);
     }
 
-    public Oneal() {
+    public SmallPoyo() {
         
     }
     private void kill() {
         for (Entity entity : entities) {
-            if (list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
+            if (list_kill[entity.getX() / 32][entity.getY() / 32 + 1] == 4) {
                 entity.setLife(false);
             }
         }
     }
 
-    private void killOneal(Entity entity) {
+    private void killPoyo(Entity entity) {
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
-                entity.setImg(Sprite.oneal_dead.getFxImage());
+                entity.setImg(Sprite.smallPoyo_dead.getFxImage());
                 swap_kill = 2;
             } 
             else if (swap_kill == 2) {
-                entity.setImg(Sprite.oneal_dead1.getFxImage());
+                entity.setImg(Sprite.smallPoyo_dead1.getFxImage());
                 swap_kill = 3;
             } 
             else {
@@ -59,8 +59,8 @@ public class Oneal extends Entity {
         count_kill++;
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
-            if (entity instanceof Oneal && !entity.life)
-                killOneal(entity);
+            if (entity instanceof SmallPoyo && !entity.life)
+                killPoyo(entity);
         }
 
         if (this.y % 16 == 0 && this.x % 16 == 0 && this.life) {
@@ -78,6 +78,6 @@ public class Oneal extends Entity {
             }
         }
 
-//        System.out.println("Oneal: " + this.getX() + " " + this.getY());
+//        System.out.println("Poyo: " + this.getX() + " " + this.getY());
     }
 }

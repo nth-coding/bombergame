@@ -2,9 +2,6 @@ package uet.oop.bomberman.components;
 
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.PvP.PvPBomber;
-import uet.oop.bomberman.entities.enemy.Ballom;
-import uet.oop.bomberman.entities.enemy.Oneal;
-import uet.oop.bomberman.graphics.Sprite;
 
 public class PvPComponentMovement {
     public static void checkRun(Entity entity) { // Check if all your mob move or not
