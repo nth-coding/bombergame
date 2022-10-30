@@ -5,15 +5,22 @@ import javafx.event.EventHandler;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.Levels.Level1;
+import uet.oop.bomberman.Levels.Level2;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.model.MenuButton;
+import uet.oop.bomberman.view.ViewManager;
 
+import javax.swing.text.View;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.view.ViewManager.mainStage;
+import static uet.oop.bomberman.view.ViewManager.*;
 
 public class Bomber  extends Entity {
 
@@ -24,7 +31,8 @@ public class Bomber  extends Entity {
     public static int dem =0;
     public static int speed = 1;
     private static final int MENU_START_X = 270;
-    private static final int MENU_START_Y = 300;
+    private static final int MENU_START_Y = 190;
+    public static Stage newStage;
 
     private static List<MenuButton> menuButtons = new ArrayList<>();
     private  MenuButton ExitButton = new MenuButton("EXIT");
@@ -66,8 +74,10 @@ public class Bomber  extends Entity {
                 swap_kill = 6;
             }
             else {
-                entity.setImg(Sprite.transparent.getFxImage());
                 running = false;
+                dem =1;
+                entity.setImg(Sprite.player_right.getFxImage());
+
                 Image OverImg;
 
                 try {
@@ -78,6 +88,7 @@ public class Bomber  extends Entity {
                     root.getChildren().add(Overimg);
                     createdRestartButton();
                     createdExitButton();
+
                 }catch (Exception e){}
             }
         }
@@ -103,8 +114,7 @@ public class Bomber  extends Entity {
         }
     }
     private void addMenuButton(MenuButton button) {
-        button.setLayoutX(MENU_START_X);
-        button.setLayoutY(MENU_START_Y + menuButtons.size() * 120- 50);
+
         menuButtons.add(button);
         root.getChildren().add(button);
 
@@ -112,10 +122,12 @@ public class Bomber  extends Entity {
     private void createdExitButton(){
 
         addMenuButton(ExitButton);
+        ExitButton.setLayoutX(MENU_START_X);
+        ExitButton.setLayoutY(MENU_START_Y + 2 * 120- 50);
         ExitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                mainStage.close();
+                gameStage.close();
 
             }
         });
@@ -123,14 +135,19 @@ public class Bomber  extends Entity {
     private void createdRestartButton(){
 
         addMenuButton(RestartButton);
+        RestartButton.setLayoutX(MENU_START_X);
+        RestartButton.setLayoutY(MENU_START_Y + 1 * 120- 50);
         RestartButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                mainStage.close();
+                dem =1;
 
 
+                root.getChildren().remove(Overimg);
+                root.getChildren().remove(RestartButton);
+                root.getChildren().remove(ExitButton);
 
-
+                mainStage.show();
 
             }
         });

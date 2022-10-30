@@ -19,6 +19,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import uet.oop.bomberman.view.PauseMenu;
+import uet.oop.bomberman.view.ViewManager;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,8 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static uet.oop.bomberman.Levels.NextLevel.*;
+import static uet.oop.bomberman.entities.Bomber.dem;
+import static uet.oop.bomberman.entities.Bomber.newStage;
 import static uet.oop.bomberman.entities.object.Portal.is_portal;
-import static uet.oop.bomberman.view.ViewManager.mainStage;
+import static uet.oop.bomberman.view.ViewManager.gameStage;
 
 
 public class BombermanGame {
@@ -69,6 +72,13 @@ public class BombermanGame {
     private PauseMenu pause = new PauseMenu();
 
     public void createGame(Stage stage) {
+        if (dem != 0) {
+
+            new Level1();
+            running = true;
+        }
+        else{
+
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
@@ -111,7 +121,7 @@ public class BombermanGame {
 
         // Tao bomber
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        bomberman.setLife(false);
+        bomberman.setLife(true);
 
         // Testing enemy
 //        Entity enemy1 = new Oneal(4, 4, Sprite.oneal_left2.getFxImage());
@@ -131,6 +141,8 @@ public class BombermanGame {
         };
         timer.start();
     }
+
+}
 
     public void createMap() {
         new Level1();
@@ -160,7 +172,7 @@ public class BombermanGame {
 
             } else if (key == KeyCode.SPACE) {
                 Bomb.putBomb();
-                entities.clear();
+
 
 //                System.out.println(bomberman.getX() + " " + bomberman.getY());
             } else if (key == KeyCode.ESCAPE) {
@@ -207,7 +219,7 @@ public class BombermanGame {
                 waiting_time = System.currentTimeMillis();
             }
         }
-        waitToLevelUp(mainStage);
+        waitToLevelUp(ViewManager.getMainStage());
     }
 
     public void render() {

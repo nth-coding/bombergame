@@ -2,8 +2,10 @@ package uet.oop.bomberman.view;
 
 
 import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.Levels.Level1;
 import uet.oop.bomberman.model.Instruction;
 import uet.oop.bomberman.model.MenuButton;
+
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -24,6 +26,8 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static uet.oop.bomberman.entities.Bomber.dem;
+import static uet.oop.bomberman.BombermanGame.*;
 
 public class ViewManager {
     private static final int WIDTH = 1000;
@@ -31,8 +35,17 @@ public class ViewManager {
     private Image bgrImg;
     private  ImageView bgrimg;
     public static AnchorPane mainPane;
+
+
+    public  Scene getMainScene() {
+        return mainScene;
+    }
+
+
+
     private Scene mainScene;
     public static Stage mainStage;
+    public static Stage gameStage;
     private static final int MENU_START_X = 150;
     private static final int MENU_START_Y = 150;
     private Instruction hdscreen;
@@ -91,25 +104,14 @@ public class ViewManager {
         createScreen();
     }
     public void tryFade()   {
-        FadeTransition fade = new FadeTransition();
-        fade.setDuration(Duration.millis(1000));
-        fade.setFromValue(1);
-        fade.setToValue(0);
+        mainStage.hide();
+        gameStage = new Stage();
 
-
-        fade.setNode(mainPane);
-        fade.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent)   {
-
-                BombermanGame bombermanGame = new BombermanGame();
-                bombermanGame.createGame(mainStage);
-            }
-        });
-        fade.play();
+        BombermanGame bombermanGame = new BombermanGame();
+        bombermanGame.createGame(gameStage);
     }
 
-    public Stage getMainStage() {
+    public static Stage getMainStage() {
         return mainStage;
     }
 

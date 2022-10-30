@@ -2,6 +2,9 @@ package uet.oop.bomberman.graphics;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.items.BombItem;
+import uet.oop.bomberman.entities.items.FlameItem;
+import uet.oop.bomberman.entities.items.SpeedItem;
 import uet.oop.bomberman.entities.object.Grass;
 import uet.oop.bomberman.entities.object.Brick;
 import uet.oop.bomberman.entities.object.Portal;
@@ -60,6 +63,15 @@ public class MapCreation {
                                 break;
                             case 3:
                                 entity = new Brick(j, i, Sprite.brick.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
+                                break;
+                            case 6:
+                                entity = new SpeedItem(j, i, Sprite.brick.getFxImage());
+                                break;
+                            case 7:
+                                entity = new FlameItem(j, i, Sprite.brick.getFxImage());
+                                break;
+                            case 8:
+                                entity = new BombItem(j, i, Sprite.brick.getFxImage());
                                 break;
                             default:
                                 entity = new Grass(j, i, Sprite.grass.getFxImage());
