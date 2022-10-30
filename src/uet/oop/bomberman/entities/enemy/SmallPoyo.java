@@ -29,7 +29,7 @@ public class SmallPoyo extends Entity {
     }
     private void kill() {
         for (Entity entity : entities) {
-            if (list_kill[entity.getX() / 32][entity.getY() / 32 + 1] == 4) {
+            if (entity instanceof SmallPoyo && list_kill[entity.getX() / 32][entity.getY() / 32 + 1] == 4) {
                 entity.setLife(false);
             }
         }
@@ -52,17 +52,7 @@ public class SmallPoyo extends Entity {
             }
         }
     }
-
-    @Override
-    public void update() {
-        kill();
-        count_kill++;
-        for (int i = 0; i < entities.size(); ++i) {
-            Entity entity = entities.get(i);
-            if (entity instanceof SmallPoyo && !entity.life)
-                killPoyo(entity);
-        }
-
+    private void move() {
         if (this.y % 16 == 0 && this.x % 16 == 0 && this.life) {
             if (bomberman.getX() < this.x) {
                 ComponentMovement.left(this);
@@ -77,7 +67,18 @@ public class SmallPoyo extends Entity {
                 ComponentMovement.up(this);
             }
         }
+    }
 
+    @Override
+    public void update() {
+        kill();
+        count_kill++;
+        for (int i = 0; i < entities.size(); ++i) {
+            Entity entity = entities.get(i);
+            if (entity instanceof SmallPoyo && !entity.life)
+                killPoyo(entity);
+        }
+        move();
 //        System.out.println("Poyo: " + this.getX() + " " + this.getY());
     }
 }

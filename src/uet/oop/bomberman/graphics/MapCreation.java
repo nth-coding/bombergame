@@ -76,13 +76,13 @@ public class MapCreation {
                                 entity = new Brick(j, i, Sprite.brick2.getFxImage());
                                 break;
                             case 6:
-                                entity = new SpeedItem(j, i, Sprite.brick.getFxImage());
+                                entity = new SpeedItem(j, i, Sprite.brick2.getFxImage());
                                 break;
                             case 7:
-                                entity = new FlameItem(j, i, Sprite.brick.getFxImage());
+                                entity = new FlameItem(j, i, Sprite.brick2.getFxImage());
                                 break;
                             case 8:
-                                entity = new BombItem(j, i, Sprite.brick.getFxImage());
+                                entity = new BombItem(j, i, Sprite.brick2.getFxImage());
                                 break;
                             default:
 //                                if (Objects.equals(level, "Level1.txt")) {

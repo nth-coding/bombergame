@@ -75,9 +75,33 @@ public class BakudaRed extends Entity {
 
     private void kill() {
         for (Entity entity : entities) {
-            if (list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
+            if (entity instanceof BakudaRed && list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
                 entity.setLife(false);
             }
+        }
+    }
+
+    private void move() {
+        if (this.life) {
+            switch (direction) {
+                case 0:
+                    ComponentMovement.down(this);
+                    direction_status = 0;
+                    break;
+                case 1:
+                    ComponentMovement.up(this);
+                    direction_status = 1;
+                    break;
+                case 2:
+                    ComponentMovement.left(this);
+                    direction_status = 2;
+                    break;
+                case 3:
+                    ComponentMovement.right(this);
+                    direction_status = 3;
+                    break;
+            }
+            setDirection();
         }
     }
 
@@ -85,33 +109,11 @@ public class BakudaRed extends Entity {
     public void update() {
         kill();
         count_kill++;
-
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
             if (entity instanceof BakudaRed && !entity.life)
                 killBakudaRed(entity);
         }
-
-//        if (this.life) {
-//            switch (direction) {
-//                case 0:
-//                    ComponentMovement.down(this);
-//                    direction_status = 0;
-//                    break;
-//                case 1:
-//                    ComponentMovement.up(this);
-//                    direction_status = 1;
-//                    break;
-//                case 2:
-//                    ComponentMovement.left(this);
-//                    direction_status = 2;
-//                    break;
-//                case 3:
-//                    ComponentMovement.right(this);
-//                    direction_status = 3;
-//                    break;
-//            }
-//            setDirection();
-//        }
+        move();
     }
 }

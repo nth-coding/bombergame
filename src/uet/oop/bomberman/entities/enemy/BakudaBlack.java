@@ -92,7 +92,7 @@ public class BakudaBlack extends Entity{
 
     private void kill() {
         for (Entity entity : entities) {
-            if (list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
+            if (entity instanceof BakudaBlack && list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
                 entity.setLife(false);
             }
         }

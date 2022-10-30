@@ -45,26 +45,12 @@ public class Gurorin extends Entity {
 
     private void kill() {
         for (Entity entity : entities) {
-            if (list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
+            if (entity instanceof Gurorin && list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
                 entity.setLife(false);
             }
         }
     }
-
-    public Gurorin(int x, int y, Image img) {
-        super(x, y, img);
-    }
-
-    @Override
-    public void update() {
-        kill();
-        count_kill++;
-        for (int i = 0; i < entities.size(); ++i) {
-            Entity entity = entities.get(i);
-            if (entity instanceof Gurorin && !entity.life)
-                killgurorin(entity);
-        }
-
+    private void move() {
         if (this.y % 32 == 0 && this.x % 32 == 0 && this.life) {
             Random random = new Random();
             int direction = random.nextInt(4);
@@ -83,5 +69,20 @@ public class Gurorin extends Entity {
                     break;
             }
         }
+    }
+    public Gurorin(int x, int y, Image img) {
+        super(x, y, img);
+    }
+
+    @Override
+    public void update() {
+        kill();
+        count_kill++;
+        for (int i = 0; i < entities.size(); ++i) {
+            Entity entity = entities.get(i);
+            if (entity instanceof Gurorin && !entity.life)
+                killgurorin(entity);
+        }
+        move();
     }
 }

@@ -174,7 +174,7 @@ public class Bomber  extends Entity {
     public void update() {
         // testing commit
         checkBombs();
-//        checkEnemy();
+        checkEnemy();
         count_kill++;
         if (!this.life) {
             killBomber(this);

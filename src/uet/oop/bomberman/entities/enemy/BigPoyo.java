@@ -56,10 +56,10 @@ public class BigPoyo extends Entity {
                 entity.setImg(Sprite.bigPoyo_dead.getFxImage());
                 swap_kill = 2;
             } else if (swap_kill == 2) {
-                entity.setImg(Sprite.player_dead4.getFxImage());
+                entity.setImg(Sprite.player_dead5.getFxImage());
                 swap_kill = 3;
             } else if (swap_kill == 3) {
-                entity.setImg(Sprite.player_dead5.getFxImage());
+                entity.setImg(Sprite.player_dead6.getFxImage());
                 swap_kill = 4;
             } else {
                 entity.setLife(false);
@@ -71,22 +71,13 @@ public class BigPoyo extends Entity {
 
     private void kill() {
         for (Entity entity : entities) {
-            if (list_kill[entity.getX() / 32][entity.getY() / 32 + 1] == 4) {
+            if (entity instanceof BigPoyo && list_kill[entity.getX() / 32][entity.getY() / 32 + 1] == 4) {
                 entity.setLife(false);
             }
         }
     }
 
-    @Override
-    public void update() {
-        kill();
-        count_kill++;
-        for (int i = 0; i < entities.size(); ++i) {
-            Entity entity = entities.get(i);
-            if (entity instanceof BigPoyo && !entity.life)
-                killPoyo(entity);
-        }
-
+    private void move() {
         if (this.life) {
             switch (direction) {
                 case 0:
@@ -113,5 +104,17 @@ public class BigPoyo extends Entity {
 //                System.out.println("Ok");
             }
         }
+    }
+
+    @Override
+    public void update() {
+        kill();
+        count_kill++;
+        for (int i = 0; i < entities.size(); ++i) {
+            Entity entity = entities.get(i);
+            if (entity instanceof BigPoyo && !entity.life)
+                killPoyo(entity);
+        }
+        move();
     } 
 }
