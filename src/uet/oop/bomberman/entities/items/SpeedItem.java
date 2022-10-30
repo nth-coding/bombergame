@@ -28,7 +28,7 @@ public class SpeedItem extends Items {
                     entity.setImg(Sprite.powerup_speed.getFxImage());
 
         if (!this.received)
-            if (bomberman.getX() == this.x && bomberman.getY() == this.y) {
+            if (bomberman.getX() == this.x && bomberman.getY() + 32 == this.y) {
                 this.setImg(Sprite.grass2.getFxImage());
                 this.received = true;
                 speed = 2;

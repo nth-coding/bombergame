@@ -29,7 +29,7 @@ public class FlameItem extends Items {
                     entity.setImg(Sprite.powerup_flames.getFxImage());
 
         if (!this.received)
-            if (bomberman.getX() == this.x && bomberman.getY() == this.y) {
+            if (bomberman.getX() == this.x && bomberman.getY() + 32 == this.y) {
                 this.setImg(Sprite.grass2.getFxImage());
                 this.received = true;
                 Bomb.power_bomb += 2;
