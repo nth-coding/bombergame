@@ -21,6 +21,16 @@ import java.util.List;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.view.ViewManager.*;
+import uet.oop.bomberman.entities.enemy.BigPoyo;
+import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.model.MenuButton;
+
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.view.ViewManager.mainStage;
 
 public class Bomber  extends Entity {
 
@@ -73,6 +83,10 @@ public class Bomber  extends Entity {
                 entity.setImg(Sprite.player_dead5.getFxImage());
                 swap_kill = 6;
             }
+            else if (swap_kill == 6) {
+                entity.setImg(Sprite.player_dead6.getFxImage());
+                swap_kill = 7;
+            }
             else {
                 running = false;
                 dem =1;
@@ -88,7 +102,6 @@ public class Bomber  extends Entity {
                     root.getChildren().add(Overimg);
                     createdRestartButton();
                     createdExitButton();
-
                 }catch (Exception e){}
             }
         }
@@ -105,10 +118,15 @@ public class Bomber  extends Entity {
         for (Entity entity : entities) {
             int bx = entity.getX();
             int by = entity.getY();
-            if (ax == bx && by - 32 <= ay && by + 32 >= ay
-                    || ay == by && bx - 32 <= ax && bx + 32 >= ax)
+            if (entity instanceof BigPoyo) {
+                bx = entity.getX();
+                by = entity.getY();
+            }
+            if (ax == bx && by - 16 < ay && by + 16 > ay
+                    || ay == by && bx - 16 < ax && bx + 16 > ax)
             {
                 this.life = false;
+                System.out.println("Killed by Ballom bug at " + bx + " " + by + " when you were at " + ax + " " + ay);
                 break;
             }
         }
@@ -156,14 +174,10 @@ public class Bomber  extends Entity {
     public void update() {
         // testing commit
         checkBombs();
-        checkEnemy();
+//        checkEnemy();
         count_kill++;
         if (!this.life) {
             killBomber(this);
-
-
-
-
         }
     }
 }

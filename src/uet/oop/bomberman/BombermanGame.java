@@ -124,7 +124,7 @@ public class BombermanGame {
         bomberman.setLife(true);
 
         // Testing enemy
-//        Entity enemy1 = new Oneal(4, 4, Sprite.oneal_left2.getFxImage());
+//        Entity enemy1 = new smallPoyo(4, 4, Sprite.smallPoyo_left2.getFxImage());
 //        entities.add(enemy1);
 
         // Tao map
@@ -172,7 +172,6 @@ public class BombermanGame {
 
             } else if (key == KeyCode.SPACE) {
                 Bomb.putBomb();
-
 
 //                System.out.println(bomberman.getX() + " " + bomberman.getY());
             } else if (key == KeyCode.ESCAPE) {

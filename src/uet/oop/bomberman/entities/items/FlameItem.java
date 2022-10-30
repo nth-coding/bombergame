@@ -30,7 +30,7 @@ public class FlameItem extends Items {
 
         if (!this.received)
             if (bomberman.getX() == this.x && bomberman.getY() == this.y) {
-                this.setImg(Sprite.grass.getFxImage());
+                this.setImg(Sprite.grass2.getFxImage());
                 this.received = true;
                 Bomb.power_bomb += 2;
             }

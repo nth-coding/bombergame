@@ -1,21 +1,16 @@
 package uet.oop.bomberman.Levels;
 
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.enemy.Ballom;
-import uet.oop.bomberman.entities.enemy.Kondoria;
-import uet.oop.bomberman.entities.enemy.Oneal;
+import uet.oop.bomberman.entities.enemy.BigPoyo;
+import uet.oop.bomberman.entities.enemy.Gurorin;
+import uet.oop.bomberman.entities.enemy.SmallPoyo;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.io.FileNotFoundException;
-
-import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.BombermanGame.bomberman;
 import static uet.oop.bomberman.BombermanGame.entities;
 import static uet.oop.bomberman.BombermanGame.stillObjects;
-import static uet.oop.bomberman.entities.Bomb.*;
 import static uet.oop.bomberman.entities.Bomb.is_bomb;
-import static uet.oop.bomberman.entities.Bomber.*;
 import static uet.oop.bomberman.entities.Bomber.speed;
 import static uet.oop.bomberman.entities.Bomber.swap_kill;
 
@@ -35,20 +30,20 @@ public class Level2 {
         is_bomb = 0;
         speed =1;
 
-        Entity enemy1 = new Ballom(5, 5, Sprite.balloom_left1.getFxImage());
-        Entity enemy2 = new Ballom(11, 9, Sprite.balloom_left1.getFxImage());
+        Entity enemy1 = new BigPoyo(5, 5, Sprite.bigPoyo_left1.getFxImage());
+        Entity enemy2 = new BigPoyo(11, 9, Sprite.bigPoyo_left1.getFxImage());
         entities.add(enemy1);
         entities.add(enemy2);
 
-        Entity enemy3 = new Kondoria(1, 3, Sprite.kondoria_right1.getFxImage());
-        Entity enemy4 = new Kondoria(1, 7, Sprite.kondoria_right1.getFxImage());
-        Entity enemy5 = new Kondoria(1, 11, Sprite.kondoria_right1.getFxImage());
+        Entity enemy3 = new Gurorin(1, 3, Sprite.gurorin_right1.getFxImage());
+        Entity enemy4 = new Gurorin(1, 7, Sprite.gurorin_right1.getFxImage());
+        Entity enemy5 = new Gurorin(1, 11, Sprite.gurorin_right1.getFxImage());
         entities.add(enemy3);
         entities.add(enemy4);
         entities.add(enemy5);
 
-        Entity enemy6 = new Oneal(7, 5, Sprite.oneal_right1.getFxImage());
-        Entity enemy7 = new Oneal(19, 7, Sprite.oneal_right1.getFxImage());
+        Entity enemy6 = new SmallPoyo(7, 5, Sprite.smallPoyo_right1.getFxImage());
+        Entity enemy7 = new SmallPoyo(19, 7, Sprite.smallPoyo_right1.getFxImage());
         entities.add(enemy6);
         entities.add(enemy7);
 

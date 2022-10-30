@@ -1,11 +1,8 @@
 package uet.oop.bomberman.components;
 
-import uet.oop.bomberman.entities.enemy.Ballom;
+import uet.oop.bomberman.entities.enemy.*;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.enemy.Doll;
-import uet.oop.bomberman.entities.enemy.Kondoria;
-import uet.oop.bomberman.entities.enemy.Oneal;
 
 
 import static uet.oop.bomberman.BombermanGame.running;
@@ -18,8 +15,8 @@ public class ComponentMovement {
             setDirection(entity.getDirection(), entity, 8* speed);
             entity.setCount(entity.getCount() - 1);
         }
-        if ((entity instanceof Ballom || entity instanceof Oneal
-                || entity instanceof Doll || entity instanceof Kondoria)
+        if ((entity instanceof BigPoyo || entity instanceof SmallPoyo
+                || entity instanceof BakudaBlack || entity instanceof Gurorin  || entity instanceof BakudaRed)
                 && entity.getCount() > 0) {
             setDirection(entity.getDirection(), entity, 4);
             entity.setCount(entity.getCount() - 1);
@@ -56,7 +53,8 @@ public class ComponentMovement {
                 else entity.setCount(4/speed);
                 checkRun(entity);
             }
-            if ((entity instanceof Ballom || entity instanceof Oneal || entity instanceof Doll)
+            if ((entity instanceof BigPoyo || entity instanceof SmallPoyo || entity instanceof BakudaBlack
+                    || entity instanceof BakudaRed)
                     && Blocked.block_down(entity)) {
                 entity.setDirection("down");
                 if(running ==false) entity.setCount(0);
@@ -74,7 +72,8 @@ public class ComponentMovement {
                 else entity.setCount(4/speed);
                 checkRun(entity);
             }
-            if ((entity instanceof Ballom || entity instanceof Oneal || entity instanceof Doll)
+            if ((entity instanceof BigPoyo || entity instanceof SmallPoyo || entity instanceof BakudaBlack
+                    || entity instanceof BakudaRed)
                     && Blocked.block_up(entity)) {
                 entity.setDirection("up");
                 if(running ==false) entity.setCount(0);
@@ -92,8 +91,8 @@ public class ComponentMovement {
                 else entity.setCount(4/speed);
                 checkRun(entity);
             }
-            if ((entity instanceof Ballom || entity instanceof Oneal
-                    || entity instanceof Doll || entity instanceof Kondoria)
+            if ((entity instanceof BigPoyo || entity instanceof SmallPoyo || entity instanceof BakudaBlack
+                    || entity instanceof Gurorin  || entity instanceof BakudaRed)
                     && Blocked.block_left(entity)) {
                 entity.setDirection("left");
                 if(running ==false) entity.setCount(0);
@@ -111,8 +110,8 @@ public class ComponentMovement {
                 else entity.setCount(4/speed);
                 checkRun(entity);
             }
-            if ((entity instanceof Ballom || entity instanceof Oneal
-                    || entity instanceof Doll || entity instanceof Kondoria)
+            if ((entity instanceof BigPoyo || entity instanceof SmallPoyo || entity instanceof BakudaBlack
+                    || entity instanceof Gurorin || entity instanceof BakudaRed)
                     && Blocked.block_right(entity)) {
                 entity.setDirection("right");
                 if(running ==false) entity.setCount(0);

@@ -2,10 +2,6 @@ package uet.oop.bomberman.components;
 
 import uet.oop.bomberman.entities.PvP.PvPBomber;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.enemy.Ballom;
-import uet.oop.bomberman.entities.enemy.Doll;
-import uet.oop.bomberman.entities.enemy.Kondoria;
-import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class PvPComponentAnimation {
