@@ -11,36 +11,36 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import static uet.oop.bomberman.BombermanGame.*;
 
-public class Doll extends Entity{
+public class BakudaBlack extends Entity{
     private static int swap_kill = 1;
     private static int count_kill = 0;
 
-    public Doll(int x_unit, int y_unit, Image img) {
+    public BakudaBlack(int x_unit, int y_unit, Image img) {
         super(x_unit, y_unit, img);
     }
 
-    public Doll(int is_move, int swap, String direction, int count, int count_to_run) {
+    public BakudaBlack(int is_move, int swap, String direction, int count, int count_to_run) {
         super(4, 1, "up", 0, 0);
     }
 
-    public Doll(boolean life) {
+    public BakudaBlack(boolean life) {
         super(life);
     }
 
-    public Doll() {
+    public BakudaBlack() {
 
     }
 
-    private void killDoll(Entity entity) {
+    private void killBakudaBlack(Entity entity) {
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
-                entity.setImg(Sprite.doll_dead.getFxImage());
+                entity.setImg(Sprite.bakudaBlack_dead.getFxImage());
                 swap_kill = 2;
             } else if (swap_kill == 2) {
-                entity.setImg(Sprite.oneal_dead.getFxImage());
+                entity.setImg(Sprite.smallPoyo_dead.getFxImage());
                 swap_kill = 3;
             } else if (swap_kill == 3) {
-                entity.setImg(Sprite.oneal_dead1.getFxImage());
+                entity.setImg(Sprite.smallPoyo_dead1.getFxImage());
                 swap_kill = 4;
             } else {
                 entity.setLife(false);
@@ -50,7 +50,7 @@ public class Doll extends Entity{
         }
     }
 
-    private void moveDoll() {
+    private void moveBakudaBlack() {
         if (this.x % 32 == 0 && this.y % 32 == 0 && this.life) {
             Node initial_node = new Node(this.y / 32, this.x / 32);
             Node final_node = new Node(bomberman.getY() / 32 + 1, bomberman.getX() / 32);
@@ -90,14 +90,23 @@ public class Doll extends Entity{
         }
     }
 
+    private void kill() {
+        for (Entity entity : entities) {
+            if (list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
+                entity.setLife(false);
+            }
+        }
+    }
+
     @Override
     public void update() {
+        kill();
         count_kill++;
-        moveDoll();
+        moveBakudaBlack();
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
-            if (entity instanceof Doll && !entity.life)
-                killDoll(entity);
+            if (entity instanceof BakudaBlack && !entity.life)
+                killBakudaBlack(entity);
         }
     }
 }
