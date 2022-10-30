@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import uet.oop.bomberman.view.Bar;
 import uet.oop.bomberman.view.PauseMenu;
 import uet.oop.bomberman.view.ViewManager;
 
@@ -31,12 +32,12 @@ import static uet.oop.bomberman.entities.Bomber.dem;
 import static uet.oop.bomberman.entities.Bomber.newStage;
 import static uet.oop.bomberman.entities.object.Portal.is_portal;
 import static uet.oop.bomberman.view.ViewManager.gameStage;
-
+import static uet.oop.bomberman.view.Bar.*;
 
 public class BombermanGame {
 
     public static final int WIDTH = 25;
-    public static final int HEIGHT = 15;
+    public static final int HEIGHT = 16;
     //
     public static int width = 0;
 
@@ -54,7 +55,7 @@ public class BombermanGame {
     //
     public static int level = 1;
     private Timeline timeline;
-
+    private long lastTime;
     private Scene mainScene;
     public static Entity bomberman;
     private GraphicsContext gc;
@@ -82,6 +83,7 @@ public class BombermanGame {
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
+        Bar.createMenu(root);
 
 
         // Tao root container
@@ -118,7 +120,7 @@ public class BombermanGame {
         stage.setScene(mainScene);
         stage.setTitle("Bomberman");
         stage.show();
-
+        lastTime = System.currentTimeMillis();
         // Tao bomber
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
         bomberman.setLife(true);
@@ -136,6 +138,7 @@ public class BombermanGame {
                 if (running) {
                     render();
                     update();
+                    time();
                 }
             }
         };
@@ -173,7 +176,7 @@ public class BombermanGame {
             } else if (key == KeyCode.SPACE) {
                 Bomb.putBomb();
 
-
+                entities.clear();
 //                System.out.println(bomberman.getX() + " " + bomberman.getY());
             } else if (key == KeyCode.ESCAPE) {
                 running = false;
@@ -227,5 +230,21 @@ public class BombermanGame {
         stillObjects.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
         bomberman.render(gc);
+    }
+    public void time() {
+
+
+        long now = System.currentTimeMillis();
+        if (now - lastTime > 1000) {
+            lastTime = System.currentTimeMillis();
+
+
+            ttime.setText("Time: " + time_number);
+            Bar.bbomb.setText("Bomb: "+ Bomb.bomb_number);
+            time_number--;
+            if (time_number < 0) {
+                bomberman.setLife(false);
+            }
+        }
     }
 }

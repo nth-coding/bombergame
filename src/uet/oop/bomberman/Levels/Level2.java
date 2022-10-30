@@ -1,11 +1,13 @@
 package uet.oop.bomberman.Levels;
 
+import uet.oop.bomberman.entities.Bomb;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.enemy.Ballom;
 import uet.oop.bomberman.entities.enemy.Kondoria;
 import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.view.Bar;
 
 import java.io.FileNotFoundException;
 
@@ -34,7 +36,9 @@ public class Level2 {
 
         is_bomb = 0;
         speed =1;
-
+        Bar.llevel.setText("Level: 2");
+        Bomb.bomb_number =20;
+        Bar.time_number = 120;
         Entity enemy1 = new Ballom(5, 5, Sprite.balloom_left1.getFxImage());
         Entity enemy2 = new Ballom(11, 9, Sprite.balloom_left1.getFxImage());
         entities.add(enemy1);

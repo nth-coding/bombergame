@@ -7,6 +7,7 @@ import uet.oop.bomberman.*;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import static uet.oop.bomberman.BombermanGame.*;
 public class Bomb extends Entity {
     //
     public static int bomb_number = 20;
+
     private static long time_bomb;      // Exploding time bomb 
     private static long time_tmp;       // Time between 2 bombings
     private static Entity bomb;
@@ -43,6 +45,7 @@ public class Bomb extends Entity {
         if (is_bomb == 0 && bomb_number > 0) {
             //new SoundManager("sound/put_bombs.wav", "putBomb");
             bomb_number--;
+
             is_bomb = 1;
             time_bomb = System.currentTimeMillis();
             time_tmp = time_bomb;
@@ -53,6 +56,7 @@ public class Bomb extends Entity {
             bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
             stillObjects.add(bomb);
             id_objects[bomberman.getX() / 32][bomberman.getY() / 32] = 4;
+
         }
     }
 
@@ -98,7 +102,7 @@ public class Bomb extends Entity {
         }
 
         if (Blocked.block_left_bomb(bomb, 0)) {
-            edge_left = new Bomb(bomb.getX() / 32 - 1, bomb.getY() / 32, Sprite.bomb_exploded.getFxImage());
+            edge_left = new Bomb(bomb.getX() / 32 - 1, bomb.getY() / 32, Sprite.bomb_exploded.getFxImage()); // hien thi bom to
             if (power_bomb > 0) {
                 for (int i = 1; i <= power_bomb && Blocked.block_left_bomb(bomb, i); ++i) {
                     edge_left.setX(bomb.getX() - 32 - i * 32);
@@ -249,14 +253,14 @@ public class Bomb extends Entity {
     }
 
     private static void checkActive() {     // Check what stages the bomb has gone through before detonating
-        if (is_bomb == 1) {
+        if (is_bomb == 1|| is_bomb ==2) {
             if (System.currentTimeMillis() - time_bomb < 2000L) {
                 if (System.currentTimeMillis() - time_tmp > 100L) {
                     activeBomb();
                     time_tmp += 100L;
                 }
             } else {
-                is_bomb = 2;
+                is_bomb = 3;
                 time_bomb = System.currentTimeMillis();
                 time_tmp = time_bomb;
             }
@@ -265,7 +269,7 @@ public class Bomb extends Entity {
     }
 
     private static void checkExplosion() {      // Check the bomb's detonation time after the bomb is activated
-        if (is_bomb == 2) {
+        if (is_bomb == 3) {
             if (System.currentTimeMillis() - time_bomb < 1000L) {
                 if (System.currentTimeMillis() - time_tmp > 100L) {
                     if (!is_edge) {
