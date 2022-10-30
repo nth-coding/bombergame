@@ -30,7 +30,7 @@ public class ViewManager {
     private static final int HEIGHT = 650;
     private Image bgrImg;
     private  ImageView bgrimg;
-    private AnchorPane mainPane;
+    public static AnchorPane mainPane;
     private Scene mainScene;
     public static Stage mainStage;
     private static final int MENU_START_X = 150;
@@ -44,8 +44,9 @@ public class ViewManager {
     private AnimationTimer bgrTimer;
 
     private Instruction sceneToHide;
-    private MediaPlayer mediaPlayer;
-    private int count =0;
+    public static MediaPlayer mediaPlayer;
+    public static int count =0;
+
 
     public void music() throws Exception {
         Media h = new Media(new File("res/textures/bgr.mp3").toURI().toString());

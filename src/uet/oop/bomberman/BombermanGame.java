@@ -1,5 +1,6 @@
 package uet.oop.bomberman;
 
+import javafx.animation.Timeline;
 import uet.oop.bomberman.Levels.Level1;
 import uet.oop.bomberman.components.ComponentMovement;
 import uet.oop.bomberman.entities.*;
@@ -17,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import uet.oop.bomberman.view.PauseMenu;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -34,6 +36,7 @@ public class BombermanGame {
     public static final int HEIGHT = 15;
     //
     public static int width = 0;
+
     //
     public static int height = 0;
     //
@@ -46,7 +49,8 @@ public class BombermanGame {
     public static String[][] string_id_objects;
     public static boolean running;
     //
-    public static int level =1;
+    public static int level = 1;
+    private Timeline timeline;
 
     private Scene mainScene;
     public static Entity bomberman;
@@ -56,9 +60,13 @@ public class BombermanGame {
     public static final List<Entity> entities = new ArrayList<>();
     public static final List<Entity> stillObjects = new ArrayList<>();
     public static Group root = new Group();
+
     public Scene getMainScene() {
         return mainScene;
     }
+
+    private Timeline t;
+    private PauseMenu pause = new PauseMenu();
 
     public void createGame(Stage stage) {
         // Tao Canvas
@@ -93,7 +101,8 @@ public class BombermanGame {
             fadeTransition.setToValue(0);
             fadeTransition.setNode(img);
             fadeTransition.play();
-        }catch (FileNotFoundException e){}
+        } catch (FileNotFoundException e) {
+        }
 
         // Add mainScene vao stage
         stage.setScene(mainScene);
@@ -126,7 +135,7 @@ public class BombermanGame {
     public void createMap() {
         new Level1();
 
-        running =true;
+        running = true;
 
     }
 
@@ -149,12 +158,17 @@ public class BombermanGame {
                 // bomberman.setVelY(5);
                 ComponentMovement.down(bomberman);
 
-            }
-            else if (key == KeyCode.SPACE) {
+            } else if (key == KeyCode.SPACE) {
                 Bomb.putBomb();
                 entities.clear();
 
 //                System.out.println(bomberman.getX() + " " + bomberman.getY());
+            } else if (key == KeyCode.ESCAPE) {
+                running = false;
+
+                pause.showPause();
+
+
             }
         });
     }
@@ -185,7 +199,7 @@ public class BombermanGame {
                 a.setCountToRun(0);
             }
         }
-        if (entities.size() == 0 && !is_portal && ! wait) {
+        if (entities.size() == 0 && !is_portal && !wait) {
             Entity portal = new Portal(1, 3, Sprite.portal.getFxImage());
             stillObjects.add(portal);
             if (bomberman.getX() / 32 == portal.getX() / 32 && bomberman.getY() / 32 == portal.getY() / 32) {

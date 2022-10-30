@@ -22,7 +22,7 @@ public class MenuButton extends Button {
 
         setButtonFont();
         setPrefWidth(250);
-        setPrefHeight(60);
+        setPrefHeight(55);
         setStyle(BUTTON_FREE_STYLE);
         initializeButton();
     }
@@ -37,12 +37,12 @@ public class MenuButton extends Button {
     }
     protected void setButtonPressedStyle(){
         setStyle(BUTTON_PRESSED_STYLE);
-        setPrefHeight(45);
+        setPrefHeight(40);
         setLayoutY(getLayoutY()+6);
     }
     protected  void setButtonReleasedStyle(){
         setStyle(BUTTON_FREE_STYLE);
-        setPrefHeight(51);
+        setPrefHeight(46);
         setLayoutY(getLayoutY()-6);
     }
     public void initializeButton(){
