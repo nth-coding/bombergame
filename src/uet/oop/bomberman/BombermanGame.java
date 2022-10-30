@@ -173,6 +173,7 @@ public class BombermanGame {
             } else if (key == KeyCode.SPACE) {
                 Bomb.putBomb();
 
+
 //                System.out.println(bomberman.getX() + " " + bomberman.getY());
             } else if (key == KeyCode.ESCAPE) {
                 running = false;

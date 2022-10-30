@@ -118,7 +118,7 @@ public class Bomber  extends Entity {
         ExitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                mainStage.close();
+                gameStage.close();
 
             }
         });

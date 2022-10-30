@@ -291,21 +291,21 @@ public class Bomb extends Entity {
                     edge_down.setImg(Sprite.transparent.getFxImage());
                     id_objects[edge_down.getX() / 32][edge_down.getY() / 32] = 0;
                     list_kill[edge_down.getX() / 32][edge_down.getY() / 32] = 0;
-                    
+
                 }
 
                 if (Blocked.block_up_bomb(bomb, power_bomb_up)) {
                     edge_up.setImg(Sprite.transparent.getFxImage());
                     id_objects[edge_up.getX() / 32][edge_up.getY() / 32] = 0;
                     list_kill[edge_up.getX() / 32][edge_up.getY() / 32] = 0;
-                    
+
                 }
 
                 if (Blocked.block_left_bomb(bomb, power_bomb_left)) {
                     edge_left.setImg(Sprite.transparent.getFxImage());
                     id_objects[edge_left.getX() / 32][edge_left.getY() / 32] = 0;
                     list_kill[edge_left.getX() / 32][edge_left.getY() / 32] = 0;
-                    
+
                 }
 
                 if (Blocked.block_right_bomb(bomb, power_bomb_right)) {
