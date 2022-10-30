@@ -1,8 +1,11 @@
 package uet.oop.bomberman.view;
 
+
+import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.model.Instruction;
+import uet.oop.bomberman.model.MenuButton;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -11,22 +14,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-//import javafx.scene.media.Media;
-//import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import uet.oop.bomberman.BombermanGame;
-import uet.oop.bomberman.PvPGame;
-import uet.oop.bomberman.model.Instruction;
-import uet.oop.bomberman.model.MenuButton;
 
-
-import javax.sound.sampled.Clip;
 import java.io.File;
 import java.io.FileInputStream;
-
-import java.io.FileNotFoundException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +32,7 @@ public class ViewManager {
     private  ImageView bgrimg;
     private AnchorPane mainPane;
     private Scene mainScene;
-    private Stage mainStage;
+    public static Stage mainStage;
     private static final int MENU_START_X = 150;
     private static final int MENU_START_Y = 150;
     private Instruction hdscreen;
@@ -50,19 +44,22 @@ public class ViewManager {
     private AnimationTimer bgrTimer;
 
     private Instruction sceneToHide;
-//    private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
     private int count =0;
 
-//    public void music() throws Exception {
-//        String path = getClass().getResource("bgr.mp3").getPath();
-//        Media h = new Media(new File(path).toURI().toString());
-//        mediaPlayer = new MediaPlayer(h);
-//        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-//        if(count%2==0) mediaPlayer.play();
-//        else mediaPlayer.isMute();
-//    }
+    public void music() throws Exception {
+        Media h = new Media(new File("res/textures/bgr.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(h);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        if(count%2==0) mediaPlayer.play();
+        else mediaPlayer.isMute();
+
+
+    }
 
     public ViewManager() {
+
+
         mainPane = new AnchorPane();
 
         mainScene = new Scene(mainPane, WIDTH, HEIGHT);
@@ -74,12 +71,12 @@ public class ViewManager {
 
         } catch (Exception e) {
         }
-//        try {
-////            music();
-//
-//        } catch (Exception e) {
-//            System.out.println("Loi");
-//        }
+        try {
+            music();
+
+        } catch (Exception e) {
+            System.out.println("Loi");
+        }
         createbuttons();
 
         try {
@@ -92,7 +89,7 @@ public class ViewManager {
         }
         createScreen();
     }
-    public void tryFadePvE()   {
+    public void tryFade()   {
         FadeTransition fade = new FadeTransition();
         fade.setDuration(Duration.millis(1000));
         fade.setFromValue(1);
@@ -106,24 +103,6 @@ public class ViewManager {
 
                 BombermanGame bombermanGame = new BombermanGame();
                 bombermanGame.createGame(mainStage);
-            }
-        });
-        fade.play();
-    }
-
-    public void tryFadePvP()   {
-        FadeTransition fade = new FadeTransition();
-        fade.setDuration(Duration.millis(1000));
-        fade.setFromValue(1);
-        fade.setToValue(0);
-
-        fade.setNode(mainPane);
-        fade.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent)   {
-
-                PvPGame pvpGame = new PvPGame();
-                pvpGame.createGame(mainStage);
             }
         });
         fade.play();
@@ -157,10 +136,9 @@ public class ViewManager {
 
     protected void createbuttons() {
         createdStartButton();
-//        createdScoresButton();
-        createdPvPButton();
+        createdScoresButton();
         createdInsButton();
-//        createdSoundButton();
+        createdSoundButton();
         createdExitButton();
 
     }
@@ -173,36 +151,24 @@ public class ViewManager {
     }
 
     protected void createdStartButton() {
-        MenuButton startButton = new MenuButton("PVE MODE");
+        MenuButton startButton = new MenuButton("PLAY");
         addMenuButton(startButton);
 
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                tryFadePvE();
+                tryFade();
             }
         });
     }
 
-//    protected void createdScoresButton() {
-//        MenuButton scoreButton = new MenuButton("HIGH SCORES");
-//        addMenuButton(scoreButton);
-//        scoreButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent actionEvent) {
-//                showScene(highscreen);
-//            }
-//        });
-//
-//    }
-
-    protected void createdPvPButton() {
-        MenuButton pvpButton = new MenuButton("PVP MODE");
-        addMenuButton(pvpButton);
-        pvpButton.setOnAction(new EventHandler<ActionEvent>() {
+    protected void createdScoresButton() {
+        MenuButton scoreButton = new MenuButton("HIGH SCORES");
+        addMenuButton(scoreButton);
+        scoreButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                tryFadePvP();
+                showScene(highscreen);
             }
         });
 
@@ -219,18 +185,19 @@ public class ViewManager {
         });
 
     }
-//    protected void createdSoundButton() {
-//        MenuButton soundButton = new MenuButton("SOUND");
-//        addMenuButton(soundButton);
-//        soundButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent actionEvent) {
-//                mediaPlayer.pause();
-//                count++;
-//                if(count %2 ==0) mediaPlayer.play();
-//            }
-//        });
-//    }
+    protected void createdSoundButton() {
+        MenuButton soundButton = new MenuButton("SOUND");
+        addMenuButton(soundButton);
+        soundButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                mediaPlayer.pause();
+                count++;
+                if(count %2 ==0) mediaPlayer.play();
+            }
+        });
+
+    }
     protected void createdExitButton() {
         MenuButton ExitButton = new MenuButton("EXIT");
         addMenuButton(ExitButton);
