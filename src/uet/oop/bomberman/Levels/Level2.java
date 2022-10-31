@@ -2,6 +2,7 @@ package uet.oop.bomberman.Levels;
 
 import uet.oop.bomberman.entities.Bomb;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.enemy.BakudaBlack;
 import uet.oop.bomberman.entities.enemy.BigPoyo;
 import uet.oop.bomberman.entities.enemy.Gurorin;
 import uet.oop.bomberman.entities.enemy.SmallPoyo;
@@ -42,7 +43,7 @@ public class Level2 {
 
         Entity enemy3 = new Gurorin(1, 3, Sprite.gurorin_right1.getFxImage());
         Entity enemy4 = new Gurorin(1, 7, Sprite.gurorin_right1.getFxImage());
-        Entity enemy5 = new Gurorin(1, 11, Sprite.gurorin_right1.getFxImage());
+        Entity enemy5 = new BakudaBlack(1, 11, Sprite.bakudaBlack_right1.getFxImage());
         entities.add(enemy3);
         entities.add(enemy4);
         entities.add(enemy5);
@@ -51,6 +52,8 @@ public class Level2 {
         Entity enemy7 = new SmallPoyo(19, 7, Sprite.smallPoyo_right1.getFxImage());
         entities.add(enemy6);
         entities.add(enemy7);
+
+//        entities.clear();
 
         for (Entity animal : entities) {
             animal.setLife(true);

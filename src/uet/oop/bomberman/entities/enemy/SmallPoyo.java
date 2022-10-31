@@ -11,8 +11,6 @@ import static uet.oop.bomberman.BombermanGame.*;
 public class SmallPoyo extends Entity {
     private static int swap_kill = 1;
     private static int count_kill = 0;
-
-    
     public SmallPoyo(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -30,7 +28,7 @@ public class SmallPoyo extends Entity {
     }
     private void kill() {
         for (Entity entity : entities) {
-            if (entity instanceof SmallPoyo && list_kill[entity.getX() / 32][entity.getY() / 32 + 1] == 4) {
+            if (entity instanceof SmallPoyo && list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
                 entity.setLife(false);
             }
         }

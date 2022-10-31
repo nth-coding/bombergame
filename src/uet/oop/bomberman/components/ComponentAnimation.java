@@ -223,6 +223,22 @@ public class ComponentAnimation {
                 entity.setSwap(1);
             }
         }
+
+        if (entity instanceof BakudaBlack && entity.getY() % 8 == 0) {
+            if (entity.getSwap() == 1) {
+                entity.setImg(Sprite.bakudaBlack_left1.getFxImage());
+                entity.setSwap(2);
+            } else if (entity.getSwap() == 2) {
+                entity.setImg(Sprite.bakudaBlack_left2.getFxImage());
+                entity.setSwap(3);
+            } else if (entity.getSwap() == 3) {
+                entity.setImg(Sprite.bakudaBlack_left1.getFxImage());
+                entity.setSwap(4);
+            } else {
+                entity.setImg(Sprite.bakudaBlack_left2.getFxImage());
+                entity.setSwap(1);
+            }
+        }
         if (entity instanceof Gurorin && entity.getY() % 8 == 0) {
             if (entity.getSwap() == 1) {
                 entity.setImg(Sprite.gurorin_left1.getFxImage());
@@ -299,6 +315,21 @@ public class ComponentAnimation {
                 entity.setSwap(4);
             } else {
                 entity.setImg(Sprite.bakudaRed_right2.getFxImage());
+                entity.setSwap(1);
+            }
+        }
+        if (entity instanceof BakudaBlack && entity.getY() % 8 == 0) {
+            if (entity.getSwap() == 1) {
+                entity.setImg(Sprite.bakudaBlack_right1.getFxImage());
+                entity.setSwap(2);
+            } else if (entity.getSwap() == 2) {
+                entity.setImg(Sprite.bakudaBlack_right2.getFxImage());
+                entity.setSwap(3);
+            } else if (entity.getSwap() == 3) {
+                entity.setImg(Sprite.bakudaBlack_right1.getFxImage());
+                entity.setSwap(4);
+            } else {
+                entity.setImg(Sprite.bakudaBlack_right2.getFxImage());
                 entity.setSwap(1);
             }
         }

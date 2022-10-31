@@ -175,17 +175,12 @@ public class BombermanGame {
             } else if (key == KeyCode.S || key == KeyCode.DOWN) {
                 // bomberman.setVelY(5);
                 ComponentMovement.down(bomberman);
-
             } else if (key == KeyCode.SPACE) {
                 Bomb.putBomb();
-
 //                System.out.println(bomberman.getX() + " " + bomberman.getY());
             } else if (key == KeyCode.ESCAPE) {
                 running = false;
-
                 pause.showPause();
-
-
             }
         });
     }
@@ -217,9 +212,9 @@ public class BombermanGame {
             }
         }
         if (entities.size() == 0 && !is_portal && !wait) {
-            Entity portal = new Portal(1, 3, Sprite.portal.getFxImage());
+            Entity portal = new Portal(width - 2, height - 2, Sprite.portal.getFxImage());
             stillObjects.add(portal);
-            if (bomberman.getX() / 32 == portal.getX() / 32 && bomberman.getY() / 32 == portal.getY() / 32) {
+            if (bomberman.getX() / 32 == portal.getX() / 32 && bomberman.getY() / 32 + 1 == portal.getY() / 32) {
                 wait = true;
                 waiting_time = System.currentTimeMillis();
             }
@@ -227,7 +222,7 @@ public class BombermanGame {
         waitToLevelUp(ViewManager.getMainStage());
 
         if (!bomberman.isLife()) {
-            Media h = new Media(new File("res/sound/just_died.wav").toURI().toString());
+            Media h = new Media(new File("res/sound/died.wav").toURI().toString());
             mediaPlayerbomb = new MediaPlayer(h);
             mediaPlayerbomb.play();
         }

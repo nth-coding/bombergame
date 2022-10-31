@@ -47,7 +47,7 @@ public class Level1 {
         entities.add(enemy4);
         entities.add(enemy5);
 
-
+//        entities.clear();
         // set default for enemy
         for (Entity Entity : entities) {
             Entity.setLife(true);
