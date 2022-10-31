@@ -11,7 +11,6 @@ import static uet.oop.bomberman.BombermanGame.bomberman;
 import static uet.oop.bomberman.BombermanGame.entities;
 import static uet.oop.bomberman.BombermanGame.stillObjects;
 import static uet.oop.bomberman.entities.Bomb.is_bomb;
-import static uet.oop.bomberman.entities.Bomber.speed;
 import static uet.oop.bomberman.entities.Bomber.swap_kill;
 
 
@@ -28,7 +27,6 @@ public class Level2 {
         bomberman.setY(32);
 
         is_bomb = 0;
-        speed =1;
 
         Entity enemy1 = new BigPoyo(5, 5, Sprite.bigPoyo_left1.getFxImage());
         Entity enemy2 = new BigPoyo(11, 9, Sprite.bigPoyo_left1.getFxImage());

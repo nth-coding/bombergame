@@ -1,13 +1,13 @@
 package uet.oop.bomberman.components;
 
-import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.entities.PvP.PvPBomber;
 import uet.oop.bomberman.entities.Entity;
 
 import static uet.oop.bomberman.PvPGame.*;
 
 public class PvPBlocked {
     public static boolean block_down(Entity entity) {   //Create a blocked that prevent all mob go down through the object
-        if (entity instanceof Bomber) {
+        if (entity instanceof PvPBomber) {
             return id_objects[entity.getX() / 32][entity.getY() / 32 + 2] == 0
                     || id_objects[entity.getX() / 32][entity.getY() / 32 + 2] == 9;
         }
@@ -16,7 +16,7 @@ public class PvPBlocked {
     }
 
     public static boolean block_up(Entity entity) {     //Create a blocked that prevent all mob go up through the object
-        if (entity instanceof Bomber) {
+        if (entity instanceof PvPBomber) {
             return id_objects[entity.getX() / 32][entity.getY() / 32] == 0
                     || id_objects[entity.getX() / 32][entity.getY() / 32] == 9;
         }
@@ -25,7 +25,7 @@ public class PvPBlocked {
     }
 
     public static boolean block_left(Entity entity) {   //Create a blocked that prevent all mob go left through the object
-        if (entity instanceof Bomber) {
+        if (entity instanceof PvPBomber) {
             return id_objects[entity.getX() / 32 - 1][entity.getY() / 32 + 1] == 0
                     || id_objects[entity.getX() / 32 - 1][entity.getY() / 32 + 1] == 9;
         }
@@ -34,7 +34,7 @@ public class PvPBlocked {
     }
 
     public static boolean block_right(Entity entity) {   //Create a blocked that prevent all mob go right through the object
-        if (entity instanceof Bomber) {
+        if (entity instanceof PvPBomber) {
             return id_objects[entity.getX() / 32 + 1][entity.getY() / 32 + 1] == 0
                     || id_objects[entity.getX() / 32 + 1][entity.getY() / 32 + 1] == 9;
         }

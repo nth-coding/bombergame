@@ -39,7 +39,6 @@ public class Bomber  extends Entity {
     public static int bomb_number = 20;
     public static int power_bomb = 0;
     public static int dem =0;
-    public static int speed = 1;
     private static final int MENU_START_X = 270;
     private static final int MENU_START_Y = 190;
     public static Stage newStage;

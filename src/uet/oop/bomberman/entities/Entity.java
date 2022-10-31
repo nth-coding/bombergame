@@ -11,10 +11,7 @@ public abstract class Entity {
     protected Image img;
 
     // player speed
-    private int VelX; // velocity Ox
-    private int VelY; // velocity Oy
-
-    protected int speed; // jump with pixel
+    protected int speed = 1; // jump with pixel
     protected int swap; // swap image
     protected String direction; // direction of player
     protected int count; // count step of a jump
@@ -65,22 +62,6 @@ public abstract class Entity {
 
     public void setImg(Image img) {
         this.img = img;
-    }
-
-    public int getVelX() {
-        return VelX;
-    }
-
-    public void setVelX(int velX) {
-        VelX = velX;
-    }
-
-    public int getVelY() {
-        return VelY;
-    }
-
-    public void setVelY(int velY) {
-        VelY = velY;
     }
 
     public boolean isLife() {

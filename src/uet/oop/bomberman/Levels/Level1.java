@@ -26,7 +26,6 @@ public class Level1 {
         bomberman.setY(32);
         bomberman.setLife(true);
         is_bomb = 0;
-        speed =1;
 
         Entity enemy1 = new BakudaRed(4, 4, Sprite.bakudaRed_left1.getFxImage());
         Entity enemy2 = new BakudaRed(9, 9, Sprite.bakudaRed_left1.getFxImage());

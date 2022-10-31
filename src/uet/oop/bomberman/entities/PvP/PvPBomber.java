@@ -12,7 +12,6 @@ public class PvPBomber extends Entity {
     private static int count_kill = 0;
     public static int bomb_number = 20;
     public static int power_bomb = 0;
-    public static int speed = 1;
 
     public PvPBomber() {
 

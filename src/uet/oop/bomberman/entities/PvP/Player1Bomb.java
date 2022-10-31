@@ -22,7 +22,7 @@ public class Player1Bomb extends Entity {
     private static int swap_explosion = 1;  // Change bomb's explosive state
     private static final List<Entity> list_bomb_middle_width = new ArrayList();
     private static final List<Entity> list_bomb_middle_height = new ArrayList();
-    private static int power_bomb_player1 = player1.power_bomb;   // Bomb's destructive power
+    public static int power_bomb = player1.power_bomb;   // Bomb's destructive power
     private static int power_bomb_down = 0;     // Bomb's destructive power from top to bottom
     private static int power_bomb_up = 0;       // The bomb's destructive power is from the bottom up
     private static int power_bomb_left = 0;     // Bomb's destructive power is from right to left
@@ -76,8 +76,8 @@ public class Player1Bomb extends Entity {
     public static void createEdge() {   // Create an egde to prevent the character's movement as well as the explosion range of the bomb
         if (PvPBlocked.block_down_bomb(bomb, 0)) {
             edge_down = new Player1Bomb(bomb.getX() / 32, bomb.getY() / 32 + 1, Sprite.bomb_exploded.getFxImage());
-            if (power_bomb_player1 > 0) {
-                for (int i = 1; i <= power_bomb_player1 && PvPBlocked.block_down_bomb(bomb, i); ++i) {
+            if (power_bomb > 0) {
+                for (int i = 1; i <= power_bomb && PvPBlocked.block_down_bomb(bomb, i); ++i) {
                     edge_down.setY(bomb.getY() + 32 + i * 32);
                     ++power_bomb_down;
                 }
@@ -88,8 +88,8 @@ public class Player1Bomb extends Entity {
 
         if (PvPBlocked.block_up_bomb(bomb, 0)) {
             edge_up = new Player1Bomb(bomb.getX() / 32, bomb.getY() / 32 - 1, Sprite.bomb_exploded.getFxImage());
-            if (power_bomb_player1 > 0) {
-                for (int i = 1; i <= power_bomb_player1 && PvPBlocked.block_up_bomb(bomb, i); ++i) {
+            if (power_bomb > 0) {
+                for (int i = 1; i <= power_bomb && PvPBlocked.block_up_bomb(bomb, i); ++i) {
                     edge_up.setY(bomb.getY() - 32 - i * 32);
                     ++power_bomb_up;
                 }
@@ -100,8 +100,8 @@ public class Player1Bomb extends Entity {
 
         if (PvPBlocked.block_left_bomb(bomb, 0)) {
             edge_left = new Player1Bomb(bomb.getX() / 32 - 1, bomb.getY() / 32, Sprite.bomb_exploded.getFxImage());
-            if (power_bomb_player1 > 0) {
-                for (int i = 1; i <= power_bomb_player1 && PvPBlocked.block_left_bomb(bomb, i); ++i) {
+            if (power_bomb > 0) {
+                for (int i = 1; i <= power_bomb && PvPBlocked.block_left_bomb(bomb, i); ++i) {
                     edge_left.setX(bomb.getX() - 32 - i * 32);
                     ++power_bomb_left;
                 }
@@ -112,8 +112,8 @@ public class Player1Bomb extends Entity {
 
         if (PvPBlocked.block_right_bomb(bomb, 0)) {
             edge_right = new Player1Bomb(bomb.getX() / 32 + 1, bomb.getY() / 32, Sprite.bomb_exploded.getFxImage());
-            if (power_bomb_player1 > 0) {
-                for (int i = 1; i <= power_bomb_player1 && PvPBlocked.block_right_bomb(bomb, i); ++i) {
+            if (power_bomb > 0) {
+                for (int i = 1; i <= power_bomb && PvPBlocked.block_right_bomb(bomb, i); ++i) {
                     edge_right.setX(bomb.getX() + 32 + i * 32);
                     ++power_bomb_right;
                 }
@@ -274,7 +274,7 @@ public class Player1Bomb extends Entity {
                         is_edge = true;
                     }
 
-                    if (power_bomb_player1 > 0 && !is_middle) {
+                    if (power_bomb > 0 && !is_middle) {
                         createMiddle();
                         is_middle = true;
                     }

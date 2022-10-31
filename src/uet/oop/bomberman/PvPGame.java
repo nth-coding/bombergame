@@ -74,8 +74,8 @@ public class PvPGame {
         stage.show();
 
         // Tao bomber
-        player1 = new PvPBomber(1, 1, Sprite.player_right.getFxImage());
-        player2 = new PvPBomber(WIDTH - 3, HEIGHT - 3, Sprite.player_left.getFxImage());
+        player1 = new PvPBomber(1, 0, Sprite.player_right.getFxImage());
+        player2 = new PvPBomber(WIDTH - 2, HEIGHT - 3, Sprite.player_left.getFxImage());
 
         // setLife
         player1.setLife(false);
