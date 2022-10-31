@@ -241,7 +241,7 @@ public class BombermanGame {
         entities.forEach(g -> g.render(gc));
         bomberman.render(gc);
     }
-
+    
     public void time() {
 
 
