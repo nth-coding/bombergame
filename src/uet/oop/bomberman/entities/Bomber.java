@@ -126,7 +126,7 @@ public class Bomber  extends Entity {
                     || ay == by && bx - 16 < ax && bx + 16 > ax)
             {
                 this.life = false;
-                System.out.println("Killed by Ballom bug at " + bx + " " + by + " when you were at " + ax + " " + ay);
+//                System.out.println("Killed by Ballom bug at " + bx + " " + by + " when you were at " + ax + " " + ay);
                 break;
             }
         }

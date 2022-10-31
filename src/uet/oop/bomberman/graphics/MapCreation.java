@@ -84,6 +84,9 @@ public class MapCreation {
                             case 8:
                                 entity = new BombItem(j, i, Sprite.brick2.getFxImage());
                                 break;
+                            case 9:
+                                entity = new Grass(j, i, Sprite.grass_shadow.getFxImage());
+                                break;
                             default:
 //                                if (Objects.equals(level, "Level1.txt")) {
 //                                    entity = new Grass(j, i, Sprite.grass1.getFxImage());

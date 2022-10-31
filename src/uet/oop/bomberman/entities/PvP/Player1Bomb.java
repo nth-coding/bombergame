@@ -50,9 +50,9 @@ public class Player1Bomb extends Entity {
             int y = player1.getY() / 32;
             x = Math.round((float) x);
             y = Math.round((float) y);
-            bomb = new Player1Bomb(x, y, Sprite.bomb.getFxImage());
+            bomb = new Player1Bomb(x, y + 1, Sprite.bomb.getFxImage());
             stillObjectsPvP.add(bomb);
-            id_objects[player1.getX() / 32][player1.getY() / 32] = 4;
+            id_objects[player1.getX() / 32][player1.getY() / 32 + 1] = 4;
         }
     }
 

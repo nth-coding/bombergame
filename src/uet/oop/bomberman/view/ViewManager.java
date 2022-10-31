@@ -3,6 +3,7 @@ package uet.oop.bomberman.view;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Levels.Level1;
+import uet.oop.bomberman.PvPGame;
 import uet.oop.bomberman.model.Instruction;
 import uet.oop.bomberman.model.MenuButton;
 
@@ -46,6 +47,7 @@ public class ViewManager {
     private Scene mainScene;
     public static Stage mainStage;
     public static Stage gameStage;
+    public static Stage pvpStage;
     private static final int MENU_START_X = 150;
     private static final int MENU_START_Y = 150;
     private Instruction hdscreen;
@@ -111,6 +113,14 @@ public class ViewManager {
         bombermanGame.createGame(gameStage);
     }
 
+    public void tryFadePVP()   {
+        mainStage.hide();
+        pvpStage = new Stage();
+
+        PvPGame pvpGame = new PvPGame();
+        pvpGame.createGame(pvpStage);
+    }
+
     public static Stage getMainStage() {
         return mainStage;
     }
@@ -139,9 +149,10 @@ public class ViewManager {
 
     protected void createbuttons() {
         createdStartButton();
+        createdPVPButton();
         createdScoresButton();
         createdInsButton();
-        createdSoundButton();
+//        createdSoundButton();
         createdExitButton();
 
     }
@@ -161,6 +172,18 @@ public class ViewManager {
             @Override
             public void handle(ActionEvent actionEvent) {
                 tryFade();
+            }
+        });
+    }
+
+    protected void createdPVPButton() {
+        MenuButton PVPButton = new MenuButton("PVP MODE");
+        addMenuButton(PVPButton);
+
+        PVPButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                tryFadePVP();
             }
         });
     }
@@ -188,19 +211,18 @@ public class ViewManager {
         });
 
     }
-    protected void createdSoundButton() {
-        MenuButton soundButton = new MenuButton("SOUND");
-        addMenuButton(soundButton);
-        soundButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                mediaPlayer.pause();
-                count++;
-                if(count %2 ==0) mediaPlayer.play();
-            }
-        });
-
-    }
+//    protected void createdSoundButton() {
+//        MenuButton soundButton = new MenuButton("SOUND");
+//        addMenuButton(soundButton);
+//        soundButton.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent actionEvent) {
+//                mediaPlayer.pause();
+//                count++;
+//                if(count %2 ==0) mediaPlayer.play();
+//            }
+//        });
+//    }
     protected void createdExitButton() {
         MenuButton ExitButton = new MenuButton("EXIT");
         addMenuButton(ExitButton);

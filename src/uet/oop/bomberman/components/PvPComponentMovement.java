@@ -3,10 +3,12 @@ package uet.oop.bomberman.components;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.PvP.PvPBomber;
 
+import static uet.oop.bomberman.entities.items.SpeedItem.speed;
+
 public class PvPComponentMovement {
     public static void checkRun(Entity entity) { // Check if all your mob move or not
         if (entity instanceof PvPBomber && entity.getCount() > 0) {
-            setDirection(entity.getDirection(), entity, 8);
+            setDirection(entity.getDirection(), entity, 8 * speed);
             entity.setCount(entity.getCount() - 1);
         }
     }

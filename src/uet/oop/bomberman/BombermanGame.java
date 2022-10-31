@@ -116,7 +116,10 @@ public class BombermanGame {
 
         // Add mainScene vao stage
         stage.setScene(mainScene);
-        stage.setTitle("Bomberman");
+        stage.setTitle("Bomberman By B.H.H");
+        stage.setFullScreen(false);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image("textures\\icon.png"));
         stage.show();
 
         // Tao bomber

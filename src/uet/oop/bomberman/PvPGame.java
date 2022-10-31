@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import uet.oop.bomberman.components.PvPComponentMovement;
@@ -66,12 +67,15 @@ public class PvPGame {
         playScene = new Scene(root);
 
         stage.setScene(playScene);
-        stage.setTitle("Bomberman");
+        stage.setTitle("Bomberman By B.H.H");
+        stage.setFullScreen(false);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image("textures\\icon.png"));
         stage.show();
 
         // Tao bomber
         player1 = new PvPBomber(1, 1, Sprite.player_right.getFxImage());
-        player2 = new PvPBomber(WIDTH - 2, HEIGHT - 2, Sprite.player_left.getFxImage());
+        player2 = new PvPBomber(WIDTH - 3, HEIGHT - 3, Sprite.player_left.getFxImage());
 
         // setLife
         player1.setLife(false);
