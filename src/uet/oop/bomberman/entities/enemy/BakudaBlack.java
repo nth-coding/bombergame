@@ -6,8 +6,10 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.components.ComponentMovement;
 import uet.oop.bomberman.entities.AI.AStar;
 import uet.oop.bomberman.entities.AI.Node;
+import uet.oop.bomberman.entities.Bomb;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.view.Bar;
 
 import static uet.oop.bomberman.BombermanGame.*;
 
@@ -32,6 +34,7 @@ public class BakudaBlack extends Entity{
     }
 
     private void killBakudaBlack(Entity entity) {
+
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
                 entity.setImg(Sprite.bakudaBlack_dead.getFxImage());
@@ -44,6 +47,8 @@ public class BakudaBlack extends Entity{
                 swap_kill = 4;
             } else {
                 entity.setLife(false);
+                Bar.score_number= Bar.score_number + 10;
+                Bar.score.setText("Score: "+ Bar.score_number);
                 entities.remove(entity);
                 swap_kill = 1;
             }
@@ -105,8 +110,11 @@ public class BakudaBlack extends Entity{
         moveBakudaBlack();
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
-            if (entity instanceof BakudaBlack && !entity.life)
+            if (entity instanceof BakudaBlack && !entity.life) {
                 killBakudaBlack(entity);
+
+            }
+
         }
     }
 }

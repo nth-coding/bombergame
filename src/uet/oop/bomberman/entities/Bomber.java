@@ -5,6 +5,8 @@ import javafx.event.EventHandler;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Levels.Level1;
@@ -14,6 +16,7 @@ import uet.oop.bomberman.model.MenuButton;
 import uet.oop.bomberman.view.ViewManager;
 
 import javax.swing.text.View;
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +50,7 @@ public class Bomber  extends Entity {
     private  MenuButton ExitButton = new MenuButton("EXIT");
     private  MenuButton RestartButton = new MenuButton("RESTART");
     private ImageView Overimg;
-
+    private static MediaPlayer mediaPlayerbomb;
     public Bomber() {
 
     }
@@ -177,6 +180,7 @@ public class Bomber  extends Entity {
         count_kill++;
         if (!this.life) {
             killBomber(this);
+
         }
     }
 }

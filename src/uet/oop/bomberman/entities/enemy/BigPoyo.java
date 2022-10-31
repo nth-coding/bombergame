@@ -5,6 +5,7 @@ import uet.oop.bomberman.components.Blocked;
 import uet.oop.bomberman.components.ComponentMovement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.view.Bar;
 
 import java.util.Random;
 
@@ -51,6 +52,7 @@ public class BigPoyo extends Entity {
     }
 
     private void killPoyo(Entity entity) {
+
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
                 entity.setImg(Sprite.bigPoyo_dead.getFxImage());
@@ -63,6 +65,8 @@ public class BigPoyo extends Entity {
                 swap_kill = 4;
             } else {
                 entity.setLife(false);
+                Bar.score_number= Bar.score_number + 10;
+                Bar.score.setText("Score: "+ Bar.score_number);
                 entities.remove(entity);
                 swap_kill = 1;
             }
@@ -112,8 +116,11 @@ public class BigPoyo extends Entity {
         count_kill++;
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
-            if (entity instanceof BigPoyo && !entity.life)
+            if (entity instanceof BigPoyo && !entity.life) {
                 killPoyo(entity);
+
+            }
+
         }
         move();
     } 

@@ -1,11 +1,13 @@
 package uet.oop.bomberman.Levels;
 
+import uet.oop.bomberman.entities.Bomb;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.enemy.BigPoyo;
 import uet.oop.bomberman.entities.enemy.Gurorin;
 import uet.oop.bomberman.entities.enemy.SmallPoyo;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.view.Bar;
 
 import static uet.oop.bomberman.BombermanGame.bomberman;
 import static uet.oop.bomberman.BombermanGame.entities;
@@ -27,6 +29,10 @@ public class Level2 {
         bomberman.setY(32);
 
         is_bomb = 0;
+
+        Bar.llevel.setText("Level: 2");
+        Bomb.bomb_number =20;
+        Bar.time_number = 120;
 
         Entity enemy1 = new BigPoyo(5, 5, Sprite.bigPoyo_left1.getFxImage());
         Entity enemy2 = new BigPoyo(11, 9, Sprite.bigPoyo_left1.getFxImage());

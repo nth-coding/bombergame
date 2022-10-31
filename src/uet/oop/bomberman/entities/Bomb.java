@@ -1,5 +1,7 @@
 package uet.oop.bomberman.entities;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import uet.oop.bomberman.components.*;
 //import Features.SoundManager;
 //import static Control.Menu.bomb_number;
@@ -7,6 +9,7 @@ import uet.oop.bomberman.*;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +37,7 @@ public class Bomb extends Entity {
     private static boolean is_edge = false;     // Check if that edge exists
     private static boolean is_middle = false;   // Check if the bomb explodes in the center (plus sign, not T )
     public static int is_bomb = 0;      // Check to see if there's a bomb there: //0 no bomb  //1 had bomb  //2 explosion
-
+    private static MediaPlayer mediaPlayerbomb;
     public Bomb(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -42,6 +45,10 @@ public class Bomb extends Entity {
     public static void putBomb() {      // The function used for the bomber to place the bomb
         if (is_bomb == 0 && bomb_number > 0) {
             //new SoundManager("sound/put_bombs.wav", "putBomb");
+            Media h = new Media(new File("res/sound/put_bombs.wav").toURI().toString());
+            mediaPlayerbomb = new MediaPlayer(h);
+
+            mediaPlayerbomb.play();
             bomb_number--;
             is_bomb = 1;
             time_bomb = System.currentTimeMillis();
@@ -341,6 +348,9 @@ public class Bomb extends Entity {
                     }
 
                     //new SoundManager("sound/bomb_explosion.wav", "explosion");
+                    Media h = new Media(new File("res/sound/bomb_explosion.wav").toURI().toString());
+                    mediaPlayerbomb = new MediaPlayer(h);
+                    mediaPlayerbomb.play();
                     explosionCenter();
                     time_tmp += 100L;
                 }

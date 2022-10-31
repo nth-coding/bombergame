@@ -64,7 +64,7 @@ public class ViewManager {
 
 
     public void music() throws Exception {
-        Media h = new Media(new File("res/textures/bgr.mp3").toURI().toString());
+        Media h = new Media(new File("res/sound/bgr.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(h);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         if(count%2==0) mediaPlayer.play();
