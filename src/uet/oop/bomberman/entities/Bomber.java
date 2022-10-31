@@ -44,7 +44,7 @@ public class Bomber  extends Entity {
     public static int dem =0;
     private static final int MENU_START_X = 270;
     private static final int MENU_START_Y = 190;
-    public static Stage newStage;
+
 
     private static final List<MenuButton> menuButtons = new ArrayList<>();
     private final MenuButton ExitButton = new MenuButton("EXIT");

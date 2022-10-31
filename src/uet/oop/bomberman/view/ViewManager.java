@@ -36,7 +36,7 @@ public class ViewManager {
     private Image bgrImg;
     private  ImageView bgrimg;
     public static AnchorPane mainPane;
-
+    public static boolean PvPMode;
 
     public  Scene getMainScene() {
         return mainScene;
@@ -84,28 +84,18 @@ public class ViewManager {
 
         try {
             createBackGround();
-
-        } catch (Exception e) {
-        }
-        try {
             music();
-
-        } catch (Exception e) {
-            System.out.println("Loi");
-        }
-        createbuttons();
-
-        try {
             creatImgBgr();
-        } catch (Exception e) {
-        }
-        try {
             creatWordBgr();
         } catch (Exception e) {
         }
+
+        createbuttons();
+
         createScreen();
     }
     public void tryFade()   {
+        PvPMode = false;
         mainStage.hide();
         gameStage = new Stage();
 
@@ -114,6 +104,7 @@ public class ViewManager {
     }
 
     public void tryFadePVP()   {
+        PvPMode =true;
         mainStage.hide();
         pvpStage = new Stage();
 

@@ -6,6 +6,7 @@ import uet.oop.bomberman.entities.enemy.BakudaRed;
 import uet.oop.bomberman.entities.enemy.BigPoyo;
 import uet.oop.bomberman.entities.enemy.BakudaBlack;
 import uet.oop.bomberman.entities.enemy.Gurorin;
+import uet.oop.bomberman.entities.items.BombItem;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
@@ -25,7 +26,7 @@ public class Level3 {
         bomberman.setLife(true);
         bomberman.setX(32);
         bomberman.setY(32);
-
+        BombItem.BombMax = false;
         Bar.llevel.setText("Level: 3");
         Bomb.bomb_number =20;
         Bar.time_number = 120;

@@ -8,6 +8,7 @@ import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.BombermanGame.bomberman;
 
 public class BombItem extends Items {
+    public static boolean BombMax = false;
     public BombItem(int x, int y, Image img) {
         super(x, y, img);
     }
@@ -28,7 +29,8 @@ public class BombItem extends Items {
             if (bomberman.getX() == this.x && bomberman.getY() + 32 == this.y) {
                 this.setImg(Sprite.grass2.getFxImage());
                 this.received = true;
-
+                Bomb.bomb_number= Integer.MAX_VALUE;
+                BombMax =true;
             }
     }
 }

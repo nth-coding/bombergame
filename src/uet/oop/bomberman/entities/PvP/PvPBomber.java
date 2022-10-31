@@ -1,10 +1,26 @@
 package uet.oop.bomberman.entities.PvP;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.entities.Bomb;
+import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.model.MenuButton;
+import uet.oop.bomberman.view.Bar;
+
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import static uet.oop.bomberman.PvPGame.*;
+import static uet.oop.bomberman.view.Bar.time_number;
+import static uet.oop.bomberman.view.Bar.ttime;
+import static uet.oop.bomberman.view.ViewManager.*;
 
 public class PvPBomber extends Entity {
 
@@ -12,6 +28,14 @@ public class PvPBomber extends Entity {
     private static int count_kill = 0;
     public static int bomb_number = 20;
     public static int power_bomb = 0;
+    private static final int MENU_START_X = 270;
+    private static final int MENU_START_Y = 190;
+    private long lastTime;
+    private static final List<MenuButton> menuButtons = new ArrayList<>();
+    private final MenuButton ExitButton = new MenuButton("EXIT");
+    private final MenuButton RestartButton = new MenuButton("RESTART");
+    private ImageView Overimg;
+    private boolean p1 ;
 
     public PvPBomber() {
 
@@ -50,15 +74,80 @@ public class PvPBomber extends Entity {
                 else if (swap_kill == 6) {
                     entity.setImg(Sprite.player_dead6.getFxImage());
                     swap_kill = 7;
+                    lastTime = System.currentTimeMillis();
                 }
             else {
-                entity.setImg(Sprite.transparent.getFxImage());
+
+
                 running = false;
-                System.exit(0);
+                Bomber.dem =1;
+
+                    Image OverImg ;
+
+                    try {
+                        if(p1==true) {
+                            OverImg = new Image(new FileInputStream("res\\textures\\player1won.png"), 800, 480, false, true);
+                            Overimg = new ImageView(OverImg);
+                            Overimg.setLayoutX(0);
+                            Overimg.setLayoutY(0);
+                        }
+                        if(p1== false) {
+                            OverImg = new Image(new FileInputStream("res\\textures\\player2won.png"), 800, 480, false, true);
+                            Overimg = new ImageView(OverImg);
+                            Overimg.setLayoutX(0);
+                            Overimg.setLayoutY(0);
+
+                        }
+                        BombermanGame.root.getChildren().add(Overimg);
+                        long now = System.currentTimeMillis();
+                        if (now - lastTime > 3000) {
+                           pvpStage.close();
+
+
+                        }
+                    }catch (Exception e){}
             }
         }
     }
+    private void addMenuButton(MenuButton button) {
 
+        menuButtons.add(button);
+        BombermanGame.root.getChildren().add(button);
+
+    }
+    private void createdExitButton(){
+
+        addMenuButton(ExitButton);
+        ExitButton.setLayoutX(MENU_START_X);
+        ExitButton.setLayoutY(MENU_START_Y + 2 * 120- 50);
+        ExitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                pvpStage.close();
+
+            }
+        });
+    }
+    private void createdRestartButton(){
+
+        addMenuButton(RestartButton);
+        RestartButton.setLayoutX(MENU_START_X);
+        RestartButton.setLayoutY(MENU_START_Y + 120 - 50);
+        RestartButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Bomber.dem =1;
+
+
+                BombermanGame.root.getChildren().remove(Overimg);
+                BombermanGame.root.getChildren().remove(RestartButton);
+                BombermanGame.root.getChildren().remove(ExitButton);
+
+                mainStage.show();
+
+            }
+        });
+    }
     private void checkBombs() {
         if (list_kill[player1.getX() / 32][player1.getY() / 32 + 1] == 4)
             player1.setLife(false);
@@ -73,11 +162,11 @@ public class PvPBomber extends Entity {
         count_kill++;
         if (!player1.life) {
             killBomber(player1);
-            System.out.println("player2 win!");
+            p1 = false;
         }
         if (!player2.life) {
             killBomber(player2);
-            System.out.println("player1 win!");
+            p1 =true;
         }
     }
 }

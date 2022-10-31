@@ -15,15 +15,13 @@ public class PauseMenu {
     private final int MENU_START_X = 150;
     private final int MENU_START_Y = 70;
 
-    private final int WIDTH = 300;
-    private final int HEIGHT = 400;
     private Image PauseImg;
     private ImageView Pauseimg;
     private static final List<MenuButton> menuButtons = new ArrayList<>();
 
-    private final MenuButton resumeButton = new MenuButton("RESUME");
-    private final MenuButton SoundButton = new MenuButton("SOUND");
-    private final MenuButton ExitButton = new MenuButton("EXIT");
+    private MenuButton resumeButton = new MenuButton("RESUME");
+    private  MenuButton SoundButton = new MenuButton("SOUND");
+    private  MenuButton ExitButton = new MenuButton("EXIT");
 
     public PauseMenu() {
 
@@ -84,7 +82,9 @@ public class PauseMenu {
         ExitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                gameStage.close();
+                if(PvPMode == true) pvpStage.close();
+                else gameStage.close();
+
             }
         });
     }
