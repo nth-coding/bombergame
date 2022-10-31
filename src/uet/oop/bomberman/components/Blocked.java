@@ -9,30 +9,38 @@ import static uet.oop.bomberman.BombermanGame.*;
 public class Blocked {
     public static boolean block_down(Entity entity) {   //Create a blocked that prevent all mob go down through the object
         if (entity instanceof Bomber || entity instanceof BigPoyo) {
-            return id_objects[entity.getX() / 32][entity.getY() / 32 + 2] == 0;
+            return id_objects[entity.getX() / 32][entity.getY() / 32 + 2] == 0
+                    || id_objects[entity.getX() / 32][entity.getY() / 32 + 2] == 9;
         }
-        return id_objects[entity.getX() / 32][entity.getY() / 32 + 1] == 0;
+        return id_objects[entity.getX() / 32][entity.getY() / 32 + 1] == 0
+                || id_objects[entity.getX() / 32][entity.getY() / 32 + 1] == 9;
     }
 
     public static boolean block_up(Entity entity) {     //Create a blocked that prevent all mob go up through the object
         if (entity instanceof Bomber || entity instanceof BigPoyo) {
-            return id_objects[entity.getX() / 32][entity.getY() / 32] == 0;
+            return id_objects[entity.getX() / 32][entity.getY() / 32] == 0
+                    || id_objects[entity.getX() / 32][entity.getY() / 32] == 9;
         }
-        return id_objects[entity.getX() / 32][entity.getY() / 32 - 1] == 0;
+        return id_objects[entity.getX() / 32][entity.getY() / 32 - 1] == 0
+                || id_objects[entity.getX() / 32][entity.getY() / 32 - 1] == 9;
     }
 
     public static boolean block_left(Entity entity) {   //Create a blocked that prevent all mob go left through the object
         if (entity instanceof Bomber || entity instanceof BigPoyo) {
-            return id_objects[entity.getX() / 32 - 1][entity.getY() / 32 + 1] == 0;
+            return id_objects[entity.getX() / 32 - 1][entity.getY() / 32 + 1] == 0
+                    || id_objects[entity.getX() / 32 - 1][entity.getY() / 32 + 1] == 9;
         }
-        return id_objects[entity.getX() / 32 - 1][entity.getY() / 32] == 0;
+        return id_objects[entity.getX() / 32 - 1][entity.getY() / 32] == 0
+                || id_objects[entity.getX() / 32 - 1][entity.getY() / 32] == 9;
     }
 
     public static boolean block_right(Entity entity) {   //Create a blocked that prevent all mob go right through the object
         if (entity instanceof Bomber || entity instanceof BigPoyo) {
-            return id_objects[entity.getX() / 32 + 1][entity.getY() / 32 + 1] == 0;
+            return id_objects[entity.getX() / 32 + 1][entity.getY() / 32 + 1] == 0
+                    || id_objects[entity.getX() / 32 + 1][entity.getY() / 32 + 1] == 9;
         }
-        return id_objects[entity.getX() / 32 + 1][entity.getY() / 32] == 0;
+        return id_objects[entity.getX() / 32 + 1][entity.getY() / 32] == 0
+                || id_objects[entity.getX() / 32 + 1][entity.getY() / 32] == 9;
     }
 
     public static boolean block_down_bomb(Entity entity, int power) {   //Limit the scope and animation of the explosion downward
@@ -40,6 +48,7 @@ public class Blocked {
                 || id_objects[entity.getX() / 32][entity.getY() / 32 + 1 + power] == 3
                 || id_objects[entity.getX() / 32][entity.getY() / 32 + 1 + power] == 6
                 || id_objects[entity.getX() / 32][entity.getY() / 32 + 1 + power] == 7
+                || id_objects[entity.getX() / 32][entity.getY() / 32 + 1 + power] == 9
                 || id_objects[entity.getX() / 32][entity.getY() / 32 + 1 + power] == 8;
     }
 
@@ -48,6 +57,7 @@ public class Blocked {
                 || id_objects[entity.getX() / 32][entity.getY() / 32 - 1 - power] == 3
                 || id_objects[entity.getX() / 32][entity.getY() / 32 - 1 - power] == 6
                 || id_objects[entity.getX() / 32][entity.getY() / 32 - 1 - power] == 7
+                || id_objects[entity.getX() / 32][entity.getY() / 32 - 1 - power] == 9
                 || id_objects[entity.getX() / 32][entity.getY() / 32 - 1 - power] == 8;
     }
 
@@ -56,6 +66,7 @@ public class Blocked {
                 || id_objects[entity.getX() / 32 - 1 - power][entity.getY() / 32] == 3
                 || id_objects[entity.getX() / 32 - 1 - power][entity.getY() / 32] == 6
                 || id_objects[entity.getX() / 32 - 1 - power][entity.getY() / 32] == 7
+                || id_objects[entity.getX() / 32 - 1 - power][entity.getY() / 32] == 9
                 || id_objects[entity.getX() / 32 - 1 - power][entity.getY() / 32] == 8;
     }
 
@@ -64,6 +75,7 @@ public class Blocked {
                 || id_objects[entity.getX() / 32 + 1 + power][entity.getY() / 32] == 3
                 || id_objects[entity.getX() / 32 + 1 + power][entity.getY() / 32] == 6
                 || id_objects[entity.getX() / 32 + 1 + power][entity.getY() / 32] == 7
+                || id_objects[entity.getX() / 32 + 1 + power][entity.getY() / 32] == 9
                 || id_objects[entity.getX() / 32 + 1 + power][entity.getY() / 32] == 8;
     }
 }

@@ -12,7 +12,7 @@ import static uet.oop.bomberman.entities.items.SpeedItem.speed;
 public class ComponentMovement {
     public static void checkRun(Entity entity) {    //Check if all your mob move or not
         if (entity instanceof Bomber && entity.getCount() > 0) {
-            setDirection(entity.getDirection(), entity, 8* speed);
+            setDirection(entity.getDirection(), entity, 8 * speed);
             entity.setCount(entity.getCount() - 1);
         }
         if ((entity instanceof BigPoyo || entity instanceof SmallPoyo

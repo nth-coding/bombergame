@@ -42,7 +42,6 @@ public class Bomber  extends Entity {
     public static int bomb_number = 20;
     public static int power_bomb = 0;
     public static int dem =0;
-    public static int speed = 1;
     private static final int MENU_START_X = 270;
     private static final int MENU_START_Y = 190;
     public static Stage newStage;
@@ -129,7 +128,7 @@ public class Bomber  extends Entity {
                     || ay == by && bx - 16 < ax && bx + 16 > ax)
             {
                 this.life = false;
-                System.out.println("Killed by Ballom bug at " + bx + " " + by + " when you were at " + ax + " " + ay);
+//                System.out.println("Killed by Ballom bug at " + bx + " " + by + " when you were at " + ax + " " + ay);
                 break;
             }
         }

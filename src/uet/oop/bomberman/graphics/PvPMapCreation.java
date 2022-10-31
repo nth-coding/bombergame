@@ -4,6 +4,8 @@ import uet.oop.bomberman.PvPGame;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.PvP.Player2Bomb;
 import uet.oop.bomberman.entities.PvP.PvPBrick;
+import uet.oop.bomberman.entities.items.*;
+import uet.oop.bomberman.entities.object.Brick;
 import uet.oop.bomberman.entities.object.Grass;
 import uet.oop.bomberman.entities.object.Portal;
 import uet.oop.bomberman.entities.object.Wall;
@@ -56,12 +58,39 @@ public class PvPMapCreation {
                                 token = 0;
                                 break;
                             case 2:
-                                entity = new Wall(j, i, Sprite.wall2.getFxImage());          // In case 2, set entity object equal to object wall with scaled size.
+//                                if (Objects.equals(level, "Level1.txt")) {
+//                                    entity = new Wall(j, i, Sprite.wall1.getFxImage());          // In case 2, set entity object equal to object wall with scaled size.
+//                                } else if (Objects.equals(level, "Level2.txt")) {
+//                                    entity = new Wall(j, i, Sprite.wall2.getFxImage());
+//                                }
+                                entity = new Wall(j, i, Sprite.wall2.getFxImage());
                                 break;
                             case 3:
-                                entity = new PvPBrick(j, i, Sprite.brick2.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
+//                                if (Objects.equals(level, "Level1.txt")) {
+//                                    entity = new Brick(j, i, Sprite.brick1.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
+//                                } else if (Objects.equals(level, "Level2.txt")) {
+//                                    entity = new Brick(j, i, Sprite.brick2.getFxImage());
+//                                }
+                                entity = new PvPBrick(j, i, Sprite.brick2.getFxImage());
+                                break;
+                            case 6:
+                                entity = new PvPSpeedItem(j, i, Sprite.brick2.getFxImage());
+                                break;
+                            case 7:
+                                entity = new PvPFlameItem(j, i, Sprite.brick2.getFxImage());
+                                break;
+                            case 8:
+                                entity = new BombItem(j, i, Sprite.brick2.getFxImage());
+                                break;
+                            case 9:
+                                entity = new Grass(j, i, Sprite.grass_shadow.getFxImage());
                                 break;
                             default:
+//                                if (Objects.equals(level, "Level1.txt")) {
+//                                    entity = new Grass(j, i, Sprite.grass1.getFxImage());
+//                                } else if (Objects.equals(level, "Level2.txt")) {
+//                                    entity = new Grass(j, i, Sprite.grass2.getFxImage());
+//                                }
                                 entity = new Grass(j, i, Sprite.grass2.getFxImage());
                         }
                         id_objects[j][i] = token;        //

@@ -120,14 +120,13 @@ public class BombermanGame {
             } catch (FileNotFoundException e) {
             }
 
-            // Add mainScene vao stage
-            stage.setScene(mainScene);
-            stage.setTitle("Bomberman");
-            stage.show();
-            lastTime = System.currentTimeMillis();
-            // Tao bomber
-            bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-            bomberman.setLife(true);
+        // Add mainScene vao stage
+        stage.setScene(mainScene);
+        stage.setTitle("Bomberman By B.H.H");
+        stage.setFullScreen(false);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image("textures\\icon.png"));
+        stage.show();
 
             // Testing enemy
 //        Entity enemy1 = new Oneal(4, 4, Sprite.oneal_left2.getFxImage());

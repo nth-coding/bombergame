@@ -12,7 +12,6 @@ public class PvPBomber extends Entity {
     private static int count_kill = 0;
     public static int bomb_number = 20;
     public static int power_bomb = 0;
-    public static int speed = 1;
 
     public PvPBomber() {
 
@@ -27,19 +26,31 @@ public class PvPBomber extends Entity {
     }
 
     private void killBomber(Entity entity) {
-        if (count_kill % 16 == 0) {
-            if (swap_kill == 1) {
-                entity.setImg(Sprite.player_dead1.getFxImage());
-                swap_kill = 2;
-            }
-            else if (swap_kill == 2) {
-                entity.setImg(Sprite.player_dead2.getFxImage());
-                swap_kill = 3;
-            }
-            else if (swap_kill == 3) {
-                entity.setImg(Sprite.player_dead3.getFxImage());
-                swap_kill = 4;
-            }
+            if (count_kill % 16 == 0) {
+                if (swap_kill == 1) {
+                    entity.setImg(Sprite.player_dead1.getFxImage());
+                    swap_kill = 2;
+                }
+                else if (swap_kill == 2) {
+                    entity.setImg(Sprite.player_dead2.getFxImage());
+                    swap_kill = 3;
+                }
+                else if (swap_kill == 3) {
+                    entity.setImg(Sprite.player_dead3.getFxImage());
+                    swap_kill = 4;
+                }
+                else if (swap_kill == 4) {
+                    entity.setImg(Sprite.player_dead4.getFxImage());
+                    swap_kill = 5;
+                }
+                else if (swap_kill == 5) {
+                    entity.setImg(Sprite.player_dead5.getFxImage());
+                    swap_kill = 6;
+                }
+                else if (swap_kill == 6) {
+                    entity.setImg(Sprite.player_dead6.getFxImage());
+                    swap_kill = 7;
+                }
             else {
                 entity.setImg(Sprite.transparent.getFxImage());
                 running = false;
@@ -49,9 +60,9 @@ public class PvPBomber extends Entity {
     }
 
     private void checkBombs() {
-        if (list_kill[player1.getX() / 32][player1.getY() / 32] == 4)
+        if (list_kill[player1.getX() / 32][player1.getY() / 32 + 1] == 4)
             player1.setLife(false);
-        if (list_kill[player2.getX() / 32][player2.getY() / 32] == 4)
+        if (list_kill[player2.getX() / 32][player2.getY() / 32 + 1] == 4)
             player2.setLife(false);
     }
 

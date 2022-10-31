@@ -13,7 +13,6 @@ import static uet.oop.bomberman.BombermanGame.bomberman;
 import static uet.oop.bomberman.BombermanGame.entities;
 import static uet.oop.bomberman.BombermanGame.stillObjects;
 import static uet.oop.bomberman.entities.Bomb.is_bomb;
-import static uet.oop.bomberman.entities.Bomber.speed;
 import static uet.oop.bomberman.entities.Bomber.swap_kill;
 
 
@@ -30,7 +29,6 @@ public class Level2 {
         bomberman.setY(32);
 
         is_bomb = 0;
-        speed =1;
 
         Bar.llevel.setText("Level: 2");
         Bomb.bomb_number =20;

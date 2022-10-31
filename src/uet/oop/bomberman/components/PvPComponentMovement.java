@@ -6,7 +6,7 @@ import uet.oop.bomberman.entities.PvP.PvPBomber;
 public class PvPComponentMovement {
     public static void checkRun(Entity entity) { // Check if all your mob move or not
         if (entity instanceof PvPBomber && entity.getCount() > 0) {
-            setDirection(entity.getDirection(), entity, 8);
+            setDirection(entity.getDirection(), entity, 8 * entity.getSpeed());
             entity.setCount(entity.getCount() - 1);
         }
     }

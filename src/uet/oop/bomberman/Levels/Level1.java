@@ -28,7 +28,6 @@ public class Level1 {
         bomberman.setY(32);
         bomberman.setLife(true);
         is_bomb = 0;
-        speed =1;
 
         Bomb.bomb_number =20;
         Bar.time_number = 120;
