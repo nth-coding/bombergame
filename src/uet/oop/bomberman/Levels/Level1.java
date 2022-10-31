@@ -3,12 +3,14 @@ package uet.oop.bomberman.Levels;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.Bomb.*;
 
+import uet.oop.bomberman.entities.Bomb;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.enemy.*;
 
 import static uet.oop.bomberman.entities.Bomber.*;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.view.Bar;
 
 import static uet.oop.bomberman.BombermanGame.entities;
 
@@ -27,6 +29,10 @@ public class Level1 {
         bomberman.setLife(true);
         is_bomb = 0;
         speed =1;
+
+        Bomb.bomb_number =20;
+        Bar.time_number = 120;
+        Bar.llevel.setText("Level: 1");
 
         Entity enemy1 = new BakudaRed(4, 4, Sprite.bakudaRed_left1.getFxImage());
         Entity enemy2 = new BakudaRed(9, 9, Sprite.bakudaRed_left1.getFxImage());
