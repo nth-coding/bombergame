@@ -2,7 +2,8 @@
 
 Trong bài tập lớn này, nhiệm vụ của bạn là viết một phiên bản Java mô phỏng lại trò chơi [Bomberman](https://www.youtube.com/watch?v=mKIOVwqgSXM) kinh điển của NES.
 
-<img src="res/demo.png" alt="drawing" width="400"/>
+![image](https://user-images.githubusercontent.com/93527021/198958300-a7d7085f-fd99-4126-bde4-09538bc640da.png)
+
 
 Bạn có thể sử dụng mã nguồn tại repository này để phát triển hoặc tự phát triển từ đầu.
 
