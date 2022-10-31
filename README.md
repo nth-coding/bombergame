@@ -42,6 +42,11 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 ## Mô tả starter project
 Xem comment ở starter project
 
+## Cây thừa kế
+![](https://github.com/nth-coding/bombergame/blob/d9cd752937742f21023ded2fdfe32d37fce2b60b/Cay_Thua_Ke.png)
+## Cây thừa kế chi tiết
+![](https://github.com/nth-coding/bombergame/blob/d9cd752937742f21023ded2fdfe32d37fce2b60b/Cay_Thua_Ke(Detail).png)
+
 ## Yêu cầu chung
 - Có thể chơi được ít nhất cho một màn chơi (chiến thắng một màn chơi)
 - Có thể thay đổi được tệp cấu hình khác cho màn chơi (tương tự mẫu cho trước)
