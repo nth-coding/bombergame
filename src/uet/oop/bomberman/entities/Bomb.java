@@ -16,8 +16,8 @@ import java.util.List;
 import static uet.oop.bomberman.BombermanGame.*;
 
 public class Bomb extends Entity {
-    //
-    public static int bomb_number = Integer.MAX_VALUE;
+
+    public static int bomb_number = 20;
     private static long time_bomb;      // Exploding time bomb
     private static long time_tmp;       // Time between 2 bombings
     private static Entity bomb;

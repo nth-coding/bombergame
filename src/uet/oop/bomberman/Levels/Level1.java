@@ -8,6 +8,8 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.enemy.*;
 
 import static uet.oop.bomberman.entities.Bomber.*;
+
+import uet.oop.bomberman.entities.items.BombItem;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
@@ -28,7 +30,7 @@ public class Level1 {
         bomberman.setY(32);
         bomberman.setLife(true);
         is_bomb = 0;
-
+        BombItem.BombMax = false;
         Bomb.bomb_number =20;
         Bar.time_number = 120;
         Bar.llevel.setText("Level: 1");

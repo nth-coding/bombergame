@@ -7,6 +7,7 @@ import uet.oop.bomberman.Levels.Level1;
 import uet.oop.bomberman.components.ComponentMovement;
 import uet.oop.bomberman.entities.*;
 
+import uet.oop.bomberman.entities.items.BombItem;
 import uet.oop.bomberman.entities.object.Portal;
 import uet.oop.bomberman.graphics.Sprite;
 import javafx.animation.AnimationTimer;
@@ -32,7 +33,7 @@ import java.util.List;
 
 import static uet.oop.bomberman.Levels.NextLevel.*;
 import static uet.oop.bomberman.entities.Bomber.dem;
-import static uet.oop.bomberman.entities.Bomber.newStage;
+
 import static uet.oop.bomberman.entities.object.Portal.is_portal;
 import static uet.oop.bomberman.view.ViewManager.gameStage;
 import static uet.oop.bomberman.view.Bar.*;
@@ -50,14 +51,11 @@ public class BombermanGame {
     public static int[][] id_objects;
     //
     public static int[][] list_kill;
-    //
-    public static String[][] string_list_kill;
-    //
-    public static String[][] string_id_objects;
+
     public static boolean running;
     //
     public static int level = 1;
-    private Timeline timeline;
+
     private long lastTime;
     private Scene mainScene;
     public static Entity bomberman;
@@ -251,7 +249,11 @@ public class BombermanGame {
 
 
             ttime.setText("Time: " + time_number);
+            if(BombItem.BombMax==false)
             Bar.bbomb.setText("Bomb: " + Bomb.bomb_number);
+            else{
+                Bar.bbomb.setText("Bomb: ∞"  );
+            }
             time_number--;
             if (time_number < 0) {
                 bomberman.setLife(false);

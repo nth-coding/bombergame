@@ -15,6 +15,7 @@ import uet.oop.bomberman.entities.PvP.Player2Bomb;
 import uet.oop.bomberman.entities.PvP.PvPBomber;
 import uet.oop.bomberman.graphics.PvPMapCreation;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.view.PauseMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class PvPGame {
     public static PvPBomber player2;
     private GraphicsContext gc;
     private Canvas pvpCanvas;
+    private final PauseMenu pause = new PauseMenu();
     public static final List<Entity> stillObjectsPvP = new ArrayList<>();
 
     public Scene getMainScene() {
@@ -60,11 +62,11 @@ public class PvPGame {
 
 
         // Tao root container
-        Group root = new Group();
-        root.getChildren().add(pvpCanvas);
+
+        BombermanGame.root.getChildren().add(pvpCanvas);
 
         // Tao playScene
-        playScene = new Scene(root);
+        playScene = new Scene(BombermanGame.root);
 
         stage.setScene(playScene);
         stage.setTitle("Bomberman By B.H.H");
@@ -148,6 +150,13 @@ public class PvPGame {
                 PvPComponentMovement.down(player2);
             } else if (key == KeyCode.ENTER) {
                 Player2Bomb.putBomb();
+            }
+            else if (key == KeyCode.ESCAPE) {
+                running = false;
+
+                pause.showPause();
+
+
             }
         });
     }

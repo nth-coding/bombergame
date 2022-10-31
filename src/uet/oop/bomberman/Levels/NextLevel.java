@@ -26,8 +26,6 @@ import static uet.oop.bomberman.view.ViewManager.mainStage;
 public class NextLevel {
     public static boolean wait;
     public static long waiting_time;
-    private static Scene TransScene;
-    public static Group Transroot = new Group();
     public static Image Up;
     private static ImageView Overimg;
     private static final int MENU_START_X = 270;

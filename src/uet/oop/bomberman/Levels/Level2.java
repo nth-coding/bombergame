@@ -5,6 +5,7 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.enemy.BigPoyo;
 import uet.oop.bomberman.entities.enemy.Gurorin;
 import uet.oop.bomberman.entities.enemy.SmallPoyo;
+import uet.oop.bomberman.entities.items.BombItem;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
@@ -29,7 +30,7 @@ public class Level2 {
         bomberman.setY(32);
 
         is_bomb = 0;
-
+        BombItem.BombMax = false;
         Bar.llevel.setText("Level: 2");
         Bomb.bomb_number =20;
         Bar.time_number = 120;
