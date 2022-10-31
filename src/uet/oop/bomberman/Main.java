@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try{
             ViewManager manager = new ViewManager();
-            primaryStage = manager.getMainStage();
+            primaryStage = ViewManager.getMainStage();
             primaryStage.setTitle("Bomberman By B.H.H");
             primaryStage.setFullScreen(false);
             primaryStage.setResizable(false);

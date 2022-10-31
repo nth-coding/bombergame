@@ -1,16 +1,27 @@
 package uet.oop.bomberman.Levels;
 
 import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.model.MenuButton;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.object.Portal.*;
+import static uet.oop.bomberman.view.ViewManager.gameStage;
+import static uet.oop.bomberman.view.ViewManager.mainStage;
+
 //Class NextLevel to choose level but for now only have 1 level.
 public class NextLevel {
     public static boolean wait;
@@ -18,6 +29,12 @@ public class NextLevel {
     private static Scene TransScene;
     public static Group Transroot = new Group();
     public static Image Up;
+    private static ImageView Overimg;
+    private static final int MENU_START_X = 270;
+    private static final int MENU_START_Y = 190;
+    private static final List<MenuButton> menuButtons = new ArrayList<>();
+    private static final MenuButton ExitButton = new MenuButton("EXIT");
+    private static final MenuButton RestartButton = new MenuButton("RESTART");
     public static void fadeTrans(){
         img.setImage(Up);
         FadeTransition fadeTransition = new FadeTransition();
@@ -28,14 +45,58 @@ public class NextLevel {
         fadeTransition.setNode(img);
         fadeTransition.play();
     }
+
+    private static void addMenuButton(MenuButton button) {
+
+        menuButtons.add(button);
+        root.getChildren().add(button);
+
+    }
+    private static void createdExitButton(){
+
+        addMenuButton(ExitButton);
+        ExitButton.setLayoutX(MENU_START_X);
+        ExitButton.setLayoutY(MENU_START_Y + 2 * 120- 50);
+        ExitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                gameStage.close();
+
+            }
+        });
+    }
+    private  static void createdRestartButton(){
+
+        addMenuButton(RestartButton);
+        RestartButton.setLayoutX(MENU_START_X);
+        RestartButton.setLayoutY(MENU_START_Y + 120 - 50);
+        RestartButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Bomber.dem =1;
+
+
+                root.getChildren().remove(Overimg);
+                root.getChildren().remove(RestartButton);
+                root.getChildren().remove(ExitButton);
+
+                mainStage.show();
+
+            }
+        });
+    }
     public static void waitToLevelUp(Stage TransStage) {
 
         try {
             if (wait) {
 
                 long now = System.currentTimeMillis();
-                if(now - waiting_time <=2000) {
+                if(now - waiting_time <=2000&& level!=3) {
                     Up = new Image(new FileInputStream("res\\Trans\\Trans.jpg"));
+
+                }
+                else if(now - waiting_time <=2000&& level==3) {
+                    Up = new Image(new FileInputStream("res\\textures\\congratulation.png"));
 
                 }
                 else {
@@ -44,9 +105,7 @@ public class NextLevel {
                     if(level ==2){
                         Up = new Image(new FileInputStream("res\\Trans\\Level3.png"));
                     }
-                    if(level ==3){
-                        Up = new Image(new FileInputStream("res\\Trans\\Level1.png"));
-                    }
+
                 }
 
                 fadeTrans();
@@ -66,8 +125,24 @@ public class NextLevel {
                             running = true;
                             break;
                         case 3:
-                            new Level1();
-                            running = true;
+                            running = false;
+                            Bomber.dem =1;
+
+
+                            Image OverImg;
+
+                            try {
+                                OverImg = new Image(new FileInputStream("res\\textures\\youwon.png"), 800, 480, false, true);
+                                Overimg = new ImageView(OverImg);
+                                Overimg.setLayoutX(0);
+                                Overimg.setLayoutY(0);
+                                root.getChildren().add(Overimg);
+                                createdRestartButton();
+                                createdExitButton();
+
+                            }catch (Exception e){
+                                throw new FileNotFoundException();
+                            }
                     }
                     wait = false;
                 }

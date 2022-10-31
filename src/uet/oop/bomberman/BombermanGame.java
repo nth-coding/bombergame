@@ -1,6 +1,8 @@
 package uet.oop.bomberman;
 
 import javafx.animation.Timeline;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import uet.oop.bomberman.Levels.Level1;
 import uet.oop.bomberman.components.ComponentMovement;
 import uet.oop.bomberman.entities.*;
@@ -18,9 +20,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import uet.oop.bomberman.view.Bar;
 import uet.oop.bomberman.view.PauseMenu;
 import uet.oop.bomberman.view.ViewManager;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -31,12 +35,12 @@ import static uet.oop.bomberman.entities.Bomber.dem;
 import static uet.oop.bomberman.entities.Bomber.newStage;
 import static uet.oop.bomberman.entities.object.Portal.is_portal;
 import static uet.oop.bomberman.view.ViewManager.gameStage;
-
+import static uet.oop.bomberman.view.Bar.*;
 
 public class BombermanGame {
 
     public static final int WIDTH = 25;
-    public static final int HEIGHT = 15;
+    public static final int HEIGHT = 16;
     //
     public static int width = 0;
 
@@ -54,9 +58,10 @@ public class BombermanGame {
     //
     public static int level = 1;
     private Timeline timeline;
-
+    private long lastTime;
     private Scene mainScene;
     public static Entity bomberman;
+    private static MediaPlayer mediaPlayerbomb;
     private GraphicsContext gc;
     private Canvas canvas;
     public static ImageView img;
@@ -69,89 +74,89 @@ public class BombermanGame {
     }
 
     private Timeline t;
-    private PauseMenu pause = new PauseMenu();
+    private final PauseMenu pause = new PauseMenu();
 
     public void createGame(Stage stage) {
         if (dem != 0) {
 
             new Level1();
             running = true;
-        }
-        else{
+        } else {
 
-        // Tao Canvas
-        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
-        gc = canvas.getGraphicsContext2D();
+            // Tao Canvas
+            canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
+            gc = canvas.getGraphicsContext2D();
+            Bar.createMenu(root);
 
 
-        // Tao root container
+            // Tao root container
 
-        root.getChildren().add(canvas);
+            root.getChildren().add(canvas);
 
-        // Tao mainScene
-        mainScene = new Scene(root);
-        FadeTransition fade = new FadeTransition();
-        fade.setDuration(Duration.millis(1000));
-        fade.setFromValue(0);
-        fade.setToValue(1);
-        fade.setNode(root);
-        fade.play();
-        FadeTransition fadeTransition = new FadeTransition();
-        try {
-            Image logo = new Image(new FileInputStream("res\\Trans\\Level1.png"));
-            img = new ImageView();
-            img.setImage(logo);
-            img.setLayoutX(0);
-            img.setLayoutY(0);
-            root.getChildren().add(img);
+            // Tao mainScene
+            mainScene = new Scene(root);
 
-            fadeTransition.setDuration(Duration.millis(4000));
-            fadeTransition.setFromValue(10);
+            FadeTransition fade = new FadeTransition();
+            fade.setDuration(Duration.millis(1000));
+            fade.setFromValue(0);
+            fade.setToValue(1);
+            fade.setNode(root);
+            fade.play();
+            FadeTransition fadeTransition = new FadeTransition();
+            try {
+                Image logo = new Image(new FileInputStream("res\\Trans\\Level1.png"));
+                img = new ImageView();
+                img.setImage(logo);
+                img.setLayoutX(0);
+                img.setLayoutY(0);
+                root.getChildren().add(img);
 
-            fadeTransition.setToValue(0);
-            fadeTransition.setNode(img);
-            fadeTransition.play();
-        } catch (FileNotFoundException e) {
-        }
+                fadeTransition.setDuration(Duration.millis(4000));
+                fadeTransition.setFromValue(10);
 
-        // Add mainScene vao stage
-        stage.setScene(mainScene);
-        stage.setTitle("Bomberman By B.H.H");
-        stage.setFullScreen(false);
-        stage.setResizable(false);
-        stage.getIcons().add(new Image("textures\\icon.png"));
-        stage.show();
+                fadeTransition.setToValue(0);
+                fadeTransition.setNode(img);
+                fadeTransition.play();
+            } catch (FileNotFoundException e) {
+            }
 
-        // Tao bomber
-        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        bomberman.setLife(true);
+            // Add mainScene vao stage
+            stage.setScene(mainScene);
+            stage.setTitle("Bomberman By B.H.H");
+            stage.setFullScreen(false);
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("textures\\icon.png"));
+            stage.show();
 
-        // Testing enemy
-//        Entity enemy1 = new smallPoyo(4, 4, Sprite.smallPoyo_left2.getFxImage());
+            // Tao bomber
+            bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+            bomberman.setLife(true);
+
+            // Testing enemy
+//        Entity enemy1 = new Oneal(4, 4, Sprite.oneal_left2.getFxImage());
 //        entities.add(enemy1);
 
-        // Tao map
-        createMap();
+            // Tao map
+            createMap();
 
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long l) {
-                if (running) {
-                    render();
-                    update();
+            AnimationTimer timer = new AnimationTimer() {
+                @Override
+                public void handle(long l) {
+                    if (running) {
+                        render();
+                        update();
+                        time();
+                    }
                 }
-            }
-        };
-        timer.start();
-    }
+            };
+            timer.start();
+        }
 
-}
+    }
 
     public void createMap() {
         new Level1();
-
         running = true;
-
     }
 
     // moves the bomberman.
@@ -222,6 +227,12 @@ public class BombermanGame {
             }
         }
         waitToLevelUp(ViewManager.getMainStage());
+
+        if (!bomberman.isLife()) {
+            Media h = new Media(new File("res/sound/just_died.wav").toURI().toString());
+            mediaPlayerbomb = new MediaPlayer(h);
+            mediaPlayerbomb.play();
+        }
     }
 
     public void render() {
@@ -229,5 +240,22 @@ public class BombermanGame {
         stillObjects.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
         bomberman.render(gc);
+    }
+
+    public void time() {
+
+
+        long now = System.currentTimeMillis();
+        if (now - lastTime > 1000) {
+            lastTime = System.currentTimeMillis();
+
+
+            ttime.setText("Time: " + time_number);
+            Bar.bbomb.setText("Bomb: " + Bomb.bomb_number);
+            time_number--;
+            if (time_number < 0) {
+                bomberman.setLife(false);
+            }
+        }
     }
 }

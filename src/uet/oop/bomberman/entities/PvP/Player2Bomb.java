@@ -11,7 +11,7 @@ import java.util.List;
 import static uet.oop.bomberman.PvPGame.*;
 
 public class Player2Bomb extends Entity {
-    private static int bomb_number = player2.bomb_number;
+    private static int bomb_number = PvPBomber.bomb_number;
     private static long time_bomb;      // Exploding time bomb
     private static long time_tmp;       // Time between 2 bombings
     private static Entity bomb;
@@ -19,7 +19,7 @@ public class Player2Bomb extends Entity {
     private static int swap_explosion = 1;  // Change bomb's explosive state
     private static final List<Entity> list_bomb_middle_width = new ArrayList();
     private static final List<Entity> list_bomb_middle_height = new ArrayList();
-    public static int power_bomb = player2.power_bomb;   // Bomb's destructive power
+    public static int power_bomb = PvPBomber.power_bomb;   // Bomb's destructive power
     private static int power_bomb_down = 0;     // Bomb's destructive power from top to bottom
     private static int power_bomb_up = 0;       // The bomb's destructive power is from the bottom up
     private static int power_bomb_left = 0;     // Bomb's destructive power is from right to left

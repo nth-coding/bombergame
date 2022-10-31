@@ -19,11 +19,11 @@ public class PauseMenu {
     private final int HEIGHT = 400;
     private Image PauseImg;
     private ImageView Pauseimg;
-    private static List<MenuButton> menuButtons = new ArrayList<>();
+    private static final List<MenuButton> menuButtons = new ArrayList<>();
 
-    private MenuButton resumeButton = new MenuButton("RESUME");
-    private MenuButton SoundButton = new MenuButton("SOUND");
-    private MenuButton ExitButton = new MenuButton("EXIT");
+    private final MenuButton resumeButton = new MenuButton("RESUME");
+    private final MenuButton SoundButton = new MenuButton("SOUND");
+    private final MenuButton ExitButton = new MenuButton("EXIT");
 
     public PauseMenu() {
 
@@ -47,7 +47,7 @@ public class PauseMenu {
 
         addMenuButton(resumeButton);
         resumeButton.setLayoutX(MENU_START_X);
-        resumeButton.setLayoutY(MENU_START_Y + 1 * 80);
+        resumeButton.setLayoutY(MENU_START_Y + 80);
         resumeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

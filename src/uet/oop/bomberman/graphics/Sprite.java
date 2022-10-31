@@ -30,13 +30,13 @@ public class Sprite {
      * |--------------------------------------------------------------------------
      */
     public static Sprite grass_shadow = new Sprite(DEFAULT_SIZE, 6, 1, SpriteSheet.tiles, 16, 16);
-//    public static Sprite grass1 = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 16, 16);
+    //    public static Sprite grass1 = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite grass2 = new Sprite(DEFAULT_SIZE, 7, 1, SpriteSheet.tiles, 16, 16);
-//    public static Sprite brick1 = new Sprite(DEFAULT_SIZE, 7, 0, SpriteSheet.tiles, 16, 16);
+    //    public static Sprite brick1 = new Sprite(DEFAULT_SIZE, 7, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite brick2 = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 16, 16);
-//    public static Sprite wall1 = new Sprite(DEFAULT_SIZE, 5, 0, SpriteSheet.tiles, 16, 16);
+    //    public static Sprite wall1 = new Sprite(DEFAULT_SIZE, 5, 0, SpriteSheet.tiles, 16, 16);
     public static Sprite wall2 = new Sprite(DEFAULT_SIZE, 8, 1, SpriteSheet.tiles, 16, 16);
-//    public static Sprite portal = new Sprite(DEFAULT_SIZE, 4, 0, SpriteSheet.tiles, 14, 14);
+    //    public static Sprite portal = new Sprite(DEFAULT_SIZE, 4, 0, SpriteSheet.tiles, 14, 14);
     public static Sprite portal = new Sprite(DEFAULT_SIZE, 9, 12, SpriteSheet.tiles, 16, 16);
     /*
      * |--------------------------------------------------------------------------

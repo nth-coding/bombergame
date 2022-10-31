@@ -49,7 +49,7 @@ public class ComponentMovement {
         if (entity.getY() % 32 == 0 && entity.getX() % 32 == 0) {
             if (entity instanceof Bomber && Blocked.block_down(entity)) {
                 entity.setDirection("down");
-                if(running ==false) entity.setCount(0);
+                if(!running) entity.setCount(0);
                 else entity.setCount(4/speed);
                 checkRun(entity);
             }
@@ -57,7 +57,7 @@ public class ComponentMovement {
                     || entity instanceof BakudaRed)
                     && Blocked.block_down(entity)) {
                 entity.setDirection("down");
-                if(running ==false) entity.setCount(0);
+                if(!running) entity.setCount(0);
                 else entity.setCount(8);
                 checkRun(entity);
             }
@@ -68,7 +68,7 @@ public class ComponentMovement {
         if (entity.getY() % 32 == 0 && entity.getX() % 32 == 0) {
             if (entity instanceof Bomber && Blocked.block_up(entity)) {
                 entity.setDirection("up");
-                if(running ==false) entity.setCount(0);
+                if(!running) entity.setCount(0);
                 else entity.setCount(4/speed);
                 checkRun(entity);
             }
@@ -76,7 +76,7 @@ public class ComponentMovement {
                     || entity instanceof BakudaRed)
                     && Blocked.block_up(entity)) {
                 entity.setDirection("up");
-                if(running ==false) entity.setCount(0);
+                if(!running) entity.setCount(0);
                 else entity.setCount(8);
                 checkRun(entity);
             }
@@ -87,7 +87,7 @@ public class ComponentMovement {
         if (entity.getX() % 32 == 0 && entity.getY() % 32 == 0) {
             if (entity instanceof Bomber && Blocked.block_left(entity)) {
                 entity.setDirection("left");
-                if(running ==false) entity.setCount(0);
+                if(!running) entity.setCount(0);
                 else entity.setCount(4/speed);
                 checkRun(entity);
             }
@@ -95,7 +95,7 @@ public class ComponentMovement {
                     || entity instanceof Gurorin  || entity instanceof BakudaRed)
                     && Blocked.block_left(entity)) {
                 entity.setDirection("left");
-                if(running ==false) entity.setCount(0);
+                if(!running) entity.setCount(0);
                 else entity.setCount(8);
                 checkRun(entity);
             }
@@ -106,7 +106,7 @@ public class ComponentMovement {
         if (entity.getX() % 32 == 0 && entity.getY() % 32 == 0) {
             if (entity instanceof Bomber && Blocked.block_right(entity)) {
                 entity.setDirection("right");
-                if(running ==false) entity.setCount(0);
+                if(!running) entity.setCount(0);
                 else entity.setCount(4/speed);
                 checkRun(entity);
             }
@@ -114,7 +114,7 @@ public class ComponentMovement {
                     || entity instanceof Gurorin || entity instanceof BakudaRed)
                     && Blocked.block_right(entity)) {
                 entity.setDirection("right");
-                if(running ==false) entity.setCount(0);
+                if(!running) entity.setCount(0);
                 else entity.setCount(8);
                 checkRun(entity);
             }

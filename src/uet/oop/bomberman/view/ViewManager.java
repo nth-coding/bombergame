@@ -44,7 +44,7 @@ public class ViewManager {
 
 
 
-    private Scene mainScene;
+    private final Scene mainScene;
     public static Stage mainStage;
     public static Stage gameStage;
     public static Stage pvpStage;
@@ -53,7 +53,7 @@ public class ViewManager {
     private Instruction hdscreen;
     private Instruction highscreen;
 
-    private List<MenuButton> menuButtons = new ArrayList<>();
+    private final List<MenuButton> menuButtons = new ArrayList<>();
     private GridPane gridPane1;
     private GridPane gridPane2;
     private AnimationTimer bgrTimer;
@@ -64,7 +64,7 @@ public class ViewManager {
 
 
     public void music() throws Exception {
-        Media h = new Media(new File("res/textures/bgr.mp3").toURI().toString());
+        Media h = new Media(new File("res/sound/bgr.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(h);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         if(count%2==0) mediaPlayer.play();

@@ -7,6 +7,7 @@ import uet.oop.bomberman.entities.AI.AStar;
 import uet.oop.bomberman.entities.AI.Node;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.view.Bar;
 
 import java.util.List;
 import java.util.Random;
@@ -51,10 +52,10 @@ public class BakudaRed extends Entity {
         }
         if (!Blocked.block_right(this) && this.direction_status == 3) {
             this.direction = 2;
-            return;
         }
     }
     private void killBakudaRed(Entity entity) {
+
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
                 entity.setImg(Sprite.bakudaRed_dead.getFxImage());
@@ -67,6 +68,8 @@ public class BakudaRed extends Entity {
                 swap_kill = 4;
             } else {
                 entity.setLife(false);
+                Bar.score_number= Bar.score_number + 10;
+                Bar.score.setText("Score: "+ Bar.score_number);
                 entities.remove(entity);
                 swap_kill = 1;
             }
@@ -111,8 +114,11 @@ public class BakudaRed extends Entity {
         count_kill++;
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
-            if (entity instanceof BakudaRed && !entity.life)
+            if (entity instanceof BakudaRed && !entity.life) {
                 killBakudaRed(entity);
+
+            }
+
         }
         move();
     }
