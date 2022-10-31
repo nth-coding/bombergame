@@ -2,8 +2,10 @@ package uet.oop.bomberman.Levels;
 
 import uet.oop.bomberman.entities.Bomb;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.enemy.BakudaRed;
 import uet.oop.bomberman.entities.enemy.BigPoyo;
 import uet.oop.bomberman.entities.enemy.BakudaBlack;
+import uet.oop.bomberman.entities.enemy.Gurorin;
 import uet.oop.bomberman.graphics.MapCreation;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
@@ -30,13 +32,20 @@ public class Level3 {
         is_bomb = 0;
 
 
-        Entity enemy1 = new BigPoyo(5, 5, Sprite.bigPoyo_left1.getFxImage());
-        Entity enemy2 = new BigPoyo(11, 9, Sprite.bigPoyo_left1.getFxImage());
+        Entity enemy1 = new BakudaRed(5, 5, Sprite.bakudaRed_left1.getFxImage());
+        Entity enemy2 = new BakudaRed(11, 9, Sprite.bakudaRed_left1.getFxImage());
         entities.add(enemy1);
         entities.add(enemy2);
 
         Entity enemy3 = new BakudaBlack(7, 5, Sprite.bakudaBlack_left1.getFxImage());
+        Entity enemy4 = new BakudaBlack(10, 9, Sprite.bakudaBlack_left1.getFxImage());
         entities.add(enemy3);
+        entities.add(enemy4);
+
+        Entity enemy5 = new Gurorin(15, 6, Sprite.gurorin_left1.getFxImage());
+        Entity enemy6 = new Gurorin(3, 6, Sprite.gurorin_left1.getFxImage());
+        entities.add(enemy5);
+        entities.add(enemy6);
 
         for (Entity animal : entities) {
             animal.setLife(true);

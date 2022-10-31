@@ -29,13 +29,13 @@ public class Level1 {
         bomberman.setLife(true);
         is_bomb = 0;
 
-        Bomb.bomb_number =20;
+        Bomb.bomb_number = 20;
         Bar.time_number = 120;
         Bar.llevel.setText("Level: 1");
 
-        Entity enemy1 = new BakudaRed(4, 4, Sprite.bakudaRed_left1.getFxImage());
-        Entity enemy2 = new BakudaRed(9, 9, Sprite.bakudaRed_left1.getFxImage());
-        Entity enemy3 = new BakudaRed(22, 6, Sprite.bakudaRed_left1.getFxImage());
+        Entity enemy1 = new SmallPoyo(4, 4, Sprite.smallPoyo_left1.getFxImage());
+        Entity enemy2 = new SmallPoyo(9, 9, Sprite.smallPoyo_left1.getFxImage());
+        Entity enemy3 = new SmallPoyo(22, 6, Sprite.smallPoyo_left1.getFxImage());
         entities.add(enemy1);
         entities.add(enemy2);
         entities.add(enemy3);

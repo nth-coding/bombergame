@@ -31,7 +31,7 @@ public class Level2 {
         is_bomb = 0;
 
         Bar.llevel.setText("Level: 2");
-        Bomb.bomb_number =20;
+        Bomb.bomb_number = 20;
         Bar.time_number = 120;
 
         Entity enemy1 = new BigPoyo(5, 5, Sprite.bigPoyo_left1.getFxImage());
