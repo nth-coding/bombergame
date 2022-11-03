@@ -55,6 +55,8 @@ public class BombermanGame {
     public static boolean running;
     //
     public static int level = 1;
+    //
+    public static boolean through_the_wall = false;
 
     private long lastTime;
     private Scene mainScene;
