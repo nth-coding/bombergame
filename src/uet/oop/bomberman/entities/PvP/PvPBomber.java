@@ -35,7 +35,7 @@ public class PvPBomber extends Entity {
     private final MenuButton ExitButton = new MenuButton("EXIT");
     private final MenuButton RestartButton = new MenuButton("RESTART");
     private ImageView Overimg;
-    private boolean p1 ;
+    private boolean p1;
 
     public PvPBomber() {
 
@@ -50,76 +50,73 @@ public class PvPBomber extends Entity {
     }
 
     private void killBomber(Entity entity) {
-            if (count_kill % 16 == 0) {
-                if (swap_kill == 1) {
-                    entity.setImg(Sprite.player_dead1.getFxImage());
-                    swap_kill = 2;
-                }
-                else if (swap_kill == 2) {
-                    entity.setImg(Sprite.player_dead2.getFxImage());
-                    swap_kill = 3;
-                }
-                else if (swap_kill == 3) {
-                    entity.setImg(Sprite.player_dead3.getFxImage());
-                    swap_kill = 4;
-                }
-                else if (swap_kill == 4) {
-                    entity.setImg(Sprite.player_dead4.getFxImage());
-                    swap_kill = 5;
-                }
-                else if (swap_kill == 5) {
-                    entity.setImg(Sprite.player_dead5.getFxImage());
-                    swap_kill = 6;
-                }
-                else if (swap_kill == 6) {
-                    entity.setImg(Sprite.player_dead6.getFxImage());
-                    swap_kill = 7;
-                    lastTime = System.currentTimeMillis();
-                }
-            else {
+        if (count_kill % 16 == 0) {
+            if (swap_kill == 1) {
+                entity.setImg(Sprite.player_dead1.getFxImage());
+                swap_kill = 2;
+            } else if (swap_kill == 2) {
+                entity.setImg(Sprite.player_dead2.getFxImage());
+                swap_kill = 3;
+            } else if (swap_kill == 3) {
+                entity.setImg(Sprite.player_dead3.getFxImage());
+                swap_kill = 4;
+            } else if (swap_kill == 4) {
+                entity.setImg(Sprite.player_dead4.getFxImage());
+                swap_kill = 5;
+            } else if (swap_kill == 5) {
+                entity.setImg(Sprite.player_dead5.getFxImage());
+                swap_kill = 6;
+            } else if (swap_kill == 6) {
+                entity.setImg(Sprite.player_dead6.getFxImage());
+                swap_kill = 7;
+                lastTime = System.currentTimeMillis();
+            } else {
 
 
                 running = false;
-                Bomber.dem =1;
+                Bomber.dem = 1;
 
-                    Image OverImg ;
+                Image OverImg;
 
-                    try {
-                        if(p1==true) {
-                            OverImg = new Image(new FileInputStream("res\\textures\\player1won.png"), 800, 480, false, true);
-                            Overimg = new ImageView(OverImg);
-                            Overimg.setLayoutX(0);
-                            Overimg.setLayoutY(0);
-                        }
-                        if(p1== false) {
-                            OverImg = new Image(new FileInputStream("res\\textures\\player2won.png"), 800, 480, false, true);
-                            Overimg = new ImageView(OverImg);
-                            Overimg.setLayoutX(0);
-                            Overimg.setLayoutY(0);
+                try {
+                    if (p1 == true) {
+                        OverImg = new Image(new FileInputStream("res\\textures\\player1won.png"), 800, 480, false, true);
+                        Overimg = new ImageView(OverImg);
+                        Overimg.setLayoutX(0);
+                        Overimg.setLayoutY(0);
+                    }
+                    if (p1 == false) {
+                        OverImg = new Image(new FileInputStream("res\\textures\\player2won.png"), 800, 480, false, true);
+                        Overimg = new ImageView(OverImg);
+                        Overimg.setLayoutX(0);
+                        Overimg.setLayoutY(0);
 
-                        }
-                        BombermanGame.root.getChildren().add(Overimg);
-                        long now = System.currentTimeMillis();
-                        if (now - lastTime > 3000) {
-                           pvpStage.close();
+                    }
+                    BombermanGame.root.getChildren().add(Overimg);
+                    long now = System.currentTimeMillis();
+                    if (now - lastTime > 3000) {
+                        pvpStage.close();
 
 
-                        }
-                    }catch (Exception e){}
+                    }
+                } catch (Exception e) {
+                }
             }
         }
     }
+
     private void addMenuButton(MenuButton button) {
 
         menuButtons.add(button);
         BombermanGame.root.getChildren().add(button);
 
     }
-    private void createdExitButton(){
+
+    private void createdExitButton() {
 
         addMenuButton(ExitButton);
         ExitButton.setLayoutX(MENU_START_X);
-        ExitButton.setLayoutY(MENU_START_Y + 2 * 120- 50);
+        ExitButton.setLayoutY(MENU_START_Y + 2 * 120 - 50);
         ExitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -128,7 +125,8 @@ public class PvPBomber extends Entity {
             }
         });
     }
-    private void createdRestartButton(){
+
+    private void createdRestartButton() {
 
         addMenuButton(RestartButton);
         RestartButton.setLayoutX(MENU_START_X);
@@ -136,7 +134,7 @@ public class PvPBomber extends Entity {
         RestartButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Bomber.dem =1;
+                Bomber.dem = 1;
 
 
                 BombermanGame.root.getChildren().remove(Overimg);
@@ -148,6 +146,7 @@ public class PvPBomber extends Entity {
             }
         });
     }
+
     private void checkBombs() {
         if (list_kill[player1.getX() / 32][player1.getY() / 32 + 1] == 4)
             player1.setLife(false);
@@ -166,7 +165,7 @@ public class PvPBomber extends Entity {
         }
         if (!player2.life) {
             killBomber(player2);
-            p1 =true;
+            p1 = true;
         }
     }
 }

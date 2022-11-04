@@ -111,7 +111,7 @@ public class MapCreation {
                                 } else if (BombermanGame.level == 2) {
                                     entity = new Grass(j, i, Sprite.grass_shadow.getFxImage());
                                 } else {
-                                    entity = new Grass(j, i, Sprite.grass_shadow.getFxImage());
+                                    entity = new Grass(j, i, Sprite.grass_shadow2.getFxImage());
                                 }
                                 break;
                             case 10:
@@ -123,13 +123,38 @@ public class MapCreation {
                                     entity = new WallPassItem(j, i, Sprite.brick3.getFxImage());
                                 }
                                 break;
+                            case 11:
+                                entity = new Wall(j, i, Sprite.wall_topleft.getFxImage());
+                                break;
+                            case 12:
+                                entity = new Wall(j, i, Sprite.wall_topmid.getFxImage());
+                                break;
+                            case 13:
+                                entity = new Wall(j, i, Sprite.wall_topright.getFxImage());
+                                break;
+                            case 14:
+                                entity = new Wall(j, i, Sprite.wall_midleft.getFxImage());
+                                break;
+                            case 15:
+                                entity = new Wall(j, i, Sprite.wall_midright.getFxImage());
+                                break;
+                            case 16:
+                                entity = new Wall(j, i, Sprite.wall_bottomleft.getFxImage());
+                                break;
+                            case 17:
+                                entity = new Wall(j, i, Sprite.wall_bottommid.getFxImage());
+                                break;
+                            case 18:
+                                entity = new Wall(j, i, Sprite.wall_bottomright.getFxImage());
+                                break;
+
                             default:
                                 if (BombermanGame.level == 1) {
                                     entity = new Grass(j, i, Sprite.grass1.getFxImage());
                                 } else if (BombermanGame.level == 2) {
                                     entity = new Grass(j, i, Sprite.grass2.getFxImage());
                                 } else {
-                                    entity = new Grass(j, i, Sprite.grass2.getFxImage());
+                                    entity = new Grass(j, i, Sprite.grass3.getFxImage());
                                 }
                         }
                         id_objects[j][i] = token;        //

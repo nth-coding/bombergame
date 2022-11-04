@@ -1,36 +1,37 @@
 package uet.oop.bomberman.entities.enemy;
 
 import javafx.scene.image.Image;
-import uet.oop.bomberman.components.ComponentMovement;
+import uet.oop.bomberman.components.PvPComponentMovement;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
 
 import java.util.Random;
 
-import static uet.oop.bomberman.BombermanGame.*;
+import static uet.oop.bomberman.PvPGame.entities;
+import static uet.oop.bomberman.PvPGame.list_kill;
 
-public class SmallPoyo extends Entity {
+public class PvPSmallPoyo extends Entity {
     private static int swap_kill = 1;
     private static int count_kill = 0;
-    public SmallPoyo(int x, int y, Image img) {
+    public PvPSmallPoyo(int x, int y, Image img) {
         super(x, y, img);
     }
 
-    public SmallPoyo(int is_move, int swap, String direction, int count, int count_to_run) {
+    public PvPSmallPoyo(int is_move, int swap, String direction, int count, int count_to_run) {
         super(4, 1, "up", 0, 0);
     }
 
-    public SmallPoyo(boolean life) {
+    public PvPSmallPoyo(boolean life) {
         super(life);
     }
 
-    public SmallPoyo() {
+    public PvPSmallPoyo() {
         
     }
     private void kill() {
         for (Entity entity : entities) {
-            if (entity instanceof SmallPoyo && list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
+            if (entity instanceof PvPSmallPoyo && list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
                 entity.setLife(false);
             }
         }
@@ -49,8 +50,8 @@ public class SmallPoyo extends Entity {
             } 
             else {
                 entity.setLife(false);
-                Bar.score_number= Bar.score_number + 10;
-                Bar.score.setText("Score: "+ Bar.score_number);
+//                Bar.score_number= Bar.score_number + 10;
+//                Bar.score.setText("Score: "+ Bar.score_number);
                 entities.remove(entity);
                 swap_kill = 1;
             }
@@ -62,16 +63,16 @@ public class SmallPoyo extends Entity {
             int direction = random.nextInt(4);
             switch (direction) {
                 case 0:
-                    ComponentMovement.down(this);
+                    PvPComponentMovement.down(this);
                     break;
                 case 1:
-                    ComponentMovement.up(this);
+                    PvPComponentMovement.up(this);
                     break;
                 case 2:
-                    ComponentMovement.left(this);
+                    PvPComponentMovement.left(this);
                     break;
                 case 3:
-                    ComponentMovement.right(this);
+                    PvPComponentMovement.right(this);
                     break;
             }
         }
@@ -83,11 +84,9 @@ public class SmallPoyo extends Entity {
         count_kill++;
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
-            if (entity instanceof SmallPoyo && !entity.life) {
+            if (entity instanceof PvPSmallPoyo && !entity.life) {
                 killPoyo(entity);
-
             }
-
         }
         move();
 //        System.out.println("Poyo: " + this.getX() + " " + this.getY());

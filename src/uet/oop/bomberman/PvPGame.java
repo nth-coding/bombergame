@@ -8,18 +8,28 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import uet.oop.bomberman.Levels.Level1;
+import uet.oop.bomberman.Levels.Level_PvP;
+import uet.oop.bomberman.components.ComponentMovement;
 import uet.oop.bomberman.components.PvPComponentMovement;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.PvP.Player1Bomb;
 import uet.oop.bomberman.entities.PvP.Player2Bomb;
 import uet.oop.bomberman.entities.PvP.PvPBomber;
+import uet.oop.bomberman.entities.enemy.BigPoyo;
+import uet.oop.bomberman.entities.enemy.Pink;
+import uet.oop.bomberman.entities.enemy.SmallPoyo;
+import uet.oop.bomberman.entities.items.BombItem;
 import uet.oop.bomberman.graphics.PvPMapCreation;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.view.Bar;
 import uet.oop.bomberman.view.PauseMenu;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static uet.oop.bomberman.BombermanGame.entities;
+import static uet.oop.bomberman.entities.Bomb.is_bomb;
 import static uet.oop.bomberman.entities.PvP.Player1Bomb.*;
 import static uet.oop.bomberman.entities.PvP.Player2Bomb.*;
 import static uet.oop.bomberman.entities.Bomber.swap_kill;
@@ -42,6 +52,9 @@ public class PvPGame {
     //
     public static int level;
     public static boolean running;
+    public static boolean through_the_wall = false;
+    public static final List<Entity> entities = new ArrayList<>();
+    public static final List<Entity> stillObjects = new ArrayList<>();
 
     private Scene playScene;
     public static PvPBomber player1;
@@ -76,7 +89,7 @@ public class PvPGame {
         stage.show();
 
         // Tao bomber
-        player1 = new PvPBomber(1, 0, Sprite.player_right.getFxImage());
+        player1 = new PvPBomber(1, 1, Sprite.player_right.getFxImage());
         player2 = new PvPBomber(WIDTH - 2, HEIGHT - 3, Sprite.player_left.getFxImage());
 
         // setLife
@@ -97,21 +110,8 @@ public class PvPGame {
     }
 
     public void createMap() {
-        stillObjectsPvP.clear();
-
-        swap_kill = 1;
-
-        new PvPMapCreation("res/levels/PvPMap.txt");
-        is_bomb_player1 = 0;
-        is_bomb_player2 = 0;
-
-//        player1.speed = 1;
-//        player2.speed = 2;
-//        player1.power_bomb = 0;
-//        player2.power_bomb = 0;
-
-        player1.setLife(true);
-        player2.setLife(true);
+        new Level_PvP();
+        running = true;
     }
 
     // moves the player1.
@@ -155,8 +155,6 @@ public class PvPGame {
                 running = false;
 
                 pause.showPause();
-
-
             }
         });
     }
@@ -164,6 +162,11 @@ public class PvPGame {
     public void update() {
         // keybindings update
         updatePlayerInput();
+
+        // enemy update
+        for (int i = 0; i < entities.size(); ++i) {
+            entities.get(i).update();
+        }
 
         // player1 update
         player1.update();
@@ -185,11 +188,20 @@ public class PvPGame {
         for (int i = 0; i < stillObjectsPvP.size(); ++i) {
             stillObjectsPvP.get(i).update();
         }
+
+        for (Entity a : entities) {
+            a.setCountToRun(a.getCountToRun() + 1);
+            if (a.getCountToRun() == 8) {
+                PvPComponentMovement.checkRun(a);
+                a.setCountToRun(0);
+            }
+        }
     }
 
     public void render() {
         gc.clearRect(0, 0, pvpCanvas.getWidth(), pvpCanvas.getHeight());
         stillObjectsPvP.forEach(g -> g.render(gc));
+        entities.forEach(g -> g.render(gc));
         player1.render(gc);
         player2.render(gc);
     }

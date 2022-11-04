@@ -6,13 +6,13 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
 
+import java.util.Random;
+
 import static uet.oop.bomberman.BombermanGame.*;
 public class Pink extends Entity {
 
     private static int swap_kill = 1;
     private static int count_kill = 0;
-    private int direction = 0;
-    private int direction_status = 0;
 
     public Pink(int x, int y, Image img) {
         super(x, y, img);
@@ -29,16 +29,16 @@ public class Pink extends Entity {
     public Pink() {
     }
 
-    private void killGhost(Entity entity) {
+    private void killPink(Entity entity) {
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
-                entity.setImg(Sprite.bigPoyo_dead.getFxImage());
+                entity.setImg(Sprite.pink_up1.getFxImage());
                 swap_kill = 2;
             } else if (swap_kill == 2) {
-                entity.setImg(Sprite.player_dead5.getFxImage());
+                entity.setImg(Sprite.smallPoyo_dead.getFxImage());
                 swap_kill = 3;
             } else if (swap_kill == 3) {
-                entity.setImg(Sprite.player_dead6.getFxImage());
+                entity.setImg(Sprite.smallPoyo_dead1.getFxImage());
                 swap_kill = 4;
             } else {
                 entity.setLife(false);
@@ -59,24 +59,18 @@ public class Pink extends Entity {
     }
 
     private void move() {
-        if (this.life) {
-            switch (direction) {
-                case 0:
-                    ComponentMovement.down(this);
-                    direction_status = 0;
-                    break;
-                case 1:
-                    ComponentMovement.up(this);
-                    direction_status = 1;
-                    break;
-                case 2:
-                    ComponentMovement.left(this);
-                    direction_status = 2;
-                    break;
-                case 3:
-                    ComponentMovement.right(this);
-                    direction_status = 3;
-                    break;
+        if (this.y % 16 == 0 && this.x % 16 == 0 && this.life) {
+            if (bomberman.getX() < this.x) {
+                ComponentMovement.left(this);
+            }
+            if (bomberman.getX() > this.x) {
+                ComponentMovement.right(this);
+            }
+            if (bomberman.getY() + 1 > this.y) {
+                ComponentMovement.down(this);
+            }
+            if (bomberman.getY() + 1< this.y) {
+                ComponentMovement.up(this);
             }
         }
     }
@@ -88,10 +82,8 @@ public class Pink extends Entity {
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
             if (entity instanceof Pink && !entity.life) {
-                killGhost(entity);
-
+                killPink(entity);
             }
-
         }
         move();
     }

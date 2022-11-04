@@ -24,6 +24,13 @@ public class Brick extends Entity {
                     } else {
                         entity.setImg(Sprite.grass3.getFxImage());
                     }
+
+//                    if (id_objects[entity.getX() / 32][entity.getY() / 32 + 1] == 9) {
+//                        for (Entity _entity : stillObjects) {
+//                        }
+//                        Entity e = new Brick(entity.getX() / 32, entity.getY() / 32 + 1, Sprite.grass1.getFxImage());
+//                        stillObjects.add(e);
+//                    }
                 }
             }
         }
