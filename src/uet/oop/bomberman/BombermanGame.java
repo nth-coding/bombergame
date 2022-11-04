@@ -55,7 +55,6 @@ public class BombermanGame {
     public static boolean running;
     //
     public static int level = 1;
-    //
     public static boolean through_the_wall = false;
 
     private long lastTime;
@@ -161,7 +160,7 @@ public class BombermanGame {
 
     // moves the bomberman.
     private void updatePlayerInput() {
-        // KeyPsed
+        // KeyPressed
         mainScene.setOnKeyPressed(event -> {
             KeyCode key = event.getCode();
 

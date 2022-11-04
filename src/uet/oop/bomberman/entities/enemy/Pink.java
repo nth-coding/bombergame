@@ -6,38 +6,41 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
 
-import java.util.Random;
-
 import static uet.oop.bomberman.BombermanGame.*;
+public class Pink extends Entity {
 
-public class Gurorin extends Entity {
     private static int swap_kill = 1;
-    private static int count_kill = 0; // Count the number of gurorins destroyed
+    private static int count_kill = 0;
+    private int direction = 0;
+    private int direction_status = 0;
 
-    public Gurorin(int is_move, int swap, String direction, int count, int count_to_run) {
+    public Pink(int x, int y, Image img) {
+        super(x, y, img);
+    }
+
+    public Pink(int is_move, int swap, String directionection, int count, int count_to_run) {
         super(4, 1, "up", 0, 0);
     }
 
-    public Gurorin() {
-
+    public Pink(boolean life) {
+        super(life);
     }
 
-    private void killgurorin(Entity entity) { // Bomber destroys Balloon
+    public Pink() {
+    }
 
+    private void killGhost(Entity entity) {
         if (count_kill % 16 == 0) {
             if (swap_kill == 1) {
-                entity.setImg(Sprite.gurorin_dead.getFxImage());
+                entity.setImg(Sprite.bigPoyo_dead.getFxImage());
                 swap_kill = 2;
-            }
-            else if (swap_kill == 2) {
-                entity.setImg(Sprite.smallPoyo_dead.getFxImage());
+            } else if (swap_kill == 2) {
+                entity.setImg(Sprite.player_dead5.getFxImage());
                 swap_kill = 3;
-            }
-            else if (swap_kill == 3) {
-                entity.setImg(Sprite.smallPoyo_dead1.getFxImage());
+            } else if (swap_kill == 3) {
+                entity.setImg(Sprite.player_dead6.getFxImage());
                 swap_kill = 4;
-            }
-            else {
+            } else {
                 entity.setLife(false);
                 Bar.score_number= Bar.score_number + 10;
                 Bar.score.setText("Score: "+ Bar.score_number);
@@ -49,33 +52,33 @@ public class Gurorin extends Entity {
 
     private void kill() {
         for (Entity entity : entities) {
-            if (entity instanceof Gurorin && list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
+            if (entity instanceof Pink && list_kill[entity.getX() / 32][entity.getY() / 32 + 1] == 4) {
                 entity.setLife(false);
             }
         }
     }
+
     private void move() {
-        if (this.y % 32 == 0 && this.x % 32 == 0 && this.life) {
-            Random random = new Random();
-            int direction = random.nextInt(4);
+        if (this.life) {
             switch (direction) {
                 case 0:
                     ComponentMovement.down(this);
+                    direction_status = 0;
                     break;
                 case 1:
                     ComponentMovement.up(this);
+                    direction_status = 1;
                     break;
                 case 2:
                     ComponentMovement.left(this);
+                    direction_status = 2;
                     break;
                 case 3:
                     ComponentMovement.right(this);
+                    direction_status = 3;
                     break;
             }
         }
-    }
-    public Gurorin(int x, int y, Image img) {
-        super(x, y, img);
     }
 
     @Override
@@ -84,9 +87,11 @@ public class Gurorin extends Entity {
         count_kill++;
         for (int i = 0; i < entities.size(); ++i) {
             Entity entity = entities.get(i);
-            if (entity instanceof Gurorin && !entity.life) {
-                killgurorin(entity);
+            if (entity instanceof Pink && !entity.life) {
+                killGhost(entity);
+
             }
+
         }
         move();
     }

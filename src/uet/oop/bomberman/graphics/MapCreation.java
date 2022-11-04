@@ -61,43 +61,76 @@ public class MapCreation {
                                 token = 0;
                                 break;
                             case 2:
-//                                if (Objects.equals(level, "Level1.txt")) {
-//                                    entity = new Wall(j, i, Sprite.wall1.getFxImage());          // In case 2, set entity object equal to object wall with scaled size.
-//                                } else if (Objects.equals(level, "Level2.txt")) {
-//                                    entity = new Wall(j, i, Sprite.wall2.getFxImage());
-//                                }
-                                entity = new Wall(j, i, Sprite.wall2.getFxImage());
+                                if (BombermanGame.level == 1) {
+                                    entity = new Wall(j, i, Sprite.wall1.getFxImage());          // In case 2, set entity object equal to object wall with scaled size.
+                                } else if (BombermanGame.level == 2) {
+                                    entity = new Wall(j, i, Sprite.wall2.getFxImage());
+                                } else {
+                                    entity = new Wall(j, i, Sprite.wall3.getFxImage());
+                                }
                                 break;
                             case 3:
-//                                if (Objects.equals(level, "Level1.txt")) {
-//                                    entity = new Brick(j, i, Sprite.brick1.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
-//                                } else if (Objects.equals(level, "Level2.txt")) {
-//                                    entity = new Brick(j, i, Sprite.brick2.getFxImage());
-//                                }
-                                entity = new Brick(j, i, Sprite.brick2.getFxImage());
+                                if (BombermanGame.level == 1) {
+                                    entity = new Brick(j, i, Sprite.brick1.getFxImage());        // In case 3, set entity object equal to object brick with scaled size.
+                                } else if (BombermanGame.level == 2) {
+                                    entity = new Brick(j, i, Sprite.brick2.getFxImage());
+                                } else {
+                                    entity = new Brick(j, i, Sprite.brick3.getFxImage());
+                                }
                                 break;
                             case 6:
-                                entity = new SpeedItem(j, i, Sprite.brick2.getFxImage());
+                                if (BombermanGame.level == 1) {
+                                    entity = new SpeedItem(j, i, Sprite.brick1.getFxImage());       // In case 3, set entity object equal to object brick with scaled size.
+                                } else if (BombermanGame.level == 2) {
+                                    entity = new SpeedItem(j, i, Sprite.brick2.getFxImage());
+                                } else {
+                                    entity = new SpeedItem(j, i, Sprite.brick3.getFxImage());
+                                }
                                 break;
                             case 7:
-                                entity = new FlameItem(j, i, Sprite.brick2.getFxImage());
+                                if (BombermanGame.level == 1) {
+                                    entity = new FlameItem(j, i, Sprite.brick1.getFxImage());       // In case 3, set entity object equal to object brick with scaled size.
+                                } else if (BombermanGame.level == 2) {
+                                    entity = new FlameItem(j, i, Sprite.brick2.getFxImage());
+                                } else {
+                                    entity = new FlameItem(j, i, Sprite.brick3.getFxImage());
+                                }
                                 break;
                             case 8:
-                                entity = new BombItem(j, i, Sprite.brick2.getFxImage());
+                                if (BombermanGame.level == 1) {
+                                    entity = new BombItem(j, i, Sprite.brick1.getFxImage());       // In case 3, set entity object equal to object brick with scaled size.
+                                } else if (BombermanGame.level == 2) {
+                                    entity = new BombItem(j, i, Sprite.brick2.getFxImage());
+                                } else {
+                                    entity = new BombItem(j, i, Sprite.brick3.getFxImage());
+                                }
                                 break;
                             case 9:
-                                entity = new Grass(j, i, Sprite.grass_shadow.getFxImage());
+                                if (BombermanGame.level == 1) {
+                                    entity = new Grass(j, i, Sprite.grass_shadow1.getFxImage());       // In case 3, set entity object equal to object brick with scaled size.
+                                } else if (BombermanGame.level == 2) {
+                                    entity = new Grass(j, i, Sprite.grass_shadow.getFxImage());
+                                } else {
+                                    entity = new Grass(j, i, Sprite.grass_shadow.getFxImage());
+                                }
                                 break;
                             case 10:
-                                entity = new WallPassItem(j, i, Sprite.brick2.getFxImage());
+                                if (BombermanGame.level == 1) {
+                                    entity = new WallPassItem(j, i, Sprite.brick1.getFxImage());       // In case 3, set entity object equal to object brick with scaled size.
+                                } else if (BombermanGame.level == 2) {
+                                    entity = new WallPassItem(j, i, Sprite.brick2.getFxImage());
+                                } else {
+                                    entity = new WallPassItem(j, i, Sprite.brick3.getFxImage());
+                                }
                                 break;
                             default:
-//                                if (Objects.equals(level, "Level1.txt")) {
-//                                    entity = new Grass(j, i, Sprite.grass1.getFxImage());
-//                                } else if (Objects.equals(level, "Level2.txt")) {
-//                                    entity = new Grass(j, i, Sprite.grass2.getFxImage());
-//                                }
-                                entity = new Grass(j, i, Sprite.grass2.getFxImage());
+                                if (BombermanGame.level == 1) {
+                                    entity = new Grass(j, i, Sprite.grass1.getFxImage());
+                                } else if (BombermanGame.level == 2) {
+                                    entity = new Grass(j, i, Sprite.grass2.getFxImage());
+                                } else {
+                                    entity = new Grass(j, i, Sprite.grass2.getFxImage());
+                                }
                         }
                         id_objects[j][i] = token;        //
 //                        System.out.print(id_objects[j][i] + " ");

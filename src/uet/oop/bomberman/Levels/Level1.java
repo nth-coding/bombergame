@@ -3,6 +3,7 @@ package uet.oop.bomberman.Levels;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.Bomb.*;
 
+import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Bomb;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.enemy.*;
@@ -22,6 +23,7 @@ public class Level1 {
         stillObjects.clear();
         entities.clear();
 
+//        level = 1;
         swap_kill = 1;
         try {
             new MapCreation("Level1.txt");

@@ -30,6 +30,8 @@ public class Level3 {
         Bar.llevel.setText("Level: 3");
         Bomb.bomb_number =20;
         Bar.time_number = 120;
+
+//        level = 3;
         is_bomb = 0;
 
 
