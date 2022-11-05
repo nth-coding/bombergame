@@ -4,6 +4,7 @@ package uet.oop.bomberman.view;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Levels.Level1;
 import uet.oop.bomberman.PvPGame;
+import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.model.Instruction;
 import uet.oop.bomberman.model.MenuButton;
 
@@ -52,6 +53,7 @@ public class ViewManager {
     private static final int MENU_START_Y = 150;
     private Instruction hdscreen;
     private Instruction highscreen;
+    private boolean game =false ;
 
     private final List<MenuButton> menuButtons = new ArrayList<>();
     private GridPane gridPane1;
@@ -95,21 +97,39 @@ public class ViewManager {
         createScreen();
     }
     public void tryFade()   {
+
         PvPMode = false;
         mainStage.hide();
-        gameStage = new Stage();
+        if(Bomber.pvpDem !=0 && Bomber.dem!=0){
+            pvpStage.close();
 
-        BombermanGame bombermanGame = new BombermanGame();
-        bombermanGame.createGame(gameStage);
+
+        }
+        else if(Bomber.pvpDem !=0 && Bomber.dem==0){
+            pvpStage.close();
+        }
+
+
+            gameStage = new Stage();
+            game = true;
+            BombermanGame bombermanGame = new BombermanGame();
+            bombermanGame.createGame(gameStage);
+
     }
 
     public void tryFadePVP()   {
         PvPMode =true;
         mainStage.hide();
-        pvpStage = new Stage();
+        if(game == true && Bomber.pvpDem !=0) {
+            pvpStage.show();
+        }
 
-        PvPGame pvpGame = new PvPGame();
-        pvpGame.createGame(pvpStage);
+
+            pvpStage = new Stage();
+
+            PvPGame pvpGame = new PvPGame();
+            pvpGame.createGame(pvpStage);
+
     }
 
     public static Stage getMainStage() {

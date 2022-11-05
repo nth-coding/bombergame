@@ -34,9 +34,11 @@ import java.util.List;
 import static uet.oop.bomberman.Levels.NextLevel.*;
 import static uet.oop.bomberman.entities.Bomber.dem;
 
+import static uet.oop.bomberman.entities.Bomber.pvpDem;
 import static uet.oop.bomberman.entities.object.Portal.is_portal;
 import static uet.oop.bomberman.view.ViewManager.gameStage;
 import static uet.oop.bomberman.view.Bar.*;
+import static uet.oop.bomberman.view.ViewManager.pvpStage;
 
 public class BombermanGame {
 
@@ -67,19 +69,24 @@ public class BombermanGame {
     public static final List<Entity> stillObjects = new ArrayList<>();
     public static Group root = new Group();
 
-    public Scene getMainScene() {
-        return mainScene;
-    }
+
+
 
     private Timeline t;
     private final PauseMenu pause = new PauseMenu();
 
     public void createGame(Stage stage) {
-        if (dem != 0) {
+        if(pvpDem !=0 && dem !=0){
+
 
             new Level1();
             running = true;
-        } else {
+        }
+        else if(pvpDem ==0 && dem !=0){
+            new Level1();
+            running = true;
+        }
+        else {
 
             // Tao Canvas
             canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
@@ -177,6 +184,7 @@ public class BombermanGame {
                 ComponentMovement.down(bomberman);
             } else if (key == KeyCode.SPACE) {
                 Bomb.putBomb();
+
 //                System.out.println(bomberman.getX() + " " + bomberman.getY());
             } else if (key == KeyCode.ESCAPE) {
                 running = false;
@@ -221,11 +229,7 @@ public class BombermanGame {
         }
         waitToLevelUp(ViewManager.getMainStage());
 
-        if (!bomberman.isLife()) {
-            Media h = new Media(new File("res/sound/died.wav").toURI().toString());
-            mediaPlayerbomb = new MediaPlayer(h);
-            mediaPlayerbomb.play();
-        }
+
     }
 
     public void render() {

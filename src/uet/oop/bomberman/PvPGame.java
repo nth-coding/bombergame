@@ -7,7 +7,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import uet.oop.bomberman.Levels.Level1;
 import uet.oop.bomberman.components.PvPComponentMovement;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.PvP.Player1Bomb;
@@ -16,17 +21,19 @@ import uet.oop.bomberman.entities.PvP.PvPBomber;
 import uet.oop.bomberman.graphics.PvPMapCreation;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.PauseMenu;
+import uet.oop.bomberman.view.ViewManager;
 
+import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import static uet.oop.bomberman.entities.Bomber.*;
 import static uet.oop.bomberman.entities.PvP.Player1Bomb.*;
 import static uet.oop.bomberman.entities.PvP.Player2Bomb.*;
-import static uet.oop.bomberman.entities.Bomber.swap_kill;
 
 public class PvPGame {
     public static final int WIDTH = 25;
-    public static final int HEIGHT = 15;
+    public static final int HEIGHT = 16;
     //
     public static int width = 0;
     //
@@ -49,24 +56,35 @@ public class PvPGame {
     private GraphicsContext gc;
     private Canvas pvpCanvas;
     private final PauseMenu pause = new PauseMenu();
+    private static Text mode;
     public static final List<Entity> stillObjectsPvP = new ArrayList<>();
 
     public Scene getMainScene() {
         return playScene;
     }
-
+    public static Group pvpRoot = new Group();
     public void createGame(Stage stage) {
+        if(pvpDem!=0 ) {
+            // hoan thien not de replay pvp
+        }
+        else{
+
         // Tao Canvas
         pvpCanvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = pvpCanvas.getGraphicsContext2D();
-
-
+        pvpRoot.getChildren().add(pvpCanvas);
+        // tao chu pvp mode
+            mode = new Text("PVP MODE");
+            mode.setFont(Font.font("Arial", FontWeight.BOLD, 17));
+            mode.setFill(Color.BLACK);
+            mode.setX(350);
+            mode.setY(500);
+            pvpRoot.getChildren().add(mode);
         // Tao root container
 
-        BombermanGame.root.getChildren().add(pvpCanvas);
 
         // Tao playScene
-        playScene = new Scene(BombermanGame.root);
+        playScene = new Scene(pvpRoot);
 
         stage.setScene(playScene);
         stage.setTitle("Bomberman By B.H.H");
@@ -77,7 +95,7 @@ public class PvPGame {
 
         // Tao bomber
         player1 = new PvPBomber(1, 0, Sprite.player_right.getFxImage());
-        player2 = new PvPBomber(WIDTH - 2, HEIGHT - 3, Sprite.player_left.getFxImage());
+        player2 = new PvPBomber(WIDTH - 2, HEIGHT - 4, Sprite.player_left.getFxImage());
 
         // setLife
         player1.setLife(false);
@@ -95,11 +113,12 @@ public class PvPGame {
         };
         timer.start();
     }
+    }
 
     public void createMap() {
         stillObjectsPvP.clear();
 
-        swap_kill = 1;
+        PvPBomber.swap_kill_pvp = 1;
 
         new PvPMapCreation("res/levels/PvPMap.txt");
         is_bomb_player1 = 0;
