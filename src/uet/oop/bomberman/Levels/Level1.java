@@ -56,7 +56,7 @@ public class Level1 {
         Entity enemy6 = new Pink(6, 10, Sprite.pink_left1.getFxImage());
         entities.add(enemy6);
 
-        entities.clear();
+//        entities.clear();
         // set default for enemy
         for (Entity Entity : entities) {
             Entity.setLife(true);
