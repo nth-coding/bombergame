@@ -10,7 +10,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
 
 import static uet.oop.bomberman.PvPGame.*;
-import static uet.oop.bomberman.PvPGame.entities;
+//import static uet.oop.bomberman.PvPGame.entities;
 import static uet.oop.bomberman.PvPGame.player1;
 import static uet.oop.bomberman.PvPGame.player2;
 import static uet.oop.bomberman.entities.Bomb.is_bomb;
@@ -18,7 +18,7 @@ import static uet.oop.bomberman.entities.Bomber.swap_kill;
 
 public class Level_PvP {
     public Level_PvP() {
-        stillObjects.clear();
+        stillObjectsPvP.clear();
         entities.clear();
 
 //        level = 1;
@@ -34,20 +34,20 @@ public class Level_PvP {
 //        Bar.time_number = 120;
 //        Bar.llevel.setText("Level: 1");
 
-        Entity enemy1 = new PvPSmallPoyo(4, 4, Sprite.smallPoyo_left1.getFxImage());
-        Entity enemy2 = new PvPSmallPoyo(9, 9, Sprite.smallPoyo_left1.getFxImage());
-        Entity enemy3 = new PvPSmallPoyo(22, 6, Sprite.smallPoyo_left1.getFxImage());
-        entities.add(enemy1);
-        entities.add(enemy2);
-        entities.add(enemy3);
+//        Entity enemy1 = new PvPSmallPoyo(4, 4, Sprite.smallPoyo_left1.getFxImage());
+//        Entity enemy2 = new PvPSmallPoyo(9, 9, Sprite.smallPoyo_left1.getFxImage());
+//        Entity enemy3 = new PvPSmallPoyo(22, 6, Sprite.smallPoyo_left1.getFxImage());
+//        entities.add(enemy1);
+//        entities.add(enemy2);
+//        entities.add(enemy3);
+//
+//        Entity enemy4 = new PvPBigPoyo(7, 6, Sprite.bigPoyo_left1.getFxImage());
+//        Entity enemy5 = new PvPBigPoyo(13, 8, Sprite.bigPoyo_left1.getFxImage());
+//        entities.add(enemy4);
+//        entities.add(enemy5);
 
-        Entity enemy4 = new PvPBigPoyo(7, 6, Sprite.bigPoyo_left1.getFxImage());
-        Entity enemy5 = new PvPBigPoyo(13, 8, Sprite.bigPoyo_left1.getFxImage());
-        entities.add(enemy4);
-        entities.add(enemy5);
-
-        entities.clear();
-        // set default for enemy
+//        entities.clear();
+//         set default for enemy
         for (Entity Entity : entities) {
             Entity.setLife(true);
         }

@@ -43,7 +43,9 @@ public class Bomb extends Entity {
     }
 
     public static void putBomb() {      // The function used for the bomber to place the bomb
-        if (is_bomb == 0 && bomb_number > 0) {
+        if (is_bomb == 0 && bomb_number > 0
+                && id_objects[bomberman.getX() / 32][bomberman.getY() / 32 + 1] != 2
+                && id_objects[bomberman.getX() / 32][bomberman.getY() / 32 + 1] != 3) {
             //new SoundManager("sound/put_bombs.wav", "putBomb");
             Media h = new Media(new File("res/sound/put_bombs.wav").toURI().toString());
             mediaPlayerbomb = new MediaPlayer(h);

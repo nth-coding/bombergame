@@ -71,23 +71,19 @@ public class BombermanGame {
     public static Group root = new Group();
 
 
-
-
     private Timeline t;
     private final PauseMenu pause = new PauseMenu();
 
     public void createGame(Stage stage) {
-        if(pvpDem !=0 && dem !=0){
+        if (pvpDem != 0 && dem != 0) {
 
 
             new Level1();
             running = true;
-        }
-        else if(pvpDem ==0 && dem !=0){
+        } else if (pvpDem == 0 && dem != 0) {
             new Level1();
             running = true;
-        }
-        else {
+        } else {
 
             // Tao Canvas
             canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
@@ -239,7 +235,7 @@ public class BombermanGame {
         entities.forEach(g -> g.render(gc));
         bomberman.render(gc);
     }
-    
+
     public void time() {
 
 
@@ -247,12 +243,11 @@ public class BombermanGame {
         if (now - lastTime > 1000) {
             lastTime = System.currentTimeMillis();
 
-
             ttime.setText("Time: " + time_number);
-            if(BombItem.BombMax==false)
-            Bar.bbomb.setText("Bomb: " + Bomb.bomb_number);
-            else{
-                Bar.bbomb.setText("Bomb: ∞"  );
+            if (BombItem.BombMax == false)
+                Bar.bbomb.setText("Bomb: " + Bomb.bomb_number);
+            else {
+                Bar.bbomb.setText("Bomb: ∞");
             }
             time_number--;
             if (time_number < 0) {

@@ -58,7 +58,7 @@ public class Level2 {
         entities.add(enemy6);
         entities.add(enemy7);
 
-//        entities.clear();
+        entities.clear();
 
         for (Entity animal : entities) {
             animal.setLife(true);

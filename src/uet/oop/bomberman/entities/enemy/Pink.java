@@ -52,7 +52,7 @@ public class Pink extends Entity {
 
     private void kill() {
         for (Entity entity : entities) {
-            if (entity instanceof Pink && list_kill[entity.getX() / 32][entity.getY() / 32 + 1] == 4) {
+            if (entity instanceof Pink && list_kill[entity.getX() / 32][entity.getY() / 32] == 4) {
                 entity.setLife(false);
             }
         }

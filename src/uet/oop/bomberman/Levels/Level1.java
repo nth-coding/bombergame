@@ -42,11 +42,11 @@ public class Level1 {
         Bar.llevel.setText("Level: 1");
 
         Entity enemy1 = new SmallPoyo(4, 4, Sprite.smallPoyo_left1.getFxImage());
-        Entity enemy2 = new SmallPoyo(9, 9, Sprite.smallPoyo_left1.getFxImage());
-        Entity enemy3 = new SmallPoyo(22, 6, Sprite.smallPoyo_left1.getFxImage());
+//        Entity enemy2 = new SmallPoyo(9, 9, Sprite.smallPoyo_left1.getFxImage());
+//        Entity enemy3 = new SmallPoyo(22, 6, Sprite.smallPoyo_left1.getFxImage());
         entities.add(enemy1);
-        entities.add(enemy2);
-        entities.add(enemy3);
+//        entities.add(enemy2);
+//        entities.add(enemy3);
 
         Entity enemy4 = new BigPoyo(7, 6, Sprite.bigPoyo_left1.getFxImage());
         Entity enemy5 = new BigPoyo(13, 8, Sprite.bigPoyo_left1.getFxImage());
@@ -56,7 +56,7 @@ public class Level1 {
         Entity enemy6 = new Pink(6, 10, Sprite.pink_left1.getFxImage());
         entities.add(enemy6);
 
-//        entities.clear();
+        entities.clear();
         // set default for enemy
         for (Entity Entity : entities) {
             Entity.setLife(true);

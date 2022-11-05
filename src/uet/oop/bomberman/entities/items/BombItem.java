@@ -37,8 +37,8 @@ public class BombItem extends Items {
                     this.setImg(Sprite.grass3.getFxImage());
                 }
                 this.received = true;
-                Bomb.bomb_number= Integer.MAX_VALUE;
-                BombMax =true;
+                Bomb.bomb_number += 10;
+//                BombMax =true;
             }
     }
 }

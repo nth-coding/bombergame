@@ -73,7 +73,6 @@ public class PvPBomber extends Entity {
                 swap_kill_pvp = 7;
 
             } else {
-
                 running = false;
                 Bomber.pvpDem = 1;
 
@@ -103,9 +102,7 @@ public class PvPBomber extends Entity {
     }
 
     private void addMenuButton(MenuButton button) {
-
         pvpRoot.getChildren().add(button);
-
     }
 
     private void createdExitButton() {
