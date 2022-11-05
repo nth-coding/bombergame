@@ -3,7 +3,6 @@ package uet.oop.bomberman.Levels;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.Bomb.*;
 
-import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Bomb;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.enemy.*;
@@ -24,7 +23,6 @@ public class Level1 {
         stillObjects.clear();
         entities.clear();
 
-//        level = 1;
         swap_kill = 1;
         try {
             new MapCreation("Level1.txt");
@@ -52,9 +50,6 @@ public class Level1 {
         Entity enemy5 = new BigPoyo(13, 8, Sprite.bigPoyo_left1.getFxImage());
         entities.add(enemy4);
         entities.add(enemy5);
-
-        Entity enemy6 = new Pink(6, 10, Sprite.pink_left1.getFxImage());
-        entities.add(enemy6);
 
 //        entities.clear();
         // set default for enemy

@@ -1,6 +1,5 @@
 package uet.oop.bomberman.entities.items;
 
-import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.*;
 import javafx.scene.image.Image;
@@ -30,14 +29,7 @@ public class SpeedItem extends Items {
 
         if (!this.received)
             if (bomberman.getX() == this.x && bomberman.getY() + 32 == this.y) {
-                if (BombermanGame.level == 1) {
-                    this.setImg(Sprite.grass1.getFxImage());
-                } else if (BombermanGame.level == 2){
-                    this.setImg(Sprite.grass2.getFxImage());
-                } else
-                {
-                    this.setImg(Sprite.grass3.getFxImage());
-                }
+                this.setImg(Sprite.grass2.getFxImage());
                 this.received = true;
                 speed = 2;
             }
