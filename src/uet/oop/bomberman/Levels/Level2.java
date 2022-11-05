@@ -14,6 +14,7 @@ import uet.oop.bomberman.view.Bar;
 import static uet.oop.bomberman.BombermanGame.bomberman;
 import static uet.oop.bomberman.BombermanGame.entities;
 import static uet.oop.bomberman.BombermanGame.stillObjects;
+import static uet.oop.bomberman.BombermanGame.level;
 import static uet.oop.bomberman.entities.Bomb.is_bomb;
 import static uet.oop.bomberman.entities.Bomber.swap_kill;
 import static uet.oop.bomberman.entities.items.SpeedItem.speed;
@@ -38,6 +39,7 @@ public class Level2 {
         Bar.llevel.setText("Level: 2");
         Bomb.bomb_number = 20;
         Bar.time_number = 120;
+//        level = 2;
 
         Entity enemy1 = new BigPoyo(5, 5, Sprite.bigPoyo_left1.getFxImage());
         Entity enemy2 = new BigPoyo(11, 9, Sprite.bigPoyo_left1.getFxImage());

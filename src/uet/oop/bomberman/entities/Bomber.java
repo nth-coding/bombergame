@@ -125,8 +125,8 @@ public class Bomber  extends Entity {
                 bx = entity.getX();
                 by = entity.getY();
             }
-            if (ax == bx && by - 16 < ay && by + 16 > ay
-                    || ay == by && bx - 16 < ax && bx + 16 > ax)
+            if (ax == bx && by - 32 < ay && by + 32 > ay
+                    || ay == by && bx - 32 < ax && bx + 32 > ax)
             {
                 this.life = false;
 //                System.out.println("Killed by Ballom bug at " + bx + " " + by + " when you were at " + ax + " " + ay);
