@@ -16,6 +16,7 @@ import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
 
 import static uet.oop.bomberman.BombermanGame.entities;
+import static uet.oop.bomberman.entities.items.SpeedItem.speed;
 
 
 public class Level1 {
@@ -32,6 +33,9 @@ public class Level1 {
         bomberman.setY(32);
         bomberman.setLife(true);
         is_bomb = 0;
+        speed =1;
+        Bomb.power_bomb =0;
+
         BombItem.BombMax = false;
         Bomb.bomb_number =20;
         Bar.time_number = 120;

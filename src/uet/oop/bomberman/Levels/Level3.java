@@ -14,6 +14,7 @@ import uet.oop.bomberman.view.Bar;
 import static uet.oop.bomberman.BombermanGame.*;
 import static uet.oop.bomberman.entities.Bomb.is_bomb;
 import static uet.oop.bomberman.entities.Bomber.swap_kill;
+import static uet.oop.bomberman.entities.items.SpeedItem.speed;
 
 public class Level3 {
     public Level3() {
@@ -33,7 +34,8 @@ public class Level3 {
 
 //        level = 3;
         is_bomb = 0;
-
+        speed =1;
+        Bomb.power_bomb =0;
 
         Entity enemy1 = new BakudaRed(5, 5, Sprite.bakudaRed_left1.getFxImage());
         Entity enemy2 = new BakudaRed(11, 9, Sprite.bakudaRed_left1.getFxImage());
