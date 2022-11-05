@@ -6,8 +6,6 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.view.Bar;
 
-import java.util.Random;
-
 import static uet.oop.bomberman.BombermanGame.*;
 
 public class SmallPoyo extends Entity {
@@ -57,22 +55,18 @@ public class SmallPoyo extends Entity {
         }
     }
     private void move() {
-        if (this.y % 32 == 0 && this.x % 32 == 0 && this.life) {
-            Random random = new Random();
-            int direction = random.nextInt(4);
-            switch (direction) {
-                case 0:
-                    ComponentMovement.down(this);
-                    break;
-                case 1:
-                    ComponentMovement.up(this);
-                    break;
-                case 2:
-                    ComponentMovement.left(this);
-                    break;
-                case 3:
-                    ComponentMovement.right(this);
-                    break;
+        if (this.y % 16 == 0 && this.x % 16 == 0 && this.life) {
+            if (bomberman.getX() < this.x) {
+                ComponentMovement.left(this);
+            }
+            if (bomberman.getX() > this.x) {
+                ComponentMovement.right(this);
+            }
+            if (bomberman.getY() + 1 > this.y) {
+                ComponentMovement.down(this);
+            }
+            if (bomberman.getY() + 1< this.y) {
+                ComponentMovement.up(this);
             }
         }
     }

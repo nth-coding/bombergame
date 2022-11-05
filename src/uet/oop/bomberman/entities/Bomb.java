@@ -38,6 +38,7 @@ public class Bomb extends Entity {
     private static boolean is_middle = false;   // Check if the bomb explodes in the center (plus sign, not T )
     public static int is_bomb = 0;      // Check to see if there's a bomb there: //0 no bomb  //1 had bomb  //2 explosion
     private static MediaPlayer mediaPlayerbomb;
+
     public Bomb(int x, int y, Image img) {
         super(x, y, img);
     }
