@@ -5,6 +5,7 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.items.BombItem;
 import uet.oop.bomberman.entities.items.FlameItem;
 import uet.oop.bomberman.entities.items.SpeedItem;
+import uet.oop.bomberman.entities.items.WallPassItem;
 import uet.oop.bomberman.entities.object.Grass;
 import uet.oop.bomberman.entities.object.Brick;
 import uet.oop.bomberman.entities.object.Portal;
@@ -86,6 +87,9 @@ public class MapCreation {
                                 break;
                             case 9:
                                 entity = new Grass(j, i, Sprite.grass_shadow.getFxImage());
+                                break;
+                            case 10:
+                                entity = new WallPassItem(j, i, Sprite.brick2.getFxImage());
                                 break;
                             default:
 //                                if (Objects.equals(level, "Level1.txt")) {
