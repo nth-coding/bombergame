@@ -6,7 +6,6 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.enemy.BigPoyo;
 
 import static uet.oop.bomberman.BombermanGame.*;
-import static uet.oop.bomberman.BombermanGame.through_the_brick;
 
 public class Blocked {
     public static boolean block_down(Entity entity) {   //Create a blocked that prevent all mob go down through the object
@@ -17,7 +16,7 @@ public class Blocked {
         if (entity instanceof Bomber) {
             return (id_objects[entity.getX() / 32][entity.getY() / 32 + 2] == 0
                     || id_objects[entity.getX() / 32][entity.getY() / 32 + 2] == 9)
-                    || through_the_brick;
+                    || through_the_wall;
         }
         return id_objects[entity.getX() / 32][entity.getY() / 32 + 1] == 0
                 || id_objects[entity.getX() / 32][entity.getY() / 32 + 1] == 9;
@@ -31,7 +30,7 @@ public class Blocked {
         if (entity instanceof Bomber) {
             return id_objects[entity.getX() / 32][entity.getY() / 32] == 0
                     || id_objects[entity.getX() / 32][entity.getY() / 32] == 9
-                    || through_the_brick;
+                    || through_the_wall;
         }
         return id_objects[entity.getX() / 32][entity.getY() / 32 - 1] == 0
                 || id_objects[entity.getX() / 32][entity.getY() / 32 - 1] == 9;
@@ -44,7 +43,7 @@ public class Blocked {
         }if (entity instanceof Bomber) {
             return id_objects[entity.getX() / 32 - 1][entity.getY() / 32 + 1] == 0
                     || id_objects[entity.getX() / 32 - 1][entity.getY() / 32 + 1] == 9
-                    ||through_the_brick;
+                    ||through_the_wall;
         }
         return id_objects[entity.getX() / 32 - 1][entity.getY() / 32] == 0
                 || id_objects[entity.getX() / 32 - 1][entity.getY() / 32] == 9;
@@ -58,7 +57,7 @@ public class Blocked {
         if (entity instanceof Bomber) {
             return id_objects[entity.getX() / 32 + 1][entity.getY() / 32 + 1] == 0
                     || id_objects[entity.getX() / 32 + 1][entity.getY() / 32 + 1] == 9
-                    || through_the_brick;
+                    || through_the_wall;
         }
         return id_objects[entity.getX() / 32 + 1][entity.getY() / 32] == 0
                 || id_objects[entity.getX() / 32 + 1][entity.getY() / 32] == 9;

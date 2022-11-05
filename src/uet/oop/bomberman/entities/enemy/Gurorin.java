@@ -86,9 +86,7 @@ public class Gurorin extends Entity {
             Entity entity = entities.get(i);
             if (entity instanceof Gurorin && !entity.life) {
                 killgurorin(entity);
-
             }
-
         }
         move();
     }

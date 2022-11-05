@@ -30,14 +30,29 @@ public class Sprite {
      * |--------------------------------------------------------------------------
      */
     public static Sprite grass_shadow = new Sprite(DEFAULT_SIZE, 6, 1, SpriteSheet.tiles, 16, 16);
-    //    public static Sprite grass1 = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 16, 16);
+    public static Sprite grass_shadow1 = new Sprite(DEFAULT_SIZE, 2, 15, SpriteSheet.tiles, 16, 16);
+    public static Sprite grass_shadow2 = new Sprite(DEFAULT_SIZE, 10, 12, SpriteSheet.tiles, 16, 16);
+    public static Sprite grass1 = new Sprite(DEFAULT_SIZE, 3, 15, SpriteSheet.tiles, 16, 16);
     public static Sprite grass2 = new Sprite(DEFAULT_SIZE, 7, 1, SpriteSheet.tiles, 16, 16);
-    //    public static Sprite brick1 = new Sprite(DEFAULT_SIZE, 7, 0, SpriteSheet.tiles, 16, 16);
+    public static Sprite grass3 = new Sprite(DEFAULT_SIZE, 6, 15, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite brick1 = new Sprite(DEFAULT_SIZE, 1, 15, SpriteSheet.tiles, 16, 16);
     public static Sprite brick2 = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 16, 16);
-    //    public static Sprite wall1 = new Sprite(DEFAULT_SIZE, 5, 0, SpriteSheet.tiles, 16, 16);
+    public static Sprite brick3 = new Sprite(DEFAULT_SIZE, 4, 15, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite wall1 = new Sprite(DEFAULT_SIZE, 0, 15, SpriteSheet.tiles, 16, 16);
     public static Sprite wall2 = new Sprite(DEFAULT_SIZE, 8, 1, SpriteSheet.tiles, 16, 16);
-    //    public static Sprite portal = new Sprite(DEFAULT_SIZE, 4, 0, SpriteSheet.tiles, 14, 14);
+    public static Sprite wall3 = new Sprite(DEFAULT_SIZE, 5, 15, SpriteSheet.tiles, 16, 16);
     public static Sprite portal = new Sprite(DEFAULT_SIZE, 9, 12, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite wall_topleft = new Sprite(DEFAULT_SIZE, 7, 15, SpriteSheet.tiles, 16, 16);
+    public static Sprite wall_topmid = new Sprite(DEFAULT_SIZE, 9, 15, SpriteSheet.tiles, 16, 16);
+    public static Sprite wall_topright = new Sprite(DEFAULT_SIZE, 10, 15, SpriteSheet.tiles, 16, 16);
+    public static Sprite wall_midleft = new Sprite(DEFAULT_SIZE, 11, 15, SpriteSheet.tiles, 16, 16);
+    public static Sprite wall_midright = new Sprite(DEFAULT_SIZE, 12, 15, SpriteSheet.tiles, 16, 16);
+    public static Sprite wall_bottomleft = new Sprite(DEFAULT_SIZE, 12, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite wall_bottommid = new Sprite(DEFAULT_SIZE, 13, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite wall_bottomright = new Sprite(DEFAULT_SIZE, 15, 16, SpriteSheet.tiles, 16, 16);
     /*
      * |--------------------------------------------------------------------------
      * | Bomber Sprites
@@ -118,6 +133,37 @@ public class Sprite {
     public static Sprite bakudaRed_right1 = new Sprite(DEFAULT_SIZE, 13, 7, SpriteSheet.tiles, 16, 16);
     public static Sprite bakudaRed_right2 = new Sprite(DEFAULT_SIZE, 14, 7, SpriteSheet.tiles, 16, 16);
     public static Sprite bakudaRed_dead = new Sprite(DEFAULT_SIZE, 12, 7, SpriteSheet.tiles, 16, 16);
+
+    // pink
+    public static Sprite pink_left1 = new Sprite(DEFAULT_SIZE, 4, 17, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_left2 = new Sprite(DEFAULT_SIZE, 5, 17, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_left3 = new Sprite(DEFAULT_SIZE, 6, 17, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_left4 = new Sprite(DEFAULT_SIZE, 7, 17, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_left5 = new Sprite(DEFAULT_SIZE, 8, 17, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_left6 = new Sprite(DEFAULT_SIZE, 9, 17, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite pink_right1 = new Sprite(DEFAULT_SIZE, 0, 18, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_right2 = new Sprite(DEFAULT_SIZE, 1, 18, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_right3 = new Sprite(DEFAULT_SIZE, 2, 18, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_right4 = new Sprite(DEFAULT_SIZE, 3, 18, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_right5 = new Sprite(DEFAULT_SIZE, 4, 18, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_right6 = new Sprite(DEFAULT_SIZE, 5, 18, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite pink_up1 = new Sprite(DEFAULT_SIZE, 0, 17, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_up2 = new Sprite(DEFAULT_SIZE, 1, 17, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_up3 = new Sprite(DEFAULT_SIZE, 2, 17, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_up4 = new Sprite(DEFAULT_SIZE, 3, 17, SpriteSheet.tiles, 16, 16);
+
+    public static Sprite pink_down1 = new Sprite(DEFAULT_SIZE, 0, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_down2 = new Sprite(DEFAULT_SIZE, 1, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_down3 = new Sprite(DEFAULT_SIZE, 2, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_down4 = new Sprite(DEFAULT_SIZE, 3, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_down5 = new Sprite(DEFAULT_SIZE, 4, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_down6 = new Sprite(DEFAULT_SIZE, 5, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_down7 = new Sprite(DEFAULT_SIZE, 6, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_down8 = new Sprite(DEFAULT_SIZE, 7, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_down9 = new Sprite(DEFAULT_SIZE, 8, 16, SpriteSheet.tiles, 16, 16);
+    public static Sprite pink_down10 = new Sprite(DEFAULT_SIZE, 9, 16, SpriteSheet.tiles, 16, 16);
 
     // gurorin
     public static Sprite gurorin_left1 = new Sprite(DEFAULT_SIZE, 6, 4, SpriteSheet.tiles, 16, 16);
